@@ -1,12 +1,12 @@
 # Use slot loading iMac G3 as a monitor
 iMac G3 IVAD board initialization with an arduino or raspberry pi
 
-- [Heading](#Wiring VGA cable)
-- [Heading](#Wiring Raspberry Pi)
-- [Heading](#Wiring Arduino Uno)
-- [Heading](#Wiring Arduino Nano)
-- [Heading](#Wiring Arduino Uno to transmit EDID)
-- [Heading](#Wiring Arduino Nano to transmit EDID)
+- [Wiring VGA cable](#heading)
+- [Wiring Raspberry Pi](#heading-1)
+- [Wiring Arduino Uno](#heading-2)
+- [Wiring Arduino Nano](#heading-3)
+- [Wiring Arduino Uno to transmit EDID](#heading-4)
+- [Wiring Arduino Nano to transmit EDID](#heading-5)
 
 
 ##Chasis Connectors and Pinouts
