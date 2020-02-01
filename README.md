@@ -1,8 +1,8 @@
 # Use slot loading iMac G3 as a monitor
 iMac G3 IVAD board initialization with an arduino or raspberry pi
 
-- [Wiring VGA cable](#heading)
-- [Chasis Connectors and Pinouts](#heading-1)
+- [Chasis_Connectors_and_Pinouts](#heading)
+- [Wiring VGA cable](#heading-1)
 - [Wiring Raspberry Pi](#heading-2)
 - [Wiring Arduino Uno](#heading-3)
 - [Wiring Arduino Nano](#heading-4)
@@ -10,7 +10,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Wiring Arduino Nano to transmit EDID](#heading-6)
 
 
-##Chasis Connectors and Pinouts
+##Chasis_Connectors_and_Pinouts
 ![ChasisConnectors](connectors_and_boards.png?raw=true "Chasis connectors")
 
 ##Wiring VGA cable
