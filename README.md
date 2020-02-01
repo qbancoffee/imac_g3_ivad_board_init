@@ -1,5 +1,5 @@
-# imac_g3_ivad_board_init
-iMac G3 IVAD board initialization with an arduino
+# Use slot loading iMac G3 as a monitor
+iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 
 Chasis Connectors and Pinouts
