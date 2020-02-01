@@ -5,7 +5,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
 - [Wiring VGA cable](#Wiring-VGA-cable)
 - [Wiring Raspberry Pi](#Wiring-Raspberry-Pi)
-    * [Preparing the Raspberry Pi](#Preparing-the-Raspberry-Pi)
+    * [Preparing the Raspberry Pi](#Preparing-the-Raspberry-Pi)
     * [What to connect](#What-to-connect)
 - [Wiring Arduino Uno](#Wiring-Arduino-Uno)
 - [Wiring Arduino Nano](#Wiring-Arduino-Nano)
