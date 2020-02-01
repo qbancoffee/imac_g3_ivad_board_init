@@ -5,7 +5,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
 - [Wiring VGA cable](#Wiring-VGA-cable)
 - [Wiring Raspberry Pi](#Wiring-Raspberry-Pi)
-    * [What to connect](#WWhat-to-connect)
+    * [What to connect](#What-to-connect)
 - [Wiring Arduino Uno](#Wiring-Arduino-Uno)
 - [Wiring Arduino Nano](#Wiring-Arduino-Nano)
 - [Wiring Arduino Uno to transmit EDID](#Wiring-Arduino-Uno-to-transmit-EDID)
@@ -20,7 +20,15 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 ## Wiring Raspberry Pi
 ![WiringRPI](raspberry_pi_wiring.png?raw=true "Wiring RPI")
+### Preparing the Raspberry Pi
+-Install the latest raspian image using a regular monitor.
+-Enable I2C
+
 ### What to connect
+In all cases, the IVAD board needs to be initialized when the power analog board is
+turned on for the first time. To do this, the initialization sequence must be sent using the
+I2C lines(SDA & SCL) on the Raspberry Pi's GPIO header. Connect the I2C lines according to the diagram
+above.
 
 ## Wiring Arduino Uno
 ![WiringArduinoUno](arduino_uno_wiring.png?raw=true "Wiring Arduino Uno")
