@@ -12,6 +12,9 @@ Wiring VGA cable
 ================
 ![VGACable](vga_adapter.png?raw=true "VGA Cable")
 
+Wiring Raspberry Pi
+================
+![WiringRPI](raspberry_pi_wiring.png?raw=true "Wiring RPI")
 
 Wiring Arduino Uno
 ================
