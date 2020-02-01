@@ -4,11 +4,11 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 <!-- toc -->
 - [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
 - [Wiring VGA cable](#Wiring-VGA-cable)
-- [Wiring Raspberry Pi](#heading-2)
-- [Wiring Arduino Uno](#heading-3)
-- [Wiring Arduino Nano](#heading-4)
-- [Wiring Arduino Uno to transmit EDID](#heading-5)
-- [Wiring Arduino Nano to transmit EDID](#heading-6)
+- [Wiring Raspberry Pi](#Wiring-Raspberry-Pi)
+- [Wiring Arduino Uno](#Wiring-Arduino-Uno)
+- [Wiring Arduino Nano](#Wiring-Arduino-Nano)
+- [Wiring Arduino Uno to transmit EDID](#Wiring-Arduino-Uno-to-transmit-EDID)
+- [Wiring Arduino Nano to transmit EDID](#Wiring-Arduino-Nano-to-transmit-EDID)
 
 
 ## Chasis Connectors and Pinouts
