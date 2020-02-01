@@ -13,6 +13,15 @@ Wiring VGA cable
 ![VGACable](vga_adapter.png?raw=true "VGA Cable")
 
 
+Wiring Arduino Uno
+================
+![WiringArduinoUno](arduino_uno_wiring.png?raw=true "Wiring Arduino Uno")
+
+
+Wiring Arduino Nano
+================
+![WiringArduinoNano](arduino_nano_wiring.png?raw=true "Wiring Arduino Nano")
+
 
 Wiring Raspberry Pi
 ================
