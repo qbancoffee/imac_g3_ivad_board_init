@@ -24,8 +24,10 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 ### What to install
 - Install the latest raspian image using a regular monitor.
+- Enable ssh , you'll need this to login from another computer when you don't have a display
 - Enable I2C
 - Install i2c-tools
+- Install git
 - Copy init_ivad.py
 
 ### Wiring Raspberry Pi
