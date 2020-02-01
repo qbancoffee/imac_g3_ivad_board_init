@@ -36,6 +36,6 @@ Wiring Arduino Uno to transmit EDID
 ![WiringArduinoUnoToXmitEdid](arduino_uno_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Uno to transmit EDID")
 
 
-Wiring Arduino Nano to transmir EDID
+Wiring Arduino Nano to transmit EDID
 ================
 ![WiringArduinoNanotoXmitEdid](arduino_nano_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Nano to transmit EDID")
