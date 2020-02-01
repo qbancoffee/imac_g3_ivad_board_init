@@ -26,3 +26,13 @@ Wiring Arduino Nano
 Wiring Raspberry Pi
 ================
 ![WiringRPI](raspberry_pi_wiring.png?raw=true "Wiring RPI")
+
+
+Wiring Arduino Uno to transmit EDID
+================
+![WiringArduinoUnoToXmitEdid](arduino_uno_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Uno to transmit EDID")
+
+
+Wiring Arduino Nano to transmir EDID
+================
+![WiringArduinoNanotoXmitEdid](arduino_nano_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Nano to transmit EDID")
