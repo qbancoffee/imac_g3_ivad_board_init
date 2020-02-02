@@ -3,6 +3,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 <!-- toc -->
 - [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
+    * [Removing the logic board](Removing-the-logic-board)
 - [Wiring VGA cable](#Wiring-VGA-cable)
     * [Making the cable](#Making-the-cable)
 - [Preparing the Raspberry Pi](#Preparing-the-Raspberry-Pi)
@@ -20,6 +21,11 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 ## Chasis Connectors and Pinouts
 ![ChasisConnectors](connectors_and_boards.png?raw=true "Chasis connectors")
+
+### Removing the logic board
+The connector drawings in the above [diagram](#Chasis-Connectors-and-Pinouts) represent the cables
+coming from the CRT analog board that plug into the logic board. To expose these, the logic board must
+be removed.
 
 ## Wiring VGA cable
 ![VGACable](vga_adapter.png?raw=true "VGA Cable")
