@@ -132,8 +132,8 @@ a nice old school "CRT IS ON"  sound.
 ```bash
 /usr/local/bin/init_ivad.py
 ```
-
-If there is nothing on the screen , move the mouse or press a key,
+If there are errors, make sure the iMac is plugged in and check the wiring.<br>
+If there are no errors and there is nothing on the screen, move the mouse or press a key.
 The raspberry pi might have turned off the display due to inactivity.
 
 - With the IVAD initialized, Reboot the Raspberry Pi.
