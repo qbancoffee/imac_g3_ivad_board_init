@@ -1,4 +1,4 @@
-# Use slot loading iMac G3 as a monitor
+# Modify a slot loading iMac G3 to use it as a monitor
 iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 <!-- toc -->
