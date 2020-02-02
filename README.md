@@ -3,7 +3,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 <!-- toc -->
 - [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
-    * [Removing the logic board](Removing-the-logic-board)
+    * [Removing the logic board](#Removing-the-logic-board)
 - [Wiring VGA cable](#Wiring-VGA-cable)
     * [Making the cable](#Making-the-cable)
 - [Preparing the Raspberry Pi](#Preparing-the-Raspberry-Pi)
