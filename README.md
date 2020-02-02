@@ -25,7 +25,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 ![VGACable](vga_adapter.png?raw=true "VGA Cable")
 
 ### Making the cable
-This is perhaps the most time consuming part of the whole process because not all VGA cables are make the same so the colors for the cable I used may not be the colors used in your cable. Here are the steps I took.<br>
+This is perhaps the most time consuming part of the whole process because not all VGA cables are made the same so the colors for the cable I used may not be the colors used in your cable. Here are the steps I took.<br>
 
 
 - Find a VGA cable to cut.
