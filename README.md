@@ -153,3 +153,11 @@ The raspberry pi might have turned off the display due to inactivity.
 
 ## Powering the CRT on and off
 ![CRTOnAndOff](crt_power_on_and_off.png?raw=true "CRT On and Off")
+
+## See Also
+### Videos
+- [Booting an non-modded iMac G3 to confirm the CRT turns on](https://youtu.be/meIzAyQd0t0)
+- [Initializing IVAD board with an Arduino Uno](https://youtu.be/JLaHMjQ7idI)
+- [Using iMac G3 as a second monitor with custom modeline](https://youtu.be/iSCjOOsf-QQ)
+- [Tweaking the modeline to make the iMac G3 fullscreen](https://youtu.be/1DeY3o7P60g)
+- [Sending the EDID via the VGA cable to a connected computer](https://youtu.be/KzHUogEQob4)
