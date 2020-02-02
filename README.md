@@ -127,7 +127,11 @@ i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --
 ```
+- Turn on the monitor by shorting pins 10 & 6 (see bottom) and run the initialization script.The iMac should make
+a nice old school "CRT IS ON"  sound. If there is nothing on the screen , move the mouse or press a key,
+The raspberry pi might have turned off the display because of inactivity.
 
+- With the IVAD initialized, Reboot the Raspberry Pi.
 
 ## Wiring Arduino Uno
 ![WiringArduinoUno](arduino_uno_wiring.png?raw=true "Wiring Arduino Uno")
