@@ -6,7 +6,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Wiring VGA cable](#Wiring-VGA-cable)
 - [Preparing the Raspberry Pi](#Preparing-the-Raspberry-Pi)
     * [What to install](#What-to-install)
--   * [Wiring Raspberry Pi](#Wiring-Raspberry-Pi)
+-   * [Wiring Raspberry Pi & Testing the connection](#Wiring-Raspberry-Pi-&-testing-the-connection)
 - [Wiring Arduino Uno](#Wiring-Arduino-Uno)
 - [Wiring Arduino Nano](#Wiring-Arduino-Nano)
 - [Wiring Arduino Uno to transmit EDID](#Wiring-Arduino-Uno-to-transmit-EDID)
@@ -89,13 +89,29 @@ exit 0
 sudo chmod +x /etc/rc.local
 ```
 
-### Wiring Raspberry Pi
+### Wiring-Raspberry-Pi-&-testing-the-connection
 
 In all cases, the IVAD board needs to be initialized when the power analog board is
 turned on for the first time. To do this, the initialization sequence must be sent using the
 I2C lines(SDA & SCL) on the Raspberry Pi's GPIO header. Connect the I2C lines according to the diagram
 above.
 
+- Use i2detect to talk to probe the IVAD board. Make sure the iMac is plugged in, it does not have to be turned on for this.
+
+```bash
+i2cdetect -y 1
+```
+- Confirm it found address's 46 and 53, if no luck, check the wiring. the out should look somhting like the following.
+`     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- 46 -- -- -- -- -- -- -- -- -- 
+50: -- -- -- 53 -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --``
+```
 
 
 ## Wiring Arduino Uno
