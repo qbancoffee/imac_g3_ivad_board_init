@@ -13,6 +13,8 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Wiring Arduino Uno to transmit EDID](#Wiring-Arduino-Uno-to-transmit-EDID)
 - [Wiring Arduino Nano to transmit EDID](#Wiring-Arduino-Nano-to-transmit-EDID)
 - [Powering the CRT on and off](#Powering-the-CRT-on-and-off)
+- [See Also](#See-Also)
+   * [Videos](#Videos)
 
 
 ## Chasis Connectors and Pinouts
