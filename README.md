@@ -161,3 +161,6 @@ The raspberry pi might have turned off the display due to inactivity.
 - [Using iMac G3 as a second monitor with custom modeline](https://youtu.be/iSCjOOsf-QQ)
 - [Tweaking the modeline to make the iMac G3 fullscreen](https://youtu.be/1DeY3o7P60g)
 - [Sending the EDID via the VGA cable to a connected computer](https://youtu.be/KzHUogEQob4)
+- [Using CRT without the logic board](https://youtu.be/MbTqhlqsKoY)
+- [Running DOSBOX](https://youtu.be/PG7bluXxrPA)
+- [Initializing the CRT using only a Raspberry Pi](https://youtu.be/isjo-4vQxwM)
