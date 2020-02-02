@@ -125,9 +125,9 @@ i2cdetect -y 1
 ## Wiring Arduino Uno to transmit EDID
 ![WiringArduinoUnoToXmitEdid](arduino_uno_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Uno to transmit EDID")
 
-## Powering the CRT on and off
-Careful!
-
-
 ## Wiring Arduino Nano to transmit EDID
 ![WiringArduinoNanotoXmitEdid](arduino_nano_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Nano to transmit EDID")
+
+
+## Powering the CRT on and off
+Careful!
