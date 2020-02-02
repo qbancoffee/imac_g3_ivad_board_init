@@ -127,7 +127,7 @@ i2cdetect -y 1
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --
 ```
-- Turn on the monitor by shorting pins 10 & 6 (see bottom) and run the initialization script.The iMac should make
+- [Turn on the monitor](#Powering-the-CRT-on-and-off) and run the initialization script.The iMac should make
 a nice old school "CRT IS ON"  sound. If there is nothing on the screen , move the mouse or press a key,
 The raspberry pi might have turned off the display because of inactivity.
 
