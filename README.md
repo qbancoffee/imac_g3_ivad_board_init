@@ -6,6 +6,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Wiring VGA cable](#Wiring-VGA-cable)
 - [Preparing the Raspberry Pi](#Preparing-the-Raspberry-Pi)
     * [What to install](#What-to-install)
+    * [Configure Resolution and Refresh Rate](#Configure-Resolution-and-Refresh-Rate)
 -   * [Wiring The Raspberry Pi and testing the connection](#Wiring-The-Raspberry-Pi-and-testing-the-connection)
 - [Wiring Arduino Uno](#Wiring-Arduino-Uno)
 - [Wiring Arduino Nano](#Wiring-Arduino-Nano)
@@ -90,6 +91,18 @@ exit 0
 sudo chmod +x /etc/rc.local
 ```
 
+### Configure Resolution and Refresh Rate
+-Edit config.txt
+```bash
+sudo nano /boot/config.txt
+```
+-Add the following to the bottom of the file and save
+```
+#iMac G3 settings
+hdmi_group=2
+hdmi_mode=18
+```
+
 ### Wiring The Raspberry Pi and testing the connection
 
 In all cases, the IVAD board needs to be initialized when the power analog board is
@@ -102,7 +115,7 @@ above.
 ```bash
 i2cdetect -y 1
 ```
-- Confirm it found address's 46 and 53, if no luck, check the wiring. The output should look something like the following.
+- Confirm it found address's 46 and 53, if no luck, check the wiring and make sure I2C is enabled. The output should look something like the following.
 ```    
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
