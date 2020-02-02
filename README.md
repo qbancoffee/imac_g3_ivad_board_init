@@ -12,6 +12,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 -   * [Wiring The Raspberry Pi and testing the connection](#Wiring-The-Raspberry-Pi-and-testing-the-connection)
 - [Wiring Arduino Uno](#Wiring-Arduino-Uno)
 - [Wiring Arduino Nano](#Wiring-Arduino-Nano)
+    * [Loading and Running initialization sketch](Loading-and-Running-initialization-sketch)
 - [Wiring Arduino Uno to transmit EDID](#Wiring-Arduino-Uno-to-transmit-EDID)
 - [Wiring Arduino Nano to transmit EDID](#Wiring-Arduino-Nano-to-transmit-EDID)
 - [Powering the CRT on and off](#Powering-the-CRT-on-and-off)
@@ -166,6 +167,9 @@ The raspberry pi might have turned off the display due to inactivity.
 
 ## Wiring Arduino Nano
 ![WiringArduinoNano](arduino_nano_wiring.png?raw=true "Wiring Arduino Nano")
+
+### Loading and Running initialization sketch
+write here
 
 ## Wiring Arduino Uno to transmit EDID
 ![WiringArduinoUnoToXmitEdid](arduino_uno_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Uno to transmit EDID")
