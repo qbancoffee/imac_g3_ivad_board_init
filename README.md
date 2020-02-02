@@ -130,4 +130,4 @@ i2cdetect -y 1
 
 
 ## Powering the CRT on and off
-Careful!
+![CRTOnAndOff](crt_power_on_and_off.png?raw=true "CRT On and Off")
