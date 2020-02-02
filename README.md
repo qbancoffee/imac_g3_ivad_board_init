@@ -49,15 +49,45 @@ cd imac_g3_ivad_board_init
 sudo cp init_ivad.py /usr/local/bin
 sudo chmod +x /usr/local/bin/init_ivad.py
 ```
-- Edit rc.local and add the script. Make sure it's added to the line before "exit 0 " or it will not run. 
+- Edit rc.local and add the script. Make sure it's added to the line before "exit 0 " or it will not run.
+It also needs to be made executable since by default it doesn't do anything.
 ```bash
 sudo nano /etc/rc.local
 ```
-- Add the following before "exit 0"
-```bash
-/usr/local/bin/init_ivad.py 
+
+- It should look something like this
 ```
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+/usr/local/bin/init_ivad.py
+
+exit 0
+
+```
+
 - Ctrl-x to save and exit
+
+- Make rc.local executable
+```bash
+sudo chmod +x /etc/rc.local
+```
 
 ### Wiring Raspberry Pi
 
