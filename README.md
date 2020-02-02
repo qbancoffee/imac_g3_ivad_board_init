@@ -110,7 +110,7 @@ hdmi_mode=18
 In all cases, the IVAD board needs to be initialized when the power analog board is
 turned on for the first time. To do this, the initialization sequence must be sent using the
 I2C lines(SDA & SCL) on the Raspberry Pi's GPIO header. Connect the I2C lines according to the diagram
-above.
+above and connect the VGA cable to the HDMI port using a HDMI to VGA converter.
 
 - Use i2cdetect to probe the IVAD board. Make sure the iMac is plugged in, it does not have to be turned on for this.
 
