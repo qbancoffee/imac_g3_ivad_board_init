@@ -128,8 +128,13 @@ i2cdetect -y 1
 70: -- -- -- -- -- -- -- --
 ```
 - [Turn on the monitor](#Powering-the-CRT-on-and-off) and run the initialization script.The iMac should make
-a nice old school "CRT IS ON"  sound. If there is nothing on the screen , move the mouse or press a key,
-The raspberry pi might have turned off the display because of inactivity.
+a nice old school "CRT IS ON"  sound. 
+```bash
+/usr/local/bin/init_ivad.py
+```
+
+If there is nothing on the screen , move the mouse or press a key,
+The raspberry pi might have turned off the display due to inactivity.
 
 - With the IVAD initialized, Reboot the Raspberry Pi.
 
