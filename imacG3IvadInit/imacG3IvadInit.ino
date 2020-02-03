@@ -42,7 +42,7 @@ void loop() {
   buttonState = digitalRead(powerButtonPin);
 
 
-  if (buttonState == HIGH)
+  if (buttonState == LOW)
   {
     buttonPressedTime++;
     //  Serial.println("HIGH");
@@ -55,8 +55,8 @@ void loop() {
   }
   delay(1000);
 
-  //turn everything off if button is pressed for 5 seconds
-  if (buttonPressedTime >= 5 && externalCircuitState == HIGH) {
+  //turn everything off if button is pressed for 3 seconds
+  if (buttonPressedTime >= 3 && externalCircuitState == HIGH) {
     externalCircuitOff();
     buttonPressedTime = 0;
 
@@ -172,7 +172,7 @@ void initIvadBoard() {
 
 void relay1On() {
   digitalWrite(relay1OnPin, HIGH);
-  delay(200);
+  delay(2000);
   digitalWrite(relay1OnPin, LOW);
 
 }
@@ -192,21 +192,21 @@ void relay2On() {
 }
 
 void relay2Off() {
-  digitalWrite(relay2OffPin, HIGH);
-  delay(200);
   digitalWrite(relay2OffPin, LOW);
+  delay(2000);
+  digitalWrite(relay2OffPin, HIGH);
 
 }
 
 
 void externalCircuitOn() {
   relay1On();
-  relay2On();
+  //relay2On();
   externalCircuitState = HIGH;
 
 }
 void externalCircuitOff() {
-  relay1Off();
+  //relay1Off();
   relay2Off();
   externalCircuitState = LOW;
 
