@@ -40,9 +40,9 @@ This is perhaps the most time consuming part of the whole process because not al
 - Find a VGA cable to cut.
 - Cut the cable so that you have at least one of the ferrite chokes left on the cable.
 - Cut away the cable jacket such that the wires are at a comfortable handling length. 3 to 4 inches
-- Strip each wire and ring them out to find what color corresponds to each pin on the DB15 connector.
-- Use the [diagram](#Wiring-VGA-cable) above and map your cable to J20 using the DB15 pin numbers as the key.
-- Option 1 ,use a 20 pin header and solder the DB15 wires to it then plug it into J20.
+- Strip each wire and ring them out to find what color corresponds to each pin on the DE15 connector.
+- Use the [diagram](#Wiring-VGA-cable) above and map your cable to J20 using the DE15 pin numbers as the key.
+- Option 1 ,use a 20 pin header and solder the DE15 wires to it then plug it into J20.
 - Option 2, cut the required wires from J20 and splice them with VGA cable. Solder and use shrink tubing if you can but twisting them and electrical tape works as well. Make sure to leave enough wire on J20 in the event you need to reattach the wires.
 
 
