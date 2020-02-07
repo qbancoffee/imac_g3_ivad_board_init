@@ -11,7 +11,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
  There is working code here for both the arduino and raspberry pi to initialize the IVAD board so that you can use it as a monitor.
 
 <!-- toc -->
-- [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
+- [Chassis Connectors and Pinouts](#Chassis-Connectors-and-Pinouts)
     * [Removing the logic board](#Removing-the-logic-board)
 - [Wiring VGA cable](#Wiring-VGA-cable)
     * [Making the cable](#Making-the-cable)
@@ -31,11 +31,11 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
    * [Videos](#Videos)
 
 
-## Chasis Connectors and Pinouts
-![ChasisConnectors](connectors_and_boards.png?raw=true "Chasis connectors")
+## Chassis Connectors and Pinouts
+![ChassisConnectors](connectors_and_boards.png?raw=true "Chassis connectors")
 
 ### Removing the logic board
-The connector drawings in the above [diagram](#Chasis-Connectors-and-Pinouts) represent the cables
+The connector drawings in the above [diagram](#Chassis-Connectors-and-Pinouts) represent the cables
 coming from the CRT analog board that plug into the logic board. To expose these, the logic board must
 be removed.
 
