@@ -191,8 +191,9 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 
 ## See Also
 ### Acknowledgements
-ym58 for providing the video connector wiring.
-[Eric Bylenga for providing the pinout for the PAV board.](http://bylenga.ddns.net/index.php?page=vcr.php)
+- [patriciooholegu for inspiring me to do this with an eMac](https://forums.macrumors.com/threads/i-have-decided-to-hack-emacs-crt-to-work-with-any-standard-motherboard.1754089/page-2)
+- [ym58 for providing the video connector wiring.](https://www.tonymacx86.com/threads/imac-g3-slot-mod-video-connector.125515/)
+- [Eric Bylenga for providing the pinout for the PAV board.](http://bylenga.ddns.net/index.php?page=vcr.php)
 ### Videos
 - [Booting an non-modded iMac G3 to confirm the CRT turns on](https://youtu.be/meIzAyQd0t0)
 - [Initializing IVAD board with an Arduino Uno](https://youtu.be/JLaHMjQ7idI)
