@@ -192,3 +192,4 @@ write here
 - [Running DOSBOX](https://youtu.be/PG7bluXxrPA)
 - [Initializing the CRT using only a Raspberry Pi](https://youtu.be/isjo-4vQxwM)
 - [Powering the iMac G3 on and off using an arduino and two transistors](https://youtu.be/-TeNbAcnvbk)
+- [Powering the PAV board(PSU?) without the logic board](https://youtu.be/xmISR5iBjTU)
