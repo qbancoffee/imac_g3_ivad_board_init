@@ -15,6 +15,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
     * [Loading and Running the initialization sketch](#Loading-and-Running-the-initialization-sketch)
 - [Wiring Arduino Uno to transmit EDID](#Wiring-Arduino-Uno-to-transmit-EDID)
 - [Wiring Arduino Nano to transmit EDID](#Wiring-Arduino-Nano-to-transmit-EDID)
+- [Powering the down converter board PAV](#Powering-the-down-converter-board-PAV)
 - [Powering the CRT on and off](#Powering-the-CRT-on-and-off)
 - [See Also](#See-Also)
    * [Videos](#Videos)
@@ -177,6 +178,8 @@ write here
 ## Wiring Arduino Nano to transmit EDID
 ![WiringArduinoNanotoXmitEdid](arduino_nano_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Nano to transmit EDID")
 
+## Powering the down converter board PAV
+![WiringPAV](imac_g3_slot_loading_pav_board.png?raw=true "Powering the PAV board")
 
 ## Powering the CRT on and off
 ![CRTOnAndOff](crt_power_on_and_off.png?raw=true "CRT On and Off")
