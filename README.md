@@ -181,6 +181,10 @@ write here
 ## Powering the down converter board PAV
 ![WiringPAV](imac_g3_slot_loading_pav_board.png?raw=true "Powering the PAV board")
 
+The CRT analog board provides 24v AC to the PAV or down converter board through the logic board via the J22 
+connector. you can directly connect the PAV board and the analog board through the J22 connector and
+the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v ect...
+
 ## Powering the CRT on and off
 ![CRTOnAndOff](crt_power_on_and_off.png?raw=true "CRT On and Off")
 
