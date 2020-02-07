@@ -1,5 +1,14 @@
 # Modify a slot loading iMac G3 to use it as a monitor
 iMac G3 IVAD board initialization with an arduino or raspberry pi
+ 
+ I'm trying to document as much of the iMac G3 slot loader pinouts as I can in order to use
+ this as a guide to make a breakout circuit than can plug right into the chassis connectors and provide
+ standard connections so that a regular computer can use things like the CRT,speakers, power button, audio
+ jacks, the PAV board ect..
+ 
+ It isn't easy but luckily a lot of people have shared their findings online and I have a G3 that I've used to experiment on.
+ 
+ There is working code here for both the arduino and raspberry pi to initialize the IVAD board so that you can use it as a monitor.
 
 <!-- toc -->
 - [Chasis Connectors and Pinouts](#Chasis-Connectors-and-Pinouts)
