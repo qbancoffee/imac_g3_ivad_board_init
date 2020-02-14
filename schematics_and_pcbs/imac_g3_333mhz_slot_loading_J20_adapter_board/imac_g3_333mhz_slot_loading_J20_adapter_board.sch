@@ -9,8 +9,8 @@ Date "2020-02-03"
 Rev "1"
 Comp ""
 Comment1 "and control other functions."
-Comment2 "used to send the i2c IVAD inititialization sequence"
-Comment3 "Converts 50 Volts DC fromJ20 to power an atmega328p"
+Comment2 "used to send the i2c IVAD inititialization sequence and the EDID info to the computer"
+Comment3 "Powers atmega328p fromJ20 and powers an atmega328p from VGA cable"
 Comment4 "Rocky Hill"
 $EndDescr
 $Comp
@@ -24,26 +24,10 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20w
 	1    1350 2650
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5E398311
-P 1400 850
-F 0 "#PWR?" H 1400 700 50  0001 C CNN
-F 1 "+5V" H 1415 1023 50  0000 C CNN
-F 2 "" H 1400 850 50  0001 C CNN
-F 3 "" H 1400 850 50  0001 C CNN
-	1    1400 850 
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1350 1150 1350 850 
 Wire Wire Line
-	1350 850  1400 850 
-Wire Wire Line
 	1450 1150 1450 850 
-Wire Wire Line
-	1450 850  1400 850 
-Connection ~ 1400 850 
 NoConn ~ 750  1450
 $Comp
 L power:GND #PWR?
@@ -282,22 +266,9 @@ Wire Wire Line
 Wire Wire Line
 	9200 1900 9600 1900
 Text Label 9600 1300 0    50   ~ 0
-PFW_5V
+5V_TRICKLE
 Wire Wire Line
 	9200 1300 9600 1300
-NoConn ~ 9200 2000
-NoConn ~ 8700 2000
-$Comp
-L Connector_Generic:Conn_02x10_Odd_Even J20
-U 1 1 5E3F686C
-P 8900 1500
-F 0 "J20" H 8950 2117 50  0000 C CNN
-F 1 "Conn_02x10_Odd_Even" H 8950 2026 50  0000 C CNN
-F 2 "" H 8900 1500 50  0001 C CNN
-F 3 "~" H 8900 1500 50  0001 C CNN
-	1    8900 1500
-	1    0    0    -1  
-$EndComp
 $Comp
 L MCU_Microchip_ATmega:ATmega328-PU U?
 U 1 1 5E42FE47
@@ -309,26 +280,10 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20w
 	1    4250 5750
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5E42FE51
-P 4300 3950
-F 0 "#PWR?" H 4300 3800 50  0001 C CNN
-F 1 "+5V" H 4315 4123 50  0000 C CNN
-F 2 "" H 4300 3950 50  0001 C CNN
-F 3 "" H 4300 3950 50  0001 C CNN
-	1    4300 3950
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4250 4250 4250 3950
 Wire Wire Line
-	4250 3950 4300 3950
-Wire Wire Line
 	4350 4250 4350 3950
-Wire Wire Line
-	4350 3950 4300 3950
-Connection ~ 4300 3950
 NoConn ~ 3650 4550
 $Comp
 L power:GND #PWR?
@@ -434,26 +389,79 @@ F 3 "" H 5850 4150 50  0001 C CNN
 	1    5850 4150
 	1    0    0    -1  
 $EndComp
-Text Label 9600 1200 0    50   ~ 0
-50V_1
-Text Label 8300 1300 2    50   ~ 0
-50V_2
 Text Label 8300 1400 2    50   ~ 0
-50V_3
+PROT
 Text Label 9600 1400 0    50   ~ 0
-40V
+-10V
 Text Label 9600 1600 0    50   ~ 0
-50V_4
+LPIACT:L1_LP
 Wire Wire Line
 	8700 1300 8300 1300
 Wire Wire Line
 	9200 1100 9600 1100
-Wire Wire Line
-	9600 1200 9200 1200
 Wire Wire Line
 	9200 1400 9600 1400
 Wire Wire Line
 	8700 1400 8300 1400
 Wire Wire Line
 	9600 1600 9200 1600
+$Comp
+L power:GND #PWR?
+U 1 1 5E4745C4
+P 10300 2100
+F 0 "#PWR?" H 10300 1850 50  0001 C CNN
+F 1 "GND" H 10305 1927 50  0000 C CNN
+F 2 "" H 10300 2100 50  0001 C CNN
+F 3 "" H 10300 2100 50  0001 C CNN
+	1    10300 2100
+	1    0    0    -1  
+$EndComp
+Text Label 8300 1300 2    50   ~ 0
+DCO
+$Comp
+L Connector_Generic:Conn_02x10_Odd_Even J20
+U 1 1 5E3F686C
+P 8900 1500
+F 0 "J20" H 8950 2117 50  0000 C CNN
+F 1 "Conn_02x10_Odd_Even" H 8950 2026 50  0000 C CNN
+F 2 "" H 8900 1500 50  0001 C CNN
+F 3 "~" H 8900 1500 50  0001 C CNN
+	1    8900 1500
+	1    0    0    -1  
+$EndComp
+Text Label 8300 2000 2    50   ~ 0
+LINE_SENSE
+Wire Wire Line
+	10300 1200 10300 2000
+Wire Wire Line
+	9200 1200 10300 1200
+Wire Wire Line
+	9200 2000 10300 2000
+Connection ~ 10300 2000
+Wire Wire Line
+	10300 2000 10300 2100
+Wire Wire Line
+	8700 2000 8300 2000
+Wire Wire Line
+	1350 850  1400 850 
+Text Label 1400 700  0    50   ~ 0
+5V_TRICKLE
+Wire Wire Line
+	1400 700  1400 850 
+Connection ~ 1400 850 
+Wire Wire Line
+	1400 850  1450 850 
+Wire Wire Line
+	4250 3950 4300 3950
+Text Label 4300 3750 0    50   ~ 0
+COMPUTER_5V
+Wire Wire Line
+	4300 3750 4300 3950
+Connection ~ 4300 3950
+Wire Wire Line
+	4300 3950 4350 3950
+Text Notes 900  4800 0    50   ~ 0
+Sends initialization sequence to the IVAD board
+Text Notes 2100 6550 0    50   ~ 0
+Sends EDID data to computer via DE15\nconnector
 $EndSCHEMATC
