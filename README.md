@@ -216,3 +216,4 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 - [Initializing the CRT using only a Raspberry Pi](https://youtu.be/isjo-4vQxwM)
 - [Powering the iMac G3 on and off using an arduino and two transistors](https://youtu.be/-TeNbAcnvbk)
 - [Powering the PAV board(PSU?) without the logic board](https://youtu.be/xmISR5iBjTU)
+- [Using CRT on second iMac without logic board](https://youtu.be/UcsI3FVfpCM)
