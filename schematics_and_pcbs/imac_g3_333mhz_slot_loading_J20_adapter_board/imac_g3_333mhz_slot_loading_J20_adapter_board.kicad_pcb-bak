@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 25)
+    (drawings 24)
     (tracks 0)
     (zones 0)
     (modules 12)
@@ -864,9 +864,6 @@
     (pad 1 thru_hole circle (at 0 0) (size 7 7) (drill 3.5) (layers *.Cu *.Mask))
   )
 
-  (gr_text VGA (at 182.88 86.36) (layer F.SilkS)
-    (effects (font (size 1 1) (thickness 0.15)))
-  )
   (gr_text SDA (at 186.563 77.343 270) (layer F.SilkS)
     (effects (font (size 1 1) (thickness 0.15)))
   )
