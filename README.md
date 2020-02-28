@@ -219,3 +219,4 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 - [Using CRT on second iMac without logic board](https://youtu.be/UcsI3FVfpCM)
 - [Powering an arduino nano with only the triclke voltage provided by the analog board](https://youtu.be/KuT7AKvZXhk)
 - [iMac G3 speaker repair](https://youtu.be/jgs-gkoiUrA)
+- [ Testing replacement speakers with smooth criminal](https://youtu.be/Vm1vN6xlomQ)
