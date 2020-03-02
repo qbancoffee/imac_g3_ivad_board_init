@@ -1,0 +1,5 @@
+#copied and adapted from https://wiki.ubuntu.com/HardwareSupportMachinesDesktops/AppleImacG3
+
+Modeline "1024x768" 78.75 1024 1044 1140 1328 768 781 784 820 +hsync +vsync ratio=4:3
+Modeline "800x600" 62.40 800 821 901 1040 600 609 612 644 +hsync +vsync ratio=4:3
+Modeline "640x480" 49.90 640 657 721 832 480 481 484 514 +hsync +vsync ratio=4:3
