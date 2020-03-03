@@ -41,7 +41,7 @@ F 3 "" H 1350 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1350 4150 1350 4450
+	1350 4150 1350 4250
 $Comp
 L Device:Crystal Y1
 U 1 1 5E39C3FD
@@ -339,28 +339,6 @@ F 3 "" H 7650 1300 50  0001 C CNN
 	1    7650 1300
 	1    0    0    -1  
 $EndComp
-$Comp
-L Mechanical:MountingHole H2
-U 1 1 5E55BA96
-P 5250 2200
-F 0 "H2" H 5350 2246 50  0000 L CNN
-F 1 "MountingHole" H 5350 2155 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.5mm_Pad" H 5250 2200 50  0001 C CNN
-F 3 "~" H 5250 2200 50  0001 C CNN
-	1    5250 2200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole H1
-U 1 1 5E55AF97
-P 5100 1400
-F 0 "H1" H 5200 1446 50  0000 L CNN
-F 1 "MountingHole" H 5200 1355 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.5mm_Pad" H 5100 1400 50  0001 C CNN
-F 3 "~" H 5100 1400 50  0001 C CNN
-	1    5100 1400
-	1    0    0    -1  
-$EndComp
 Text Label 9500 3800 0    50   ~ 0
 COMPUTER_SCL
 Text Label 9500 3200 0    50   ~ 0
@@ -422,9 +400,7 @@ F 5 "BC2364-ND" H 6300 4500 50  0001 C CNN "Part#"
 $EndComp
 Wire Wire Line
 	4300 3950 4350 3950
-Wire Wire Line
-	4300 3750 4300 3950
-Text Label 4300 3750 0    50   ~ 0
+Text Label 5500 3100 0    50   ~ 0
 COMPUTER_5V
 Connection ~ 4300 3950
 Wire Wire Line
@@ -502,4 +478,300 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20w
 	1    4250 5750
 	1    0    0    -1  
 $EndComp
+$Comp
+L Relay_SolidState:LCC110 U3
+U 1 1 5E5D6E51
+P 2900 4050
+F 0 "U3" H 2900 4617 50  0000 C CNN
+F 1 "LCC110" H 2900 4526 50  0000 C CNN
+F 2 "Package_DIP:DIP-8_W7.62mm" H 2900 3550 50  0001 C CIN
+F 3 "http://www.ixysic.com/home/pdfs.nsf/www/LCC110.pdf/$file/LCC110.pdf" H 2900 4050 50  0001 L CNN
+F 4 "digikey" H 2900 4050 50  0001 C CNN "Vendor"
+F 5 "CLA106-ND" H 2900 4050 50  0001 C CNN "part#"
+	1    2900 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 3850 1950 3850
+$Comp
+L Device:R_Small_US R1
+U 1 1 5E5FAFCC
+P 2300 4250
+F 0 "R1" V 2505 4250 50  0000 C CNN
+F 1 "220" V 2414 4250 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 2300 4250 50  0001 C CNN
+F 3 "~" H 2300 4250 50  0001 C CNN
+	1    2300 4250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2600 4250 2400 4250
+Wire Wire Line
+	2200 4250 1350 4250
+Connection ~ 1350 4250
+Wire Wire Line
+	1350 4250 1350 4400
+Wire Wire Line
+	3200 3950 3450 3950
+Wire Wire Line
+	3450 3950 3450 4050
+Wire Wire Line
+	3450 4150 3200 4150
+Text Label 3750 3650 0    50   ~ 0
+PFW
+Text Label 3750 3500 0    50   ~ 0
+LPIACT:L1_LP
+Wire Wire Line
+	3450 4050 3750 4050
+Connection ~ 3450 4050
+Wire Wire Line
+	3450 4050 3450 4150
+Wire Wire Line
+	3400 2950 3200 2950
+Connection ~ 3400 2950
+Wire Wire Line
+	3200 2950 3200 3750
+Text Label 3250 5000 0    50   ~ 0
+5V_TRICKLE
+Wire Wire Line
+	3200 4350 3200 5000
+Wire Wire Line
+	3200 5000 3250 5000
+$Comp
+L Device:D_Schottky_ALT D1
+U 1 1 5E621824
+P 4650 3500
+F 0 "D1" V 4696 3421 50  0000 R CNN
+F 1 "D_Schottky_ALT" V 4605 3421 50  0000 R CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal" H 4650 3500 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88525/1n5817.pdf" H 4650 3500 50  0001 C CNN
+F 4 "digikey" H 4650 3500 50  0001 C CNN "Vendor"
+F 5 "1N5819-E3/54GICT-ND" H 4650 3500 50  0001 C CNN "Part#"
+	1    4650 3500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Schottky_ALT D2
+U 1 1 5E621F90
+P 5500 3500
+F 0 "D2" V 5546 3421 50  0000 R CNN
+F 1 "D_Schottky_ALT" V 5455 3421 50  0000 R CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal" H 5500 3500 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88525/1n5817.pdf" H 5500 3500 50  0001 C CNN
+F 4 "digikey" H 5500 3500 50  0001 C CNN "Vendor"
+F 5 "1N5819-E3/54GICT-ND" H 5500 3500 50  0001 C CNN "Part#"
+	1    5500 3500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4300 3650 4650 3650
+Wire Wire Line
+	4300 3650 4300 3800
+Wire Wire Line
+	5500 3650 4650 3650
+Connection ~ 4650 3650
+Wire Wire Line
+	5500 3100 5500 3350
+Text Label 4650 3050 0    50   ~ 0
+5V_TRICKLE
+Wire Wire Line
+	4650 3050 4650 3350
+NoConn ~ 1950 1450
+NoConn ~ 1950 1550
+NoConn ~ 1950 1650
+NoConn ~ 1950 1750
+NoConn ~ 1950 1850
+NoConn ~ 1950 2350
+NoConn ~ 1950 2450
+NoConn ~ 1950 2550
+NoConn ~ 1950 2650
+NoConn ~ 1950 2950
+NoConn ~ 1950 3150
+NoConn ~ 1950 3250
+NoConn ~ 1950 3350
+NoConn ~ 1950 3450
+NoConn ~ 1950 3550
+NoConn ~ 1950 3650
+NoConn ~ 1950 3750
+NoConn ~ 4850 4550
+NoConn ~ 4850 4650
+NoConn ~ 4850 4750
+NoConn ~ 4850 4850
+NoConn ~ 4850 4950
+NoConn ~ 4850 5050
+NoConn ~ 4850 5450
+NoConn ~ 4850 5550
+NoConn ~ 4850 5650
+NoConn ~ 4850 5750
+NoConn ~ 4850 6050
+NoConn ~ 4850 6250
+NoConn ~ 4850 6350
+NoConn ~ 4850 6450
+NoConn ~ 4850 6550
+NoConn ~ 4850 6650
+NoConn ~ 4850 6750
+NoConn ~ 4850 6850
+NoConn ~ 4850 6950
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5E66E4D7
+P 4050 3800
+F 0 "#FLG0101" H 4050 3875 50  0001 C CNN
+F 1 "PWR_FLAG" H 4050 3973 50  0000 C CNN
+F 2 "" H 4050 3800 50  0001 C CNN
+F 3 "~" H 4050 3800 50  0001 C CNN
+	1    4050 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 3800 4300 3800
+Connection ~ 4300 3800
+Wire Wire Line
+	4300 3800 4300 3950
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5E67684F
+P 950 850
+F 0 "#FLG0102" H 950 925 50  0001 C CNN
+F 1 "PWR_FLAG" H 950 1023 50  0000 C CNN
+F 2 "" H 950 850 50  0001 C CNN
+F 3 "~" H 950 850 50  0001 C CNN
+	1    950  850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1350 850  950  850 
+Connection ~ 1350 850 
+$Comp
+L power:PWR_FLAG #FLG0103
+U 1 1 5E68104D
+P 850 4400
+F 0 "#FLG0103" H 850 4475 50  0001 C CNN
+F 1 "PWR_FLAG" H 850 4573 50  0000 C CNN
+F 2 "" H 850 4400 50  0001 C CNN
+F 3 "~" H 850 4400 50  0001 C CNN
+	1    850  4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	850  4400 1350 4400
+Connection ~ 1350 4400
+Wire Wire Line
+	1350 4400 1350 4450
+Wire Wire Line
+	6050 1700 5700 1700
+Wire Wire Line
+	5700 1600 6050 1600
+Wire Wire Line
+	5700 1500 6050 1500
+Wire Wire Line
+	5700 1400 6050 1400
+Text Label 6050 1700 0    50   ~ 0
+LINE_SENSE
+Text Label 6050 1600 0    50   ~ 0
+-10V
+Text Label 6050 1500 0    50   ~ 0
+PROT
+Text Label 6050 1400 0    50   ~ 0
+DCO
+Text Label 2700 1600 0    50   ~ 0
+PWR_BTN
+Wire Wire Line
+	2700 1600 2300 1600
+Wire Wire Line
+	2300 1600 2300 1950
+Wire Wire Line
+	2300 1950 1950 1950
+Text Label 6050 1800 0    50   ~ 0
+PWR_BTN
+Wire Wire Line
+	6050 1800 5850 1800
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 5E7116D4
+P 9200 6300
+F 0 "H1" H 9300 6349 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9300 6258 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.5mm_Pad" H 9200 6300 50  0001 C CNN
+F 3 "~" H 9200 6300 50  0001 C CNN
+	1    9200 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 5E712C50
+P 9200 6550
+F 0 "#PWR0101" H 9200 6300 50  0001 C CNN
+F 1 "GND" H 9205 6377 50  0000 C CNN
+F 2 "" H 9200 6550 50  0001 C CNN
+F 3 "" H 9200 6550 50  0001 C CNN
+	1    9200 6550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small_US R2
+U 1 1 5E723C5A
+P 4900 1750
+F 0 "R2" H 5105 1750 50  0000 C CNN
+F 1 "10k" H 5100 1850 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 4900 1750 50  0001 C CNN
+F 3 "~" H 4900 1750 50  0001 C CNN
+	1    4900 1750
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4900 1850 4900 2200
+Wire Wire Line
+	4900 2200 5850 2200
+Wire Wire Line
+	5850 2200 5850 1800
+Connection ~ 5850 1800
+Wire Wire Line
+	5850 1800 5700 1800
+Text Label 4900 1400 2    50   ~ 0
+5V_TRICKLE
+Wire Wire Line
+	4900 1400 4900 1650
+$Comp
+L Connector:Screw_Terminal_01x06 J2
+U 1 1 5E74116A
+P 5500 1600
+F 0 "J2" H 5418 1075 50  0000 C CNN
+F 1 "Screw_Terminal_01x06" H 5418 1166 50  0000 C CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal" H 5500 1600 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935200.pdf" H 5500 1600 50  0001 C CNN
+F 4 "digikey" H 5500 1600 50  0001 C CNN "Vendor"
+F 5 "277-1581-ND" H 5500 1600 50  0001 C CNN "Part#"
+	1    5500 1600
+	-1   0    0    1   
+$EndComp
+Text Label 6050 1300 0    50   ~ 0
+PWR_LED
+Wire Wire Line
+	5700 1300 6050 1300
+Text Label 3750 3300 0    50   ~ 0
+PWR_LED
+Wire Wire Line
+	3750 3300 3750 4050
+Wire Wire Line
+	9200 6400 9200 6550
+Text Label 8350 4600 0    50   ~ 0
+GND_BLUE
+Text Label 8350 4700 0    50   ~ 0
+GND_GREEN
+Text Label 8350 4800 0    50   ~ 0
+GND_RED
+$Comp
+L power:GND #PWR?
+U 1 1 5E77D79F
+P 8350 4950
+F 0 "#PWR?" H 8350 4700 50  0001 C CNN
+F 1 "GND" H 8355 4777 50  0000 C CNN
+F 2 "" H 8350 4950 50  0001 C CNN
+F 3 "" H 8350 4950 50  0001 C CNN
+	1    8350 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8350 4600 8350 4950
 $EndSCHEMATC
