@@ -339,9 +339,9 @@ F 3 "" H 7650 1300 50  0001 C CNN
 	1    7650 1300
 	1    0    0    -1  
 $EndComp
-Text Label 9500 3800 0    50   ~ 0
+Text Label 9900 3800 0    50   ~ 0
 COMPUTER_SCL
-Text Label 9500 3200 0    50   ~ 0
+Text Label 9900 3200 0    50   ~ 0
 COMPUTER_SDA
 Text Notes 2100 6550 0    50   ~ 0
 Sends EDID data to computer via DE15\nconnector
@@ -755,4 +755,103 @@ Wire Wire Line
 	3750 3300 3750 4050
 Wire Wire Line
 	9200 6400 9200 6550
+Text Label 8350 4600 0    50   ~ 0
+GND_BLUE
+Text Label 8350 4700 0    50   ~ 0
+GND_GREEN
+Text Label 8350 4800 0    50   ~ 0
+GND_RED
+$Comp
+L power:GND #PWR010
+U 1 1 5E77D79F
+P 8350 4950
+F 0 "#PWR010" H 8350 4700 50  0001 C CNN
+F 1 "GND" H 8355 4777 50  0000 C CNN
+F 2 "" H 8350 4950 50  0001 C CNN
+F 3 "" H 8350 4950 50  0001 C CNN
+	1    8350 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8350 4600 8350 4950
+$Comp
+L Device:CP C5
+U 1 1 5E5FB13C
+P 1100 6050
+F 0 "C5" H 1218 6096 50  0000 L CNN
+F 1 "470uF" H 1218 6005 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 1138 5900 50  0001 C CNN
+F 3 "http://nichicon-us.com/english/products/pdfs/e-upw.pdf" H 1100 6050 50  0001 C CNN
+F 4 "digikey" H 1100 6050 50  0001 C CNN "Vendor"
+F 5 "493-1702-ND" H 1100 6050 50  0001 C CNN "Part#"
+	1    1100 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C6
+U 1 1 5E5FCDDF
+P 1700 6050
+F 0 "C6" H 1818 6096 50  0000 L CNN
+F 1 "470uF" H 1818 6005 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 1738 5900 50  0001 C CNN
+F 3 "http://nichicon-us.com/english/products/pdfs/e-upw.pdf" H 1700 6050 50  0001 C CNN
+F 4 "digikey" H 1700 6050 50  0001 C CNN "Vendor"
+F 5 "493-1702-ND" H 1700 6050 50  0001 C CNN "Part#"
+	1    1700 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR011
+U 1 1 5E5FD400
+P 1450 6550
+F 0 "#PWR011" H 1450 6300 50  0001 C CNN
+F 1 "GND" H 1455 6377 50  0000 C CNN
+F 2 "" H 1450 6550 50  0001 C CNN
+F 3 "" H 1450 6550 50  0001 C CNN
+	1    1450 6550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 6200 1700 6550
+Wire Wire Line
+	1700 6550 1450 6550
+Wire Wire Line
+	1100 6200 1100 6550
+Wire Wire Line
+	1100 6550 1450 6550
+Connection ~ 1450 6550
+Text Label 1100 5600 2    50   ~ 0
+5V_TRICKLE
+Text Label 1700 5600 0    50   ~ 0
+COMPUTER_5V
+Wire Wire Line
+	1700 5600 1700 5900
+Wire Wire Line
+	1100 5600 1100 5900
+$Comp
+L Jumper:SolderJumper_2_Open JP1
+U 1 1 5E630257
+P 9650 3200
+F 0 "JP1" H 9650 3405 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 9650 3314 50  0000 C CNN
+F 2 "" H 9650 3200 50  0001 C CNN
+F 3 "~" H 9650 3200 50  0001 C CNN
+	1    9650 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper:SolderJumper_2_Open JP2
+U 1 1 5E6323A4
+P 9650 3800
+F 0 "JP2" H 9650 4005 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 9650 3914 50  0000 C CNN
+F 2 "" H 9650 3800 50  0001 C CNN
+F 3 "~" H 9650 3800 50  0001 C CNN
+	1    9650 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9800 3200 9900 3200
+Wire Wire Line
+	9800 3800 9900 3800
 $EndSCHEMATC

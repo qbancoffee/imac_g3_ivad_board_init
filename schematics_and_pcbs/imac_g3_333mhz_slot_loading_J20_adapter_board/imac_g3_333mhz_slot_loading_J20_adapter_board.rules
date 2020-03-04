@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
-    (start_pass_no 211)
+    (start_pass_no 1255)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -64,14 +64,14 @@
   )
   (class "kicad_default"
     GND "Net-(C1-Pad2)" "Net-(C2-Pad1)" "Net-(C3-Pad2)" "Net-(C4-Pad1)" /RED /GREEN /BLUE
-    "Net-(J1-Pad4)" "/GND_RED" "/GND_GREEN" "/GND_BLUE" "/COMPUTER_5V" "Net-(J1-Pad11)" "/COMPUTER_SDA" "/H_SYNC"
-    "/V_SYNC" "/COMPUTER_SCL" "/IVAD_SDA" "/IVAD_SCL" /DCO "/5V_TRICKLE" /PROT "/-10V"
-    "/LPIACT:L1_LP" "/LINE_SENSE" "Net-(U1-Pad1)" "Net-(U1-Pad15)" "Net-(U1-Pad2)" "Net-(U1-Pad16)" "Net-(U1-Pad3)" "Net-(U1-Pad17)"
-    "Net-(U1-Pad4)" "Net-(U1-Pad18)" "Net-(U1-Pad5)" "Net-(U1-Pad6)" "Net-(U1-Pad21)" "Net-(U1-Pad23)" "Net-(U1-Pad24)" "Net-(U1-Pad11)"
-    "Net-(U1-Pad25)" "Net-(U1-Pad12)" "Net-(U1-Pad26)" "Net-(U1-Pad13)" "Net-(U1-Pad14)" "Net-(U2-Pad14)" "Net-(U2-Pad13)" "Net-(U2-Pad26)"
-    "Net-(U2-Pad12)" "Net-(U2-Pad25)" "Net-(U2-Pad11)" "Net-(U2-Pad24)" "Net-(U2-Pad23)" "Net-(U2-Pad21)" "Net-(U2-Pad6)" "Net-(U2-Pad19)"
-    "Net-(U2-Pad5)" "Net-(U2-Pad18)" "Net-(U2-Pad4)" "Net-(U2-Pad17)" "Net-(U2-Pad3)" "Net-(U2-Pad16)" "Net-(U2-Pad2)" "Net-(U2-Pad15)"
-    "Net-(U2-Pad1)" "Net-(D1-Pad1)" "Net-(R1-Pad2)" "Net-(U3-Pad1)" "Net-(U3-Pad4)" "/PWR_BTN"
+    "Net-(J1-Pad4)" "/COMPUTER_5V" "Net-(J1-Pad11)" "/COMPUTER_SDA" "/H_SYNC" "/V_SYNC" "/COMPUTER_SCL" "/IVAD_SDA"
+    "/IVAD_SCL" /DCO "/5V_TRICKLE" /PROT "/-10V" "/LPIACT:L1_LP" "/LINE_SENSE" "Net-(U1-Pad1)"
+    "Net-(U1-Pad15)" "Net-(U1-Pad2)" "Net-(U1-Pad16)" "Net-(U1-Pad3)" "Net-(U1-Pad17)" "Net-(U1-Pad4)" "Net-(U1-Pad18)" "Net-(U1-Pad5)"
+    "Net-(U1-Pad6)" "Net-(U1-Pad21)" "Net-(U1-Pad23)" "Net-(U1-Pad24)" "Net-(U1-Pad11)" "Net-(U1-Pad25)" "Net-(U1-Pad12)" "Net-(U1-Pad26)"
+    "Net-(U1-Pad13)" "Net-(U1-Pad14)" "Net-(U2-Pad14)" "Net-(U2-Pad13)" "Net-(U2-Pad26)" "Net-(U2-Pad12)" "Net-(U2-Pad25)" "Net-(U2-Pad11)"
+    "Net-(U2-Pad24)" "Net-(U2-Pad23)" "Net-(U2-Pad21)" "Net-(U2-Pad6)" "Net-(U2-Pad19)" "Net-(U2-Pad5)" "Net-(U2-Pad18)" "Net-(U2-Pad4)"
+    "Net-(U2-Pad17)" "Net-(U2-Pad3)" "Net-(U2-Pad16)" "Net-(U2-Pad2)" "Net-(U2-Pad15)" "Net-(U2-Pad1)" "Net-(D1-Pad1)" "Net-(R1-Pad2)"
+    "Net-(U3-Pad1)" "Net-(U3-Pad4)" "/PWR_BTN" "Net-(J1-Pad12)" "Net-(J1-Pad15)"
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule
