@@ -27,6 +27,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Powering the down converter board PAV](#Powering-the-down-converter-board-PAV)
 - [Powering the CRT on and off](#Powering-the-CRT-on-and-off)
 - [See Also](#See-Also)
+   * [Getting adapter boards](#Boards)
    * [Acknowledgements](#Acknowledgements)
    * [Videos](#Videos)
 
@@ -199,6 +200,8 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 ![CRTOnAndOff](crt_power_on_and_off.png?raw=true "CRT On and Off")
 
 ## See Also
+### Boards
+- [Video/power on/off board (untested)](<a href="https://oshpark.com/shared_projects/rvKwW8ms"><img src="https://oshpark.com/assets/badge-5b7ec47045b78aef6eb9d83b3bac6b1920de805e9a0c227658eac6e19a045b9c.png" alt="Order from OSH Park"></img></a>)
 ### Acknowledgements
 - [patriciooholegu for inspiring me to do this with an eMac](https://forums.macrumors.com/threads/i-have-decided-to-hack-emacs-crt-to-work-with-any-standard-motherboard.1754089/page-2)
 - [ym58 for providing the video connector wiring.](https://www.tonymacx86.com/threads/imac-g3-slot-mod-video-connector.125515/)
