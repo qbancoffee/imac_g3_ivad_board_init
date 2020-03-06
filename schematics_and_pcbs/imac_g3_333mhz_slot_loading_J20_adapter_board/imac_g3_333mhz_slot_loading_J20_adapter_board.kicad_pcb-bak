@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 34)
+    (drawings 36)
     (tracks 297)
     (zones 0)
     (modules 21)
@@ -14,7 +14,7 @@
     (0 F.Cu signal)
     (31 B.Cu signal)
     (32 B.Adhes user)
-    (33 F.Adhes user)
+    (33 F.Adhes user hide)
     (34 B.Paste user)
     (35 F.Paste user)
     (36 B.SilkS user)
@@ -649,6 +649,11 @@
     (pad 28 thru_hole oval (at 7.62 0) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask)
       (net 17 /IVAD_SCL))
     (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm.wrl
+      (offset (xyz 0 0 3.7084))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm_Socket.step
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -741,6 +746,11 @@
     (pad 1 thru_hole rect (at 0 0) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask)
       (net 62 "Net-(U2-Pad1)"))
     (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm.wrl
+      (offset (xyz 0 0 3.6576))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm_Socket.step
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -1188,10 +1198,10 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
-    (model ${KISYS3DMOD}/TerminalBlock_Altech.3dshapes/Altech_AK300_1x06_P5.00mm_45-Degree.wrl
-      (at (xyz 0 0 0))
+    (model "${KIPRJMOD}/3d_models/Screw Terminal Block 5mm 6-way.step"
+      (offset (xyz 12.5222 0 0.1524))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -1657,6 +1667,12 @@
       ))
   )
 
+  (gr_text "Rocky Hill" (at 141.224 64.516) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (gr_text "iMac G3 DV VGA\non/off adapter" (at 175.26 61.468) (layer B.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
+  )
   (gr_text "solder jumpers to\nsend EDID" (at 182.372 105.156) (layer B.SilkS)
     (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
   )

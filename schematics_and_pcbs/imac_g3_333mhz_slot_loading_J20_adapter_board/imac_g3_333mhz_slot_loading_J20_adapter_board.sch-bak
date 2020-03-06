@@ -834,7 +834,7 @@ U 1 1 5E630257
 P 9650 3200
 F 0 "JP1" H 9650 3405 50  0000 C CNN
 F 1 "SolderJumper_2_Open" H 9650 3314 50  0000 C CNN
-F 2 "" H 9650 3200 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 9650 3200 50  0001 C CNN
 F 3 "~" H 9650 3200 50  0001 C CNN
 	1    9650 3200
 	1    0    0    -1  
@@ -845,7 +845,7 @@ U 1 1 5E6323A4
 P 9650 3800
 F 0 "JP2" H 9650 4005 50  0000 C CNN
 F 1 "SolderJumper_2_Open" H 9650 3914 50  0000 C CNN
-F 2 "" H 9650 3800 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 9650 3800 50  0001 C CNN
 F 3 "~" H 9650 3800 50  0001 C CNN
 	1    9650 3800
 	1    0    0    -1  

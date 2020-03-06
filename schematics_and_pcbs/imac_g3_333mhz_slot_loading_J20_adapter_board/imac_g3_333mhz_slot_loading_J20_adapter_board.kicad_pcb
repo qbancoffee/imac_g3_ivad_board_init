@@ -86,9 +86,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory "gerbers/"))
   )
 
   (net 0 "")
@@ -649,6 +649,11 @@
     (pad 28 thru_hole oval (at 7.62 0) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask)
       (net 17 /IVAD_SCL))
     (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm.wrl
+      (offset (xyz 0 0 3.7084))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm_Socket.step
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -741,6 +746,11 @@
     (pad 1 thru_hole rect (at 0 0) (size 1.6 1.6) (drill 0.8) (layers *.Cu *.Mask)
       (net 62 "Net-(U2-Pad1)"))
     (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm.wrl
+      (offset (xyz 0 0 3.6576))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ${KISYS3DMOD}/Package_DIP.3dshapes/DIP-28_W7.62mm_Socket.step
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -1188,10 +1198,10 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
-    (model ${KISYS3DMOD}/TerminalBlock_Altech.3dshapes/Altech_AK300_1x06_P5.00mm_45-Degree.wrl
-      (at (xyz 0 0 0))
+    (model "${KIPRJMOD}/3d_models/Screw Terminal Block 5mm 6-way.step"
+      (offset (xyz 12.5222 0 0.1524))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz -90 0 0))
     )
   )
 
@@ -2052,7 +2062,7 @@
   (segment (start 167.274 106.68) (end 169.783 104.171) (width 0.25) (layer B.Cu) (net 69))
   (segment (start 169.783 104.171) (end 169.783 102.004) (width 0.25) (layer B.Cu) (net 69))
 
-  (zone (net 1) (net_name GND) (layer B.Cu) (tstamp 0) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer B.Cu) (tstamp 5E61A067) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -2655,7 +2665,7 @@
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 0) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5E61A064) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
