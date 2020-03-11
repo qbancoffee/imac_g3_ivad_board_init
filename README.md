@@ -209,6 +209,7 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 - [sparpet for capturing and sharing the IVAD initialization code](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/page-2)
 - [jamie-g for providing a way to adjust monitor settings via i2c](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/page-2)
 - [iMac speaker replacement by TEch Chrunch](https://youtu.be/yc8NGDw5aSQ)
+- [DrJekyll_XYZ for providing xrandr output that lead to creating an EDID](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28272422)
 
 ### Videos
 - [Booting an non-modded iMac G3 to confirm the CRT turns on](https://youtu.be/meIzAyQd0t0)
