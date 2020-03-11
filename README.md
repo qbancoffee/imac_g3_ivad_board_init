@@ -203,11 +203,11 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 ### Boards
 - [Video/power on/off board (untested)](https://oshpark.com/shared_projects/rvKwW8ms)
 ### Acknowledgements
-- [patriciooholegu for inspiring me to do this with an eMac](https://forums.macrumors.com/threads/i-have-decided-to-hack-emacs-crt-to-work-with-any-standard-motherboard.1754089/page-2)
+- [patriciooholegu for inspiring me to do this with an eMac](https://forums.macrumors.com/threads/i-have-decided-to-hack-emacs-crt-to-work-with-any-standard-motherboard.1754089/post-19353472
 - [ym58 for providing the video connector wiring.](https://www.tonymacx86.com/threads/imac-g3-slot-mod-video-connector.125515/)
 - [Eric Bylenga for providing the pinout for the PAV board.](http://bylenga.ddns.net/index.php?page=vcr.php)
 - [sparpet for capturing and sharing the IVAD initialization code](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/page-2)
-- [jamie-g for providing a way to adjust monitor settings via i2c](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/page-2)
+- [jamie-g for providing a way to adjust monitor settings via i2c](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-25679538)
 - [iMac speaker replacement by TEch Chrunch](https://youtu.be/yc8NGDw5aSQ)
 - [DrJekyll_XYZ for providing xrandr output that lead to creating an EDID](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28272422)
 
