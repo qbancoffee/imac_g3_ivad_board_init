@@ -228,3 +228,4 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 - [Testing replacement speakers with smooth criminal](https://youtu.be/Vm1vN6xlomQ)
 - [Testing an SBC inside the iMac G3 ](https://youtu.be/ZOYHHg9NhZA)
 - [Powering a computer using the iMac's down converter board](https://youtu.be/1DuaIlEZ5WU)
+- [Using a PAM8403 board to drive the speakers on the iMac G3](https://youtu.be/jEA85s0Cqyg)
