@@ -170,9 +170,9 @@ P 8900 1500
 F 0 "J20" H 8950 2117 50  0000 C CNN
 F 1 "Conn_02x10_Odd_Even" H 8950 2026 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Vertical" H 8900 1500 50  0001 C CNN
-F 3 "https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/69168.pdf" H 8900 1500 50  0001 C CNN
+F 3 "https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/67996.pdf" H 8900 1500 50  0001 C CNN
 F 4 "digikey" H 8900 1500 50  0001 C CNN "Vendor"
-F 5 "609-2430-ND" H 8900 1500 50  0001 C CNN "Part#"
+F 5 "609-3206-ND" H 8900 1500 50  0001 C CNN "Part#"
 	1    8900 1500
 	1    0    0    -1  
 $EndComp
@@ -487,7 +487,7 @@ F 1 "LCC110" H 2900 4526 50  0000 C CNN
 F 2 "Package_DIP:DIP-8_W7.62mm" H 2900 3550 50  0001 C CIN
 F 3 "http://www.ixysic.com/home/pdfs.nsf/www/LCC110.pdf/$file/LCC110.pdf" H 2900 4050 50  0001 L CNN
 F 4 "digikey" H 2900 4050 50  0001 C CNN "Vendor"
-F 5 "CLA106-ND" H 2900 4050 50  0001 C CNN "part#"
+F 5 "CLA106-ND" H 2900 4050 50  0001 C CNN "Part#"
 	1    2900 4050
 	1    0    0    -1  
 $EndComp
