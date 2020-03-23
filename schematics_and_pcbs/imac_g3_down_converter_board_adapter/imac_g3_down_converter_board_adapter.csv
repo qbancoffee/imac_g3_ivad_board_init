@@ -1,0 +1,9 @@
+Reference, Value, Part#, Footprint, Datasheet,, Vendor
+J7,Conn_02x12_Top_Bottom,WM4728-ND,Connector_Molex:Molex_Micro-Fit_3.0_43045-2400_2x12_P3.00mm_Horizontal,https://www.molex.com/pdm_docs/sd/430452400_sd.pdf,,digikey
+J1,Screw_Terminal_01x10,277-9080-ND,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-10-5.0-H_1x10_P5.00mm_Horizontal",https://www.phoenixcontact.com/pxc-oc-itemdetail-pdf-web/eshop?lineItemType=LineItem&UID=1935857,,digikey
+J2,Screw_Terminal_01x04,277-1579-ND,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-4-5.0-H_1x04_P5.00mm_Horizontal",https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935187.pdf,,digikey
+H1,MountingHole_Pad,,MountingHole:MountingHole_3.2mm_M3_Pad_Via,~,,
+M1,Fan_Tacho_PWM,WM4330-ND,Connector:FanPinHeader_1x04_P2.54mm_Vertical,https://www.molex.com/pdm_docs/sd/470531000_sd.pdf,,Digikey
+JP1,SolderJumper_3_Open,,Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm,~,,
+TP1,TestPoint,,TestPoint:TestPoint_Plated_Hole_D2.0mm,~,,
+TP2,TestPoint,,TestPoint:TestPoint_Plated_Hole_D2.0mm,~,,

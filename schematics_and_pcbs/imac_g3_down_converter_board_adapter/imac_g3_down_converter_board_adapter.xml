@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/pedro/kicad_projects/imac_g3_down_converter_board_adapter/imac_g3_down_converter_board_adapter.sch</source>
+    <date>Sun 22 Mar 2020 08:40:22 PM EDT</date>
+    <tool>Eeschema 5.1.5-52549c5~84~ubuntu18.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Break out board for the iMac G3 down-converter board</title>
+        <company/>
+        <rev>1</rev>
+        <date>2020-03-21</date>
+        <source>imac_g3_down_converter_board_adapter.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value="Rocky Hill"/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="J7">
+      <value>Conn_02x12_Top_Bottom</value>
+      <footprint>Connector_Molex:Molex_Micro-Fit_3.0_43045-2400_2x12_P3.00mm_Horizontal</footprint>
+      <datasheet>https://www.molex.com/pdm_docs/sd/430452400_sd.pdf</datasheet>
+      <fields>
+        <field name="Part#">WM4728-ND</field>
+        <field name="Vendor">digikey</field>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_02x12_Top_Bottom" description="Generic connector, double row, 02x12, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E779C4A</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>Screw_Terminal_01x10</value>
+      <footprint>TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-10-5.0-H_1x10_P5.00mm_Horizontal</footprint>
+      <datasheet>https://www.phoenixcontact.com/pxc-oc-itemdetail-pdf-web/eshop?lineItemType=LineItem&amp;UID=1935857</datasheet>
+      <fields>
+        <field name="Part#">277-9080-ND</field>
+        <field name="Vendor">digikey</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x10" description="Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E783B61</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>Screw_Terminal_01x04</value>
+      <footprint>TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-4-5.0-H_1x04_P5.00mm_Horizontal</footprint>
+      <datasheet>https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935187.pdf</datasheet>
+      <fields>
+        <field name="Part#">277-1579-ND</field>
+        <field name="Vendor">digikey</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x04" description="Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E79A54C</tstamp>
+    </comp>
+    <comp ref="H1">
+      <value>MountingHole_Pad</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3_Pad_Via</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole_Pad" description="Mounting Hole with connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7ADA9C</tstamp>
+    </comp>
+    <comp ref="M1">
+      <value>Fan_Tacho_PWM</value>
+      <footprint>Connector:FanPinHeader_1x04_P2.54mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/pdm_docs/sd/470531000_sd.pdf</datasheet>
+      <fields>
+        <field name="Part#">WM4330-ND</field>
+        <field name="Vendor">Digikey</field>
+      </fields>
+      <libsource lib="Motor" part="Fan_Tacho_PWM" description="Fan, tacho output, PWM input, 4-pin connector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7B2660</tstamp>
+    </comp>
+    <comp ref="JP1">
+      <value>SolderJumper_3_Open</value>
+      <footprint>Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Jumper" part="SolderJumper_3_Open" description="Solder Jumper, 3-pole, open"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7C1272</tstamp>
+    </comp>
+    <comp ref="TP1">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_Plated_Hole_D2.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7D28B2</tstamp>
+    </comp>
+    <comp ref="TP2">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_Plated_Hole_D2.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7D83A8</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="Screw_Terminal_01x04">
+      <description>Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Screw_Terminal_01x04</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Screw_Terminal_01x10">
+      <description>Generic screw terminal, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Screw_Terminal_01x10</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="TestPoint">
+      <description>test point</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Pin*</fp>
+        <fp>Test*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TestPoint</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_02x12_Top_Bottom">
+      <description>Generic connector, double row, 02x12, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_2x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_02x12_Top_Bottom</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+        <pin num="11" name="Pin_11" type="passive"/>
+        <pin num="12" name="Pin_12" type="passive"/>
+        <pin num="13" name="Pin_13" type="passive"/>
+        <pin num="14" name="Pin_14" type="passive"/>
+        <pin num="15" name="Pin_15" type="passive"/>
+        <pin num="16" name="Pin_16" type="passive"/>
+        <pin num="17" name="Pin_17" type="passive"/>
+        <pin num="18" name="Pin_18" type="passive"/>
+        <pin num="19" name="Pin_19" type="passive"/>
+        <pin num="20" name="Pin_20" type="passive"/>
+        <pin num="21" name="Pin_21" type="passive"/>
+        <pin num="22" name="Pin_22" type="passive"/>
+        <pin num="23" name="Pin_23" type="passive"/>
+        <pin num="24" name="Pin_24" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jumper" part="SolderJumper_3_Open">
+      <description>Solder Jumper, 3-pole, open</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>SolderJumper*Open*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">JP</field>
+        <field name="Value">SolderJumper_3_Open</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="C" type="input"/>
+        <pin num="3" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole_Pad">
+      <description>Mounting Hole with connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*Pad*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole_Pad</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Motor" part="Fan_Tacho_PWM">
+      <aliases>
+        <alias>Fan_CPU_4pin</alias>
+        <alias>Fan_4pin</alias>
+      </aliases>
+      <description>Fan, tacho output, PWM input, 4-pin connector</description>
+      <docs>http://www.formfactors.org/developer%5Cspecs%5Crev1_2_public.pdf</docs>
+      <footprints>
+        <fp>FanPinHeader*P2.54mm*Vertical*</fp>
+        <fp>PinHeader*P2.54mm*Vertical*</fp>
+        <fp>TerminalBlock*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">M</field>
+        <field name="Value">Fan_Tacho_PWM</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-" type="passive"/>
+        <pin num="2" name="+" type="passive"/>
+        <pin num="3" name="Tacho" type="passive"/>
+        <pin num="4" name="PWM" type="input"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>/usr/share/kicad/library/Connector.lib</uri>
+    </library>
+    <library logical="Connector_Generic">
+      <uri>/usr/share/kicad/library/Connector_Generic.lib</uri>
+    </library>
+    <library logical="Jumper">
+      <uri>/usr/share/kicad/library/Jumper.lib</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>/usr/share/kicad/library/Mechanical.lib</uri>
+    </library>
+    <library logical="Motor">
+      <uri>/usr/share/kicad/library/Motor.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/GND">
+      <node ref="J7" pin="3"/>
+      <node ref="J1" pin="1"/>
+      <node ref="J7" pin="7"/>
+      <node ref="J7" pin="6"/>
+      <node ref="J7" pin="23"/>
+      <node ref="J7" pin="2"/>
+      <node ref="J7" pin="17"/>
+      <node ref="J7" pin="16"/>
+      <node ref="J1" pin="2"/>
+      <node ref="H1" pin="1"/>
+      <node ref="M1" pin="1"/>
+    </net>
+    <net code="2" name="/+AC">
+      <node ref="J7" pin="10"/>
+      <node ref="J7" pin="11"/>
+      <node ref="J2" pin="4"/>
+    </net>
+    <net code="3" name="/-AC">
+      <node ref="J2" pin="3"/>
+      <node ref="J7" pin="9"/>
+      <node ref="J7" pin="8"/>
+    </net>
+    <net code="4" name="/PT">
+      <node ref="J7" pin="4"/>
+      <node ref="J2" pin="2"/>
+    </net>
+    <net code="5" name="/DCO">
+      <node ref="J7" pin="5"/>
+      <node ref="J2" pin="1"/>
+    </net>
+    <net code="6" name="/+8V_STANDBY_+12V_ON">
+      <node ref="J7" pin="22"/>
+      <node ref="J1" pin="9"/>
+    </net>
+    <net code="7" name="/+3.3V">
+      <node ref="J1" pin="8"/>
+      <node ref="J7" pin="1"/>
+      <node ref="J7" pin="20"/>
+      <node ref="J7" pin="19"/>
+      <node ref="J7" pin="18"/>
+      <node ref="J7" pin="21"/>
+      <node ref="J1" pin="7"/>
+    </net>
+    <net code="8" name="/+5V">
+      <node ref="J7" pin="24"/>
+      <node ref="JP1" pin="3"/>
+      <node ref="J7" pin="14"/>
+      <node ref="J7" pin="15"/>
+      <node ref="J1" pin="5"/>
+      <node ref="J1" pin="6"/>
+    </net>
+    <net code="9" name="/+12V">
+      <node ref="J1" pin="4"/>
+      <node ref="J7" pin="13"/>
+      <node ref="J1" pin="3"/>
+      <node ref="JP1" pin="1"/>
+    </net>
+    <net code="10" name="/+15V_STANDBY_+24V_ON">
+      <node ref="J1" pin="10"/>
+      <node ref="J7" pin="12"/>
+    </net>
+    <net code="11" name="/TACHO">
+      <node ref="M1" pin="3"/>
+      <node ref="TP1" pin="1"/>
+    </net>
+    <net code="12" name="/PWM">
+      <node ref="M1" pin="4"/>
+      <node ref="TP2" pin="1"/>
+    </net>
+    <net code="13" name="Net-(JP1-Pad2)">
+      <node ref="JP1" pin="2"/>
+      <node ref="M1" pin="2"/>
+    </net>
+  </nets>
+</export>
