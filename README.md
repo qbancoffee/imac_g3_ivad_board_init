@@ -233,3 +233,4 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 - [Testing Retropie with iMac G3 monitor](https://youtu.be/S1fnj0tsFQA)
 - [Testing J20 board for the first time](https://youtu.be/_IMhMkrIE4M)
 - [Testing the J22 board with a raspberry pi](https://youtu.be/HR-qM3-7SYA)
+- [Testing audio via J22 board 1](https://youtu.be/MyON9M_RYCk)
