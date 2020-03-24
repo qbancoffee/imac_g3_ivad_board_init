@@ -232,3 +232,4 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 - [Using a PAM8403 board to drive the speakers on the iMac G3](https://youtu.be/jEA85s0Cqyg)
 - [Testing Retropie with iMac G3 monitor](https://youtu.be/S1fnj0tsFQA)
 - [Testing J20 board for the first time](https://youtu.be/_IMhMkrIE4M)
+- [Testing the J22 board with a raspberry pi](https://youtu.be/HR-qM3-7SYA)
