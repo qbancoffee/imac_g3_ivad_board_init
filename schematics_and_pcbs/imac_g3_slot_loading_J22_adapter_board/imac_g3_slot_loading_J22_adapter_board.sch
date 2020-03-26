@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "J22 Adapter Board"
 Date "2020-03-10"
-Rev "1"
+Rev "2"
 Comp ""
 Comment1 ""
 Comment2 "the microphone, speakers and , 24VAC "
@@ -122,16 +122,14 @@ F 5 "CP1-3533NG-ND" H 2650 1650 50  0001 C CNN "Part#"
 $EndComp
 Text Label 2250 1550 2    50   ~ 0
 +MICROPHONE
-Text Label 2250 1650 2    50   ~ 0
+Text Label 2250 1750 2    50   ~ 0
 -MICROPHONE
 Wire Wire Line
 	2450 1550 2250 1550
 Wire Wire Line
 	2450 1650 2250 1650
-Text Label 2250 1750 2    50   ~ 0
-MICROPHONE_SHIELD
 Wire Wire Line
-	2450 1750 2250 1750
+	2450 1750 2400 1750
 Text Label 1850 2700 2    50   ~ 0
 -LEFT_SPEAKER
 Text Label 1850 2800 2    50   ~ 0
@@ -256,4 +254,21 @@ Text Label 4950 4000 0    50   ~ 0
 HEADPHONE_1_SENSE
 Text Label 4950 4100 0    50   ~ 0
 HEADPHONE_1_LEFT
+NoConn ~ 2250 1650
+$Comp
+L power:GNDREF #PWR0101
+U 1 1 5E7ABB1A
+P 2400 1800
+F 0 "#PWR0101" H 2400 1550 50  0001 C CNN
+F 1 "GNDREF" H 2405 1627 50  0000 C CNN
+F 2 "" H 2400 1800 50  0001 C CNN
+F 3 "" H 2400 1800 50  0001 C CNN
+	1    2400 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 1800 2400 1750
+Connection ~ 2400 1750
+Wire Wire Line
+	2400 1750 2250 1750
 $EndSCHEMATC
