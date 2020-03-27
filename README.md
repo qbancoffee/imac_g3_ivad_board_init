@@ -34,9 +34,26 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 
 
 ## Goals
--
--
--
+
+The main goal is to convert the iMac G3 into a VGA monitor whithout sacrificing the original CRT and
+using as much of the iMac as possible. The difficult part is tricking the IVAD board into thinking it is 
+still connected to a G3 logic board. the idea is to capture the init sequence and reimplement it using
+a microcontoller like an arduino.
+
+Once achieved, one can connect a standard computer to it as if it were a regular moonitor with speakers.
+Once can even include a motherboard on the inside of the G3 basically making it a modern computer.
+
+Here are the goals
+
+- Capture IVAD board initialization sequence from the Imac logic board to the IVAD board.
+- Document as much of the pinouts as possible on the the chassis connectors .
+- Design circuit boards that will plug into the connectors and allow one to use the on/off button,
+speakers, power LED, mic ect..
+- Use the original down-converter board(kind of like a power supply) to power things like
+an amplifier and a slot loading DVD drive.
+
+
+
 
 ## Chassis Connectors and Pinouts
 ![ChassisConnectors](connectors_and_boards.png?raw=true "Chassis connectors")
