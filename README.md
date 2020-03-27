@@ -226,19 +226,31 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 
 ## See Also
 ### Boards
-This board detects button presses, sends the init sequence to the IVAD board,sends the on signal to the
-down-convert board, powers the green LED and sends EDID information
-so that a computer connected to the VGA connector knows how to configure the monitor for use.
-This board works as it stands but as of March 23 2020 ,needs a slight modification.
+# J20 Board
+What it does.
+- detects button presses
+- sends the init sequence to the IVAD boar
+- sends the on signal to the down-convert board
+- powers the green LED
+- sends EDID information via VGA cable so that a connected computerknows how to configure the monitor for use.
+</br>
+This board works but as of March 23 2020 it needs a slight modification to make it more robust.
 ![J20](images/J20_board.png?raw=true "J20 VGA adapter board")
 </br>
-This board allows access to the microphone, the speakers , the power button , the green and amber LEDS
-and the headphone jacks. It also routes 24 VAC from the analog board to the the down converter break out board.
-This board has been tested and mostly worked. I found the the mic was miswired
+# J22 Board
+What it does.
+- provides access to the microphonethe speakers
+- provides access to the power button
+- provides access to the green LED
+- provides access to the amber LED
+- provides access to the headphone jacks 
+- routes 24 VAC from the analog(CRT) board to the the down converter break out board.
+</br>
+This board has been tested and mostly worked. I found that the mic was miswired
 but I've since fixed that.
 ![J22](images/J22_board.png?raw=true "J22 speaker/mic/led/power button breakout board")
 </br>
-
+# Down-converter breakout board
 This is the down converter break out board. The down-conveter rectifies the 24 VAC coming from J22 in order to
 power the original logic board and drives. With this breakout board one can still use it to power things like
 and amplifier and drive. It provides 3.3 VDC 5 VDC and 12 VDC that can now be used via this breakout board.
