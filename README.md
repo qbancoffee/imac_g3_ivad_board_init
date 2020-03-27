@@ -273,7 +273,9 @@ The break out board has not not arrived yet so it hasn't been tested.
 ![J20](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
 
 </br>
+
 ### Ordering Boards
+
 Recently I've been using https://jlcpcb.com/ and the turn arounds are fast for the price.
 In the "schematics_and_pcbs" folder are the three kicad projects for each board, each in its own folder.
 I've included the gerber files and zipped them up for convenience, they are in the gerber directory
@@ -281,7 +283,9 @@ for each project. To order you can just upload the zip file to https://jlcpcb.co
 and you should get them in the mail. There is a bill of materials included in each project folder. It's a csv file
 that includes the reference number, the part number and vendor so you can order the componets to build the boards.
 I like to buy from digikey but obviously you can find a vendor that suits your needs.
+
 ### Acknowledgements
+
 - [patriciooholegu for inspiring me to do this with an eMac](https://forums.macrumors.com/threads/i-have-decided-to-hack-emacs-crt-to-work-with-any-standard-motherboard.1754089/post-19353472)
 - [ym58 for providing the video connector wiring.](https://www.tonymacx86.com/threads/imac-g3-slot-mod-video-connector.125515/)
 - [Eric Bylenga for providing the pinout for the PAV board.](http://bylenga.ddns.net/index.php?page=vcr.php)
