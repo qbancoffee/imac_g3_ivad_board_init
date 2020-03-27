@@ -10,11 +10,14 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
  
  There is working code here for both the arduino and raspberry pi to initialize the IVAD board so that you can use it as a monitor.
  
-The current initialization sketch wait for button presses on an arduino pin to send the initialization sequence
-to the IVAD board but you can just uncomment "initIvadBoard();" in setup() to send it as soon as it's powered.
+The current initialization sketch waits for button presses on an arduino pin to send the initialization sequence
+to the IVAD board but you can just uncomment "initIvadBoard();" in "setup()" to send it as soon as it's powered.
+
 </br>
-Also you might have to modify values in the init sequence to get the brightness, contrast and screen geometry
+
+Also, you might have to modify values in the init sequence to get the brightness, contrast and screen geometry
 just right for your setup. below is an example from the init sketch.
+
 
 ```
   writeToIvad( 0x46, 0x04, 0x80);//red x-30
