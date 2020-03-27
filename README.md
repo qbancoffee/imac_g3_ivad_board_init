@@ -237,6 +237,7 @@ What it does.
 This board works but as of March 23 2020 it needs a slight modification to make it more robust.
 ![J20](images/J20_board.png?raw=true "J20 VGA adapter board")
 </br>
+
 # J22 Board
 What it does.
 - provides access to the microphonethe speakers
@@ -246,6 +247,7 @@ What it does.
 - provides access to the headphone jacks 
 - routes 24 VAC from the analog(CRT) board to the the down converter break out board.
 </br>
+
 This board has been tested and mostly worked. I found that the mic was miswired
 but I've since fixed that.
 ![J22](images/J22_board.png?raw=true "J22 speaker/mic/led/power button breakout board")
