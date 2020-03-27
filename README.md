@@ -256,15 +256,23 @@ but I've since fixed that.
 </br>
 # Down-converter breakout board
 What it does
-- provides a 24 VAC input for the J22 board
+- provides a 24 VAC input for the J22 board into the down-converter board
 - provides a "turn-on" input for the J20 board, this is DCO which stands for Down Converter On
-- provides 3.3 VDC out that turns on and off with the CRT.
-- provides   5 VDC out that turns on and off with the CRT.
-- provides  12 VDC out that turns on and off with the CRT.
-The down-conveter uses the 24 VAC coming from J22 in order to power the original logic board and drives. Some people have called this the iMac G3 power supply.
+- provides 3.3 VDC out from the down-converter board that turns on and off with the CRT.
+- provides   5 VDC out from the down-converter board that turns on and off with the CRT.
+- provides  12 VDC out from the down-converter board that turns on and off with the CRT.
+- provides a constant  8 VDC standby voltage when all is off and 12 VDC when all is on.
+- provided a constant 15 VDC standby voltage when all is off and 24 VDC when all is on.
+</br>
+The down-conveter uses the 24 VAC coming from J22 in order to power the original logic board and drives. Some people have called this the iMac G3 power supply. This is what it looks like.
+
 ![DCB](/images/removing_down_converter_board.png?raw=true "Removing down-converter board")
-This board has not not arrived yet so it hasn't been tested.
+
+The break out board has not not arrived yet so it hasn't been tested.
+
 ![J20](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
+
+</br>
 ### Ordering Boards
 Recently I've been using https://jlcpcb.com/ and the turn arounds are fast for the price.
 In the "schematics_and_pcbs" folder are the three kicad projects for each board, each in its own folder.
