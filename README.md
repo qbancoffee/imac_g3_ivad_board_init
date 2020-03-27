@@ -234,6 +234,7 @@ What it does.
 - powers the green LED
 - sends EDID information via VGA cable so that a connected computerknows how to configure the monitor for use.
 </br>
+
 This board works but as of March 23 2020 it needs a slight modification to make it more robust.
 ![J20](images/J20_board.png?raw=true "J20 VGA adapter board")
 </br>
