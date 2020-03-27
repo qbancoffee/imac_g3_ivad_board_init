@@ -56,7 +56,7 @@ an amplifier and a slot loading DVD drive.
 
 
 ## Chassis Connectors and Pinouts
-![ChassisConnectors](connectors_and_boards.png?raw=true "Chassis connectors")
+![ChassisConnectors](images/connectors_and_boards.png?raw=true "Chassis connectors")
 
 ### Removing the logic board
 The connector drawings in the above [diagram](#Chassis-Connectors-and-Pinouts) represent the cables
@@ -64,7 +64,7 @@ coming from the CRT analog board that plug into the logic board. To expose these
 be removed.
 
 ## Wiring VGA cable
-![VGACable](vga_adapter.png?raw=true "VGA Cable")
+![VGACable](images/vga_adapter.png?raw=true "VGA Cable")
 
 ### Making the cable
 This is perhaps the most time consuming part of the whole process because not all VGA cables are made the same so the colors for the cable I used may not be the colors used in your cable. Here are the steps I took.<br>
@@ -81,7 +81,7 @@ This is perhaps the most time consuming part of the whole process because not al
 
 
 ## Preparing the Raspberry Pi
-![WiringRPI](raspberry_pi_wiring.png?raw=true "Wiring RPI")
+![WiringRPI](images/raspberry_pi_wiring.png?raw=true "Wiring RPI")
 
 ### What to install
 - Install the latest raspian image using a regular monitor.
@@ -198,29 +198,29 @@ The raspberry pi might have turned off the display due to inactivity.
 - With the IVAD initialized, Reboot the Raspberry Pi.
 
 ## Wiring Arduino Uno
-![WiringArduinoUno](arduino_uno_wiring.png?raw=true "Wiring Arduino Uno")
+![WiringArduinoUno](images/arduino_uno_wiring.png?raw=true "Wiring Arduino Uno")
 
 ## Wiring Arduino Nano
-![WiringArduinoNano](arduino_nano_wiring.png?raw=true "Wiring Arduino Nano")
+![WiringArduinoNano](images/arduino_nano_wiring.png?raw=true "Wiring Arduino Nano")
 
 ### Loading and Running the initialization sketch
 write here
 
 ## Wiring Arduino Uno to transmit EDID
-![WiringArduinoUnoToXmitEdid](arduino_uno_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Uno to transmit EDID")
+![WiringArduinoUnoToXmitEdid](images/arduino_uno_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Uno to transmit EDID")
 
 ## Wiring Arduino Nano to transmit EDID
-![WiringArduinoNanotoXmitEdid](arduino_nano_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Nano to transmit EDID")
+![WiringArduinoNanotoXmitEdid](images/arduino_nano_wiring_to_transmit_edid.png?raw=true "Wiring Arduino Nano to transmit EDID")
 
 ## Powering the down converter board PAV
-![WiringPAV](imac_g3_slot_loading_pav_board.png?raw=true "Powering the PAV board")
+![WiringPAV](images/imac_g3_slot_loading_pav_board.png?raw=true "Powering the PAV board")
 
 The CRT analog board provides 24v AC to the PAV or down converter board through the logic board via the J22 
 connector. you can directly connect the PAV board and the analog board through the J22 connector and
 the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v ect...
 
 ## Powering the CRT on and off
-![CRTOnAndOff](crt_power_on_and_off.png?raw=true "CRT On and Off")
+![CRTOnAndOff](images/crt_power_on_and_off.png?raw=true "CRT On and Off")
 
 ## See Also
 ### Boards
