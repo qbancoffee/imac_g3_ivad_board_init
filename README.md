@@ -225,7 +225,7 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 
 ## See Also
 ### Boards
-![J20](images/J20.png?raw=true "J20 VGA adapter board)
+![J20](images/J20.png?raw=true "J20 VGA adapter board")
 
 ### Ordering Boards
 - [Video/power on/off board Revision 1 (Works but needs slight modifications)](https://oshpark.com/shared_projects/rvKwW8ms)
