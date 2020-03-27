@@ -230,9 +230,10 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 What it does.
 - detects button presses
 - sends the init sequence to the IVAD boar
-- sends the on signal to the down-convert board
+- sends the "turn-on" signal to the down-converter board
+- has a control line "PROT" that when 5 volts are applied turns everythin off. A shut-off signal can be sent here.
 - powers the green LED
-- sends EDID information via VGA cable so that a connected computerknows how to configure the monitor for use.
+- sends EDID information via VGA cable so that a connected computer knows how to configure the monitor for use.
 </br>
 
 This board works but as of March 23 2020 it needs a slight modification to make it more robust.
@@ -254,9 +255,14 @@ but I've since fixed that.
 ![J22](images/J22_board.png?raw=true "J22 speaker/mic/led/power button breakout board")
 </br>
 # Down-converter breakout board
-This is the down converter break out board. The down-conveter rectifies the 24 VAC coming from J22 in order to
-power the original logic board and drives. With this breakout board one can still use it to power things like
-and amplifier and drive. It provides 3.3 VDC 5 VDC and 12 VDC that can now be used via this breakout board.
+What it does
+- provides a 24 VAC input for the J22 board
+- provides a "turn-on" input for the J20 board, this is DCO which stands for Down Converter On
+- provides 3.3 VDC out that turns on and off with the CRT.
+- provides   5 VDC out that turns on and off with the CRT.
+- provides  12 VDC out that turns on and off with the CRT.
+The down-conveter uses the 24 VAC coming from J22 in order to power the original logic board and drives. Some people have called this the iMac G3 power supply.
+![DCB](/images/removing_down_converter_board.png?raw=true "Removing down-converter board")
 This board has not not arrived yet so it hasn't been tested.
 ![J20](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
 ### Ordering Boards
