@@ -47,6 +47,7 @@ One can even include a motherboard on the inside of the G3 basically converting 
 Here are the goals
 
 - Capture IVAD board initialization sequence from the Imac logic board to the IVAD board.
+- Document how to control brightness, contrast, screen goemetry ect via the i2c lines.
 - Document as much of the pinouts as possible on the the chassis connectors .
 - Design circuit boards that will plug into the connectors and allow one to use the on/off button,
 speakers, power LED, mic ect..
