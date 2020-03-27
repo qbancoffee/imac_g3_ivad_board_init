@@ -229,7 +229,13 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 ![J22](images/J22_board.png?raw=true "J22 speaker/mic/led/power button breakout board")
 ![J20](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
 ### Ordering Boards
-- [Video/power on/off board Revision 1 (Works but needs slight modifications)](https://oshpark.com/shared_projects/rvKwW8ms)
+Recently I've been using https://jlcpcb.com/ and the turn arounds are fast for the price.
+In the "schematics_and_pcbs" folder are the three kicad projects for each board, each in its own folder.
+I've included the gerber files and zipped them up for convenience, they are in the gerber directory
+for each project. To order you can just upload the zip file to https://jlcpcb.com/ or whatever company you choose
+and you should get them in the mail. There is a bill of materials included in each project folder. It's a csv file
+that includes the reference number, the part number and vendor so you can order the componets to build the boards.
+I like to buy from digikey but obviously you can find a vendor that suits your needs.
 ### Acknowledgements
 - [patriciooholegu for inspiring me to do this with an eMac](https://forums.macrumors.com/threads/i-have-decided-to-hack-emacs-crt-to-work-with-any-standard-motherboard.1754089/post-19353472)
 - [ym58 for providing the video connector wiring.](https://www.tonymacx86.com/threads/imac-g3-slot-mod-video-connector.125515/)
