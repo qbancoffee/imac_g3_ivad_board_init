@@ -225,8 +225,23 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 
 ## See Also
 ### Boards
+This board detects button presses, sends the init sequence to the IVAD board,sends the on signal to the
+down-convert board, powers the green LED and sends EDID information
+so that a computer connected to the VGA connector knows how to configure the monitor for use.
+This board works as it stands but as of March 23 2020 ,needs a slight modification.
 ![J20](images/J20_board.png?raw=true "J20 VGA adapter board")
+</br>
+This board allows access to the microphone, the speakers , the power button , the green and amber LEDS
+and the headphone jacks. It also routes 24 VAC from the analog board to the the down converter break out board.
+This board has been tested and mostly worked. I found the the mic was miswired
+but I've since fixed that.
 ![J22](images/J22_board.png?raw=true "J22 speaker/mic/led/power button breakout board")
+</br>
+
+This is the down converter break out board. The down-conveter rectifies the 24 VAC coming from J22 in order to
+power the original logic board and drives. With this breakout board one can still use it to power things like
+and amplifier and drive. It provides 3.3 VDC 5 VDC and 12 VDC that can now be used via this breakout board.
+This board has not not arrived yet so it hasn't been tested.
 ![J20](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
 ### Ordering Boards
 Recently I've been using https://jlcpcb.com/ and the turn arounds are fast for the price.
