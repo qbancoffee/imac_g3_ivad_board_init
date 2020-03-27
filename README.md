@@ -40,8 +40,8 @@ using as much of the iMac as possible. The difficult part is tricking the IVAD b
 still connected to a G3 logic board. the idea is to capture the init sequence and reimplement it using
 a microcontoller like an arduino.
 
-Once achieved, one can connect a standard computer to it as if it were a regular moonitor with speakers.
-Once can even include a motherboard on the inside of the G3 basically making it a modern computer.
+Once achieved, one can connect a standard computer to it as if it were a regular monitor with speakers.
+One can even include a motherboard on the inside of the G3 basically converting it into a modern computer.
 
 Here are the goals
 
