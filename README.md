@@ -273,6 +273,7 @@ What it does.
 This board has been tested and mostly worked. I found that the mic was miswired
 but I've since fixed that.
 ![J22](images/J22_board.png?raw=true "J22 speaker/mic/led/power button breakout board")
+![J22Installed](images/J22_board_installed.jpg?raw=true "J22 speaker/mic/led/power button breakout board installed")
 </br>
 # Down-converter breakout board
 What it does
