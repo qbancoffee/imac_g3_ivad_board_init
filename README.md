@@ -257,6 +257,7 @@ What it does.
 
 This board works but as of March 23 2020 it needs a slight modification to make it more robust.
 ![J20](images/J20_board.png?raw=true "J20 VGA adapter board")
+![J20Installed](images/J20_board_installed.jpg?raw=true "J20 VGA adapter board installed")
 </br>
 
 # J22 Board
