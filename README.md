@@ -29,7 +29,7 @@ iMac G3 IVAD board initialization with an arduino or raspberry pi
 - [Powering the CRT on and off](#Powering-the-CRT-on-and-off)
 - [See Also](#See-Also)
    * [See the boards](#Boards)
-   * [Getting adapter boards](#Ordering Boards)
+   * [Getting adapter boards](#Ordering-Boards)
    * [Acknowledgements](#Acknowledgements)
    * [Videos](#Videos)
 
