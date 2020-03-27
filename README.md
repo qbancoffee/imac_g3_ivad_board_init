@@ -294,6 +294,10 @@ The break out board has not not arrived yet so it hasn't been tested.
 </br>
 
 ### Ordering Boards
+All PCB manufacturers should accept gerber files to manufacture boards so I've decided
+to design these in KiCAD which is suite of open source EDA programs to create schematics and
+design PCBs. There are no limitations to the size of the board and you don't have to order from
+a specific vendor.
 
 Recently I've been using https://jlcpcb.com/ and the turn arounds are fast for the price.
 In the "schematics_and_pcbs" folder are the three kicad projects for each board, each in its own folder.
@@ -301,7 +305,7 @@ I've included the gerber files and zipped them up for convenience, they are in t
 for each project. To order you can just upload the zip file to https://jlcpcb.com/ or whatever company you choose
 and you should get them in the mail. There is a bill of materials included in each project folder. It's a csv file
 that includes the reference number, the part number and vendor so you can order the componets to build the boards.
-I like to buy from digikey but obviously you can find a vendor that suits your needs.
+I like to buy from digikey but obviously you can find a vendor that fits your needs.
 
 ### Acknowledgements
 
