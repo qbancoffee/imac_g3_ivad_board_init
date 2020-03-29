@@ -1,0 +1,22 @@
+Reference, Part#, Value, Footprint, Datasheet, Part#, Vendor
+Y1,887-2015-ND,Crystal,Crystal:Crystal_HC49-U_Vertical,http://www.txccrystal.com/images/pdf/9b.pdf,887-2015-ND,digikey
+C1,2368-90020-ND,20pF,Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm,https://www.nteinc.com/capacitor_web/pdf/90000.pdf,2368-90020-ND,digikey
+J2,SAM1068-10-ND,Conn_02x10_Odd_Even,Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Vertical,http://suddendocs.samtec.com/prints/tsw-xxx-xx-x-x-xx-xxx-footprint.pdf,SAM1068-10-ND,digikey
+J4,L77HDE15SD1CH4F-ND,DB15_Female_HighDensity,Connector_Dsub:DSUB-15-HD_Female_Horizontal_P2.29x1.98mm_EdgePinOffset8.35mm_Housed_MountingHolesOffset10.89mm,https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/l77hdxxxsd1ch4f.pdf,L77HDE15SD1CH4F-ND,digikey
+U2,CLA106-ND,LCC110,Package_DIP:DIP-8_W7.62mm,http://www.ixysic.com/home/pdfs.nsf/www/LCC110.pdf/$file/LCC110.pdf,CLA106-ND,digikey
+R4,CF14JT220RCT-ND,220,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,https://www.seielect.com/catalog/sei-cf_cfm.pdf,CF14JT220RCT-ND,digikey
+D1,1N5819-E3/54GICT-ND,D_Schottky_ALT,Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal,http://www.vishay.com/docs/88525/1n5817.pdf,1N5819-E3/54GICT-ND,digikey
+D2,1N5819-E3/54GICT-ND,D_Schottky_ALT,Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal,http://www.vishay.com/docs/88525/1n5817.pdf,1N5819-E3/54GICT-ND,digikey
+H2,,MountingHole_Pad,MountingHole:MountingHole_3.5mm_Pad,~,,
+R1,CF14JT10K0CT-ND,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,https://www.seielect.com/catalog/sei-cf_cfm.pdf,CF14JT10K0CT-ND,digikey
+J1,277-1581-ND,Screw_Terminal_01x06,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal",https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1935200.pdf,277-1581-ND,digikey
+C3,493-1702-ND,470uF,Capacitor_THT:CP_Radial_D8.0mm_P3.50mm,http://nichicon-us.com/english/products/pdfs/e-upw.pdf,493-1702-ND,digikey
+JP1,,SolderJumper_2_Open,Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm,~,,
+JP2,,SolderJumper_2_Open,Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm,~,,
+U1,ATMEGA328P-PU-ND,ATmega328-PU,Package_DIP:DIP-28_W7.62mm,http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en608326,ATMEGA328P-PU-ND,digikey
+J3,732-5394-ND,Conn_02x03_Odd_Even,Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical,https://media.digikey.com/pdf/Data%20Sheets/Wurth%20Electronics%20PDFs/Box%20Header_IDC%20Conn%20WR-BHD.pdf,732-5394-ND,digikey
+H1,,MountingHole_Pad,MountingHole:MountingHole_3.5mm_Pad,~,,
+J5,609-3234-ND,Conn_02x03_Odd_Even,Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical,https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/67996.pdf,609-3234-ND,digikey
+C2,2368-90020-ND,20pF,Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm,https://www.nteinc.com/capacitor_web/pdf/90000.pdf,2368-90020-ND,digikey
+R2,CF14JT10K0CT-ND,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,https://www.seielect.com/catalog/sei-cf_cfm.pdf,CF14JT10K0CT-ND,digikey
+R3,CF14JT10K0CT-ND,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,https://www.seielect.com/catalog/sei-cf_cfm.pdf,CF14JT10K0CT-ND,digikey
