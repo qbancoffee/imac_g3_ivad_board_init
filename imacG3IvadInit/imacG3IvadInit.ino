@@ -1,21 +1,22 @@
 
-
+//Rocky Hill
 
 
 /*
    This sketch waits for button presses to turn on/off the
    iMac G3 CRT circuitry and send the init sequence to the IVAD board.
    if you are planning to just send the init sequence on startup, you can 
-   uncomment "initIvadBoard();"  in setup() It uses software i2c lines.
- * 
- * it also sends edid information when requested via i2c on port 0x50.
- * The Edid information is for an iMac G3 DV and it sends the three supported modes.   
- * 
- * 1024x768 @ 75 Hz
- *  800x600 @ 95 Hz
- *  640x480 @ 117 Hz
- * 
- * In order for this program to work, the i2c transmit buffer length constants must be changed in
+   uncomment "initIvadBoard();"  in setup().
+   It uses software i2c lines.
+  
+  it also sends edid information when requested via i2c on port 0x50.
+  The Edid information is for an iMac G3 DV and it sends the three supported modes.   
+  
+  1024x768 @ 75 Hz
+   800x600 @ 95 Hz
+   640x480 @ 117 Hz
+  
+   In order for this program to work, the i2c transmit buffer length constants must be changed in
    two files. The Wire library has two buffers it uses for i2c transmissions
 
    "BUFFER_LENGTH" in
@@ -32,11 +33,18 @@
 
 
 */
-#include <SoftwareWire.h>
+
+
+/*
+Uses SoftwareWire from the arduino libraries. install with library manager or from https://github.com/Testato/SoftwareWire
+*/
+#include <SoftwareWire.h>   
 #include <Wire.h>
 
 byte data = -1;
 
+
+//this is the EDID information that is sent to the computer that requests it.
 const byte edid[128] =
 {
 
@@ -56,8 +64,8 @@ const byte edid[128] =
 //define solid state relay and power button pins
 int solid_state_relay_Pin = 7;
 
-//int powerButtonPin = 3;
-int powerButtonPin = 13;
+int powerButtonPin = 3;
+//int powerButtonPin = 13;
 
 //define state variables
 int externalCircuitState = LOW;
@@ -67,6 +75,7 @@ int buttonState = LOW;
 //counters
 int buttonPressedTime = 0;
 
+//The init sequence is sent on a software i2c bus.
 // sda is on 4 and scl is on 5
 SoftwareWire softWire( 4, 5);
 
@@ -76,11 +85,13 @@ void setup() {
   //define pin direction
   pinMode(solid_state_relay_Pin, OUTPUT);
   pinMode(powerButtonPin, INPUT);
+  pinMode(14, INPUT);//this pin is on the J5 connector for general use.
+  pinMode(15, INPUT);//this pin is on the J5 connector for general use.
 
 
 
-  Wire.begin(0x50); //join as slave
-  softWire.begin();// join as master
+  Wire.begin(0x50); //join as slave and wait for EDID requests
+  softWire.begin();// join as master and send init sequence
   
   Wire.onRequest(requestEvent); //event handler for requests from master
   Wire.onReceive(receiveData); // event handler when receiving from  master
