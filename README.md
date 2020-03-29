@@ -256,14 +256,15 @@ What it does.
 </br>
 
 This board works but as of March 23 2020 it needs a slight modification to make it more robust.
+# Rendition
 ![J20](images/J20_board.png?raw=true "J20 VGA adapter board")
+# Board installed
 ![J20Installed](images/J20_board_installed.jpg?raw=true "J20 VGA adapter board installed")
 </br>
 
-Here is Revision 2 of the J20 board
+# Rendiiton of Rev 2 of the J20 board.
 ![J20REV2](images/J20_board_rev2.png?raw=true "J20 VGA adapter board Rev 2")
 </br>
-
 
 # J22 Board
 What it does.
