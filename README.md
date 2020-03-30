@@ -349,3 +349,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Testing the J22 board with a raspberry pi](https://youtu.be/HR-qM3-7SYA)
 - [Testing audio via the J22 breakout board 1](https://youtu.be/MyON9M_RYCk)
 - [Testing audio via the J22 breakout board 2](https://youtu.be/EDeFRHsqa5c)
+- [Testing the down converter breakout board for the first time.](https://youtu.be/BQKrsIXOSxU)
