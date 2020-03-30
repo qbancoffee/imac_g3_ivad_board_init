@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "J22 Adapter Board"
 Date "2020-03-10"
-Rev "1"
+Rev "2"
 Comp ""
 Comment1 ""
 Comment2 "the microphone, speakers and , 24VAC "
@@ -120,14 +120,10 @@ F 5 "CP1-3533NG-ND" H 2650 1650 50  0001 C CNN "Part#"
 	1    2650 1650
 	-1   0    0    1   
 $EndComp
-Text Label 2250 1550 2    50   ~ 0
+Text Label 1100 1300 2    50   ~ 0
 +MICROPHONE
 Text Label 2250 1750 2    50   ~ 0
 -MICROPHONE
-Wire Wire Line
-	2450 1550 2250 1550
-Wire Wire Line
-	2450 1650 2250 1650
 Wire Wire Line
 	2450 1750 2400 1750
 Text Label 1850 2700 2    50   ~ 0
@@ -254,12 +250,11 @@ Text Label 4950 4000 0    50   ~ 0
 HEADPHONE_1_SENSE
 Text Label 4950 4100 0    50   ~ 0
 HEADPHONE_1_LEFT
-NoConn ~ 2250 1650
 $Comp
-L power:GNDREF #PWR?
+L power:GNDREF #PWR0101
 U 1 1 5E7ABB1A
 P 2400 1800
-F 0 "#PWR?" H 2400 1550 50  0001 C CNN
+F 0 "#PWR0101" H 2400 1550 50  0001 C CNN
 F 1 "GNDREF" H 2405 1627 50  0000 C CNN
 F 2 "" H 2400 1800 50  0001 C CNN
 F 3 "" H 2400 1800 50  0001 C CNN
@@ -271,4 +266,110 @@ Wire Wire Line
 Connection ~ 2400 1750
 Wire Wire Line
 	2400 1750 2250 1750
+$Comp
+L Device:R_Small_US R3
+U 1 1 5E816887
+P 1650 700
+F 0 "R3" V 1550 650 50  0000 C CNN
+F 1 "2.2k" V 1550 800 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 1650 700 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 1650 700 50  0001 C CNN
+F 4 "digikey" H 1650 700 50  0001 C CNN "Vendor"
+F 5 "CF14JT2K20CT-ND" H 1650 700 50  0001 C CNN "Part#"
+	1    1650 700 
+	0    1    1    0   
+$EndComp
+Text Label 2200 1650 2    50   ~ 0
+MICROPHONE_POWER
+Wire Wire Line
+	2450 1650 2200 1650
+Text Label 1450 700  2    50   ~ 0
+MICROPHONE_POWER
+$Comp
+L Jumper:SolderJumper_2_Open JP1
+U 1 1 5E84A05B
+P 2000 700
+F 0 "JP1" H 2050 800 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 2350 600 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 2000 700 50  0001 C CNN
+F 3 "~" H 2000 700 50  0001 C CNN
+	1    2000 700 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP_Small C1
+U 1 1 5E850CDF
+P 1700 1100
+F 0 "C1" V 1750 1200 50  0000 C CNN
+F 1 "1uF" V 1566 1100 50  0000 C CNN
+F 2 "" H 1700 1100 50  0001 C CNN
+F 3 "http://nichicon-us.com/english/products/pdfs/e-usa_usr.pdf" H 1700 1100 50  0001 C CNN
+F 4 "digikey" H 1700 1100 50  0001 C CNN "Vendor"
+F 5 "493-14556-1-ND" H 1700 1100 50  0001 C CNN "Part#"
+	1    1700 1100
+	0    1    1    0   
+$EndComp
+$Comp
+L Jumper:SolderJumper_3_Open JP2
+U 1 1 5E8585A4
+P 1350 1300
+F 0 "JP2" V 1304 1368 50  0000 L CNN
+F 1 "SolderJumper_3_Open" V 1395 1368 50  0000 L CNN
+F 2 "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm" H 1350 1300 50  0001 C CNN
+F 3 "~" H 1350 1300 50  0001 C CNN
+	1    1350 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1350 1100 1550 1100
+Wire Wire Line
+	2400 1550 2450 1550
+Wire Wire Line
+	2150 700  2400 700 
+Wire Wire Line
+	1850 700  1750 700 
+Wire Wire Line
+	1550 700  1500 700 
+Wire Wire Line
+	1350 1550 1350 1500
+Wire Wire Line
+	1200 1300 1100 1300
+Wire Wire Line
+	1800 1100 2400 1100
+Wire Wire Line
+	2400 1100 2400 1550
+Wire Wire Line
+	1350 1550 2400 1550
+Connection ~ 2400 1550
+Text Notes 2650 1250 0    50   ~ 0
+This circuit is to be able to use an electret microphone\nthat does contain a circuit in the package. To use the circuit\nsolder JP1 and solder pads 1 and 2 of JP2.\n\nTo connect directly to the mic from the computer, solder \npads 2 and 3 on JP2 and leave JP1 unsoldered\n\nJP3 is for testing 5V in the circuit. Don't use it.
+$Comp
+L Jumper:SolderJumper_2_Open JP3
+U 1 1 5E88296C
+P 1200 850
+F 0 "JP3" H 1200 750 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 1000 650 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 1200 850 50  0001 C CNN
+F 3 "~" H 1200 850 50  0001 C CNN
+	1    1200 850 
+	1    0    0    -1  
+$EndComp
+Text Label 1050 850  2    50   ~ 0
++GREEN_LED
+Wire Wire Line
+	1350 850  1500 850 
+Wire Wire Line
+	1500 850  1500 700 
+Connection ~ 1500 700 
+Wire Wire Line
+	1500 700  1450 700 
+Wire Wire Line
+	1550 1100 1550 900 
+Wire Wire Line
+	1550 900  2400 900 
+Wire Wire Line
+	2400 900  2400 700 
+Connection ~ 1550 1100
+Wire Wire Line
+	1550 1100 1600 1100
 $EndSCHEMATC

@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 5)
     (start_ripup_costs 100)
-    (start_pass_no 323)
+    (start_pass_no 79)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -63,9 +63,10 @@
     )
   )
   (class "kicad_default"
-    "Net-(J1-Pad12)" "Net-(J1-Pad21)" "Net-(J1-Pad22)" GNDREF "/-MICROPHONE" /+MICROPHONE "/HEADPHONE_2_RIGHT" "/HEADPHONE_2_LEFT"
-    "/HEADPHONE_2_SENSE" "/HEADPHONE_1_SENSE" "/HEADPHONE_1_RIGHT" "/HEADPHONE_1_LEFT" "/+RIGHT_SPEAKER" "/+LEFT_SPEAKER" "/-RIGHT_SPEAKER" "/-LEFT_SPEAKER"
-    "/POWER_BUTTON" "/+GREEN_LED" "/+AMBER_LED" "/-AC" /+AC "Net-(J2-Pad3)" "Net-(J2-Pad5)"
+    GNDREF "Net-(J1-Pad12)" "Net-(J1-Pad21)" "Net-(J1-Pad22)" /+MICROPHONE "/HEADPHONE_2_RIGHT" "/HEADPHONE_2_LEFT" "/HEADPHONE_2_SENSE"
+    "/HEADPHONE_1_SENSE" "/HEADPHONE_1_RIGHT" "/HEADPHONE_1_LEFT" "/+RIGHT_SPEAKER" "/+LEFT_SPEAKER" "/-RIGHT_SPEAKER" "/-LEFT_SPEAKER" "/POWER_BUTTON"
+    "/+GREEN_LED" "/+AMBER_LED" "/-AC" /+AC "Net-(J2-Pad3)" "Net-(J2-Pad5)" "Net-(C1-Pad1)" "Net-(C1-Pad2)"
+    "/MICROPHONE_POWER" "Net-(JP1-Pad1)"
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule
