@@ -47,9 +47,9 @@ P 6300 2550
 F 0 "C1" H 6415 2596 50  0000 L CNN
 F 1 "20pF" H 6415 2505 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 6338 2400 50  0001 C CNN
-F 3 "https://www.nteinc.com/capacitor_web/pdf/90000.pdf" H 6300 2550 50  0001 C CNN
+F 3 " https://product.tdk.com/info/en/catalog/datasheets/leaddisc_commercial_cc45_en.pdf?ref_disty=digikey" H 6300 2550 50  0001 C CNN
 F 4 "digikey" H 6300 2550 50  0001 C CNN "Vendor"
-F 5 "2368-90020-ND" H 6300 2550 50  0001 C CNN "Part#"
+F 5 "445-15973-ND" H 6300 2550 50  0001 C CNN "Part#"
 	1    6300 2550
 	1    0    0    -1  
 $EndComp
@@ -350,7 +350,9 @@ P 5200 5400
 F 0 "R4" V 5405 5400 50  0000 C CNN
 F 1 "220" V 5314 5400 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 5200 5400 50  0001 C CNN
-F 3 "~" H 5200 5400 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 5200 5400 50  0001 C CNN
+F 4 "digikey" V 5200 5400 50  0001 C CNN "Vendor"
+F 5 "CF14JT220RCT-ND" V 5200 5400 50  0001 C CNN "Part#"
 	1    5200 5400
 	0    -1   -1   0   
 $EndComp
@@ -772,9 +774,9 @@ P 6300 3950
 F 0 "C2" H 6415 3996 50  0000 L CNN
 F 1 "20pF" H 6415 3905 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 6338 3800 50  0001 C CNN
-F 3 "https://www.nteinc.com/capacitor_web/pdf/90000.pdf" H 6300 3950 50  0001 C CNN
+F 3 " https://product.tdk.com/info/en/catalog/datasheets/leaddisc_commercial_cc45_en.pdf?ref_disty=digikey" H 6300 3950 50  0001 C CNN
 F 4 "digikey" H 6300 3950 50  0001 C CNN "Vendor"
-F 5 "2368-90020-ND" H 6300 3950 50  0001 C CNN "Part#"
+F 5 "445-15973-ND" H 6300 3950 50  0001 C CNN "Part#"
 	1    6300 3950
 	1    0    0    -1  
 $EndComp

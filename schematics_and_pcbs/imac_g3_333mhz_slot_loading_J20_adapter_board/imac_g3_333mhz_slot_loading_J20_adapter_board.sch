@@ -45,11 +45,11 @@ L Device:C C1
 U 1 1 5E39D342
 P 6300 2550
 F 0 "C1" H 6415 2596 50  0000 L CNN
-F 1 "20pF" H 6415 2505 50  0000 L CNN
+F 1 "22pF" H 6415 2505 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 6338 2400 50  0001 C CNN
-F 3 "https://www.nteinc.com/capacitor_web/pdf/90000.pdf" H 6300 2550 50  0001 C CNN
+F 3 " https://product.tdk.com/info/en/catalog/datasheets/leaddisc_commercial_cc45_en.pdf?ref_disty=digikey" H 6300 2550 50  0001 C CNN
 F 4 "digikey" H 6300 2550 50  0001 C CNN "Vendor"
-F 5 "2368-90020-ND" H 6300 2550 50  0001 C CNN "Part#"
+F 5 "445-15973-ND" H 6300 2550 50  0001 C CNN "Part#"
 	1    6300 2550
 	1    0    0    -1  
 $EndComp
@@ -772,11 +772,11 @@ L Device:C C2
 U 1 1 5EA0EC6A
 P 6300 3950
 F 0 "C2" H 6415 3996 50  0000 L CNN
-F 1 "20pF" H 6415 3905 50  0000 L CNN
+F 1 "22pF" H 6415 3905 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm" H 6338 3800 50  0001 C CNN
-F 3 "https://www.nteinc.com/capacitor_web/pdf/90000.pdf" H 6300 3950 50  0001 C CNN
+F 3 " https://product.tdk.com/info/en/catalog/datasheets/leaddisc_commercial_cc45_en.pdf?ref_disty=digikey" H 6300 3950 50  0001 C CNN
 F 4 "digikey" H 6300 3950 50  0001 C CNN "Vendor"
-F 5 "2368-90020-ND" H 6300 3950 50  0001 C CNN "Part#"
+F 5 "445-15973-ND" H 6300 3950 50  0001 C CNN "Part#"
 	1    6300 3950
 	1    0    0    -1  
 $EndComp
