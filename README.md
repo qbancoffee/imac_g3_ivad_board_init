@@ -1,12 +1,29 @@
-# Modify a slot loader iMac G3 DV in order to use it as a monitor
-iMac G3 IVAD board initialization with an arduino or raspberry pi
- 
- I'm trying to document as much of the iMac G3 slot loader pinouts as I can in order to use
- this as a guide to make a breakout circuit than can plug right into the chassis connectors and provide
+# Add custom boards to an iMac G3 DV(slot loader) in order to use it as a monitor without having to destroy it.
+
+If you have a dead logic board but a functioning CRT then these boards can let you use your
+iMac G3 DV as a VGA monitor so that you can use a modern desktop with it. You can even hand wire the 
+whole thing without the need for the boards if you so wish.
+
+Even if you have a perfectly functional iMac G3 DV you can remove your logic board and use these boards
+to convert your iMac G3 DV into a VGA monitor without harming your iMac G3 and when you want your iMac back, you can remove the custom boards and plug your original logic board back in and still use your iMac G3 as an original apple product.
+These boards are designed to plug right in without having to modify the case and attached things.
+
+However....
+
+# Do this at your own risk as thing may break as you dissasemble your iMac and you can get shocked.
+
+Although low risk, things can always go wrong so be careful.
+
+1 - The inner bezel is extremely fragile and routintely breaks.
+2 - The CRT can hold a charge and shock you even if the iMac is not plugged in.
+3 - Static discharge from your hands can destroy electronics so "GROUND THYSELF"
+
+ I've documented much of the iMac G3 slot loader pinouts on this repo and used 
+ it as a guide to make a breakout circuit than can plug right into the chassis connectors and provide
  standard connections so that a regular computer can use things like the CRT,speakers, power button, audio
- jacks, the PAV board ect..
+ jacks, the down-converter board ect..
  
- It isn't easy but luckily a lot of people have shared their findings online and I have a G3 that I've used to experiment on.
+ It wasn't easy but luckily a lot of people have shared their findings online..
  
  There is working code here for both the arduino and raspberry pi to initialize the IVAD board so that you can use it as a monitor.
  
