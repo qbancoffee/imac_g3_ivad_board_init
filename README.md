@@ -12,7 +12,7 @@ However....
 
 # --->DO THIS AT YOUR OWN RISK<--- as thing may break as you dissasemble your iMac and you can get shocked.
 
-Although low risk, things can always go wrong so be careful.
+Although low risk, things can always go wrong, so be careful.
 
 - The inner bezel is extremely fragile and routintely breaks.
 - The CRT can hold a charge and shock you even if the iMac is not plugged in.
