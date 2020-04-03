@@ -14,9 +14,9 @@ However....
 
 Although low risk, things can always go wrong so be careful.
 
-1 - The inner bezel is extremely fragile and routintely breaks.
-2 - The CRT can hold a charge and shock you even if the iMac is not plugged in.
-3 - Static discharge from your hands can destroy electronics so "GROUND THYSELF"
+1- The inner bezel is extremely fragile and routintely breaks.
+2- The CRT can hold a charge and shock you even if the iMac is not plugged in.
+3- Static discharge from your hands can destroy electronics so "GROUND THYSELF"
 
  I've documented much of the iMac G3 slot loader pinouts on this repo and used 
  it as a guide to make a breakout circuit than can plug right into the chassis connectors and provide
