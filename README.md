@@ -18,8 +18,8 @@ Although low risk, things can always go wrong, so be careful.
 - The CRT can hold a charge and shock you even if the iMac is not plugged in.
 - Static discharge from your hands can destroy electronics so "GROUND THYSELF"
 
- I've documented much of the iMac G3 slot loader pinouts on this repo and used 
- it as a guide to make a breakout circuit than can plug right into the chassis connectors and provide
+ I've documented much of the iMac G3 slot loader chasis connector pinouts on this repo and used 
+ it as a guide to make breakout circuit boards than can plug right into the chassis connectors and provide
  standard connections so that a regular computer can use things like the CRT,speakers, power button, audio
  jacks, the down-converter board ect..
  
