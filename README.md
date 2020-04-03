@@ -10,7 +10,7 @@ These boards are designed to plug right in without having to modify the case and
 
 However....
 
-# Do this at your own risk as thing may break as you dissasemble your iMac and you can get shocked.
+# DO --->THIS AT YOUR OWN RISK<--- as thing may break as you dissasemble your iMac and you can get shocked.
 
 Although low risk, things can always go wrong so be careful.
 
