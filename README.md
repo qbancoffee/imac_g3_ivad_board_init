@@ -317,9 +317,16 @@ The down-conveter uses the 24 VAC coming from J22 in order to power the original
 
 ![DCB](/images/removing_down_converter_board.png?raw=true "Removing down-converter board")
 
-The break out board has not not arrived yet so it hasn't been tested.
 
-![DCB](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
+Rendition
+![DCB1](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
+</br>
+Actual Board
+![DCB2](images/down_converter_breakout_board.jpg?raw=true "Breakout board for the down-converter board so one can power things.")
+</br>
+Board installed
+![DCB3](images/down_converter_breakout_board_installed.jpg?raw=true "Breakout board for the down-converter board so one can power things.")
+
 
 </br>
 
