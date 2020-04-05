@@ -316,17 +316,15 @@ What it does
 The down-conveter uses the 24 VAC coming from J22 in order to power the original logic board and drives. Some people have called this the iMac G3 power supply. This is what it looks like.
 
 ![DCB](/images/removing_down_converter_board.png?raw=true "Removing down-converter board")
-
-
-Rendition
+</br>
+# Rendition
 ![DCB1](images/down_converter_breakout_board.png?raw=true "Breakout board for the down-converter board so one can power things.")
 </br>
-Actual Board
+# Actual Board
 ![DCB2](images/down_converter_breakout_board.jpg?raw=true "Breakout board for the down-converter board so one can power things.")
 </br>
-Board installed
+# Board installed
 ![DCB3](images/down_converter_breakout_board_installed.jpg?raw=true "Breakout board for the down-converter board so one can power things.")
-
 
 </br>
 
