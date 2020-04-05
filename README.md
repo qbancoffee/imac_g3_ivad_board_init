@@ -71,7 +71,7 @@ just right for your setup. below is an example from the init sketch.
    * [Videos](#Videos)
 ## Success
 - [Apple IIe using the iMac G3 as a monitor](https://www.reddit.com/r/VintageApple/comments/fox7b8/my_half_retro_battle_station/)
-- [Apple IIe using the iMac G3 as a monitor 2 ]()
+- [Apple IIe using the iMac G3 as a monitor 2 ](https://old.reddit.com/r/VintageApple/comments/fmoi5d/slot_loading_imac_g3_vga_input_hack/)
 
 ## Goals
 
