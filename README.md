@@ -305,8 +305,8 @@ but I've since fixed that.
 </br>
 # Down-converter breakout board
 What it does
-- provides a 24 VAC input for the J22 board into the down-converter board
-- provides a "turn-on" input for the J20 board, this is DCO which stands for Down Converter On
+- provides a 24 VAC input from the J22 board into the down-converter board
+- provides a "turn-on" input for the J20 board, this is DCO, which stands for Down Converter On
 - provides 3.3 VDC out from the down-converter board that turns on and off with the CRT.
 - provides   5 VDC out from the down-converter board that turns on and off with the CRT.
 - provides  12 VDC out from the down-converter board that turns on and off with the CRT.
