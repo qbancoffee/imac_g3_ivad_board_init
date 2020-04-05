@@ -47,6 +47,7 @@ just right for your setup. below is an example from the init sketch.
 
 
 <!-- toc -->
+- [Success stories](#Success)
 - [Goals](#Goals)
 - [Chassis Connectors and Pinouts](#Chassis-Connectors-and-Pinouts)
     * [Removing the logic board](#Removing-the-logic-board)
@@ -68,7 +69,9 @@ just right for your setup. below is an example from the init sketch.
    * [Getting adapter boards](#Ordering-Boards)
    * [Acknowledgements](#Acknowledgements)
    * [Videos](#Videos)
-
+## Success
+- [Apple IIe using the iMac G3 as a monitor](https://www.reddit.com/r/VintageApple/comments/fox7b8/my_half_retro_battle_station/)
+- [Apple IIe using the iMac G3 as a monitor 2 ]()
 
 ## Goals
 
