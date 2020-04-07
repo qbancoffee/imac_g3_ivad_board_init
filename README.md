@@ -379,3 +379,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Testing the down converter breakout board for the first time.](https://youtu.be/BQKrsIXOSxU)
 - [Mirroring an iMac G3 DV with this iMac G3 monitor hack](https://youtu.be/4jHPZWJs-aY)
 - [All three boards installed and working.](https://youtu.be/dqxeiFkvuYg)
+- [Rapberry Pi + Arduino powered iMac G3 hybrid running RetroPie](https://youtu.be/CLCZFmmEnno)
