@@ -266,8 +266,6 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 ![CRTOnAndOff](images/crt_power_on_and_off.png?raw=true "CRT On and Off")
 
 ## See Also
-### Schematics
-![J20Schematic](pdfs/j20_schematic.pdf?raw=true "CRT On and Off")
 ### Boards
 # J20 Board
 What it does.
