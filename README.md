@@ -266,6 +266,8 @@ the PAV board will produce the typical mother board volytages. +12v, +5v +3.3v e
 ![CRTOnAndOff](images/crt_power_on_and_off.png?raw=true "CRT On and Off")
 
 ## See Also
+### Schematics
+![J20Schematic](pdfs/j20_schematic.pdf?raw=true "CRT On and Off")
 ### Boards
 # J20 Board
 What it does.
@@ -290,7 +292,7 @@ This board works but as of March 23 2020 it needs a slight modification to make 
 
 # J22 Board
 What it does.
-- provides access to the microphonethe speakers
+- provides access to the microphone and the speakers
 - provides access to the power button
 - provides access to the green LED
 - provides access to the amber LED
