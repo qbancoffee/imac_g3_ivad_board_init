@@ -42,6 +42,7 @@ Uses SoftwareWire from the arduino libraries. install with library manager or fr
 #include <Wire.h>
 
 byte data = -1;
+byte monitorAddress = 0x46;
 
 
 //this is the EDID information that is sent to the computer that requests it.
@@ -278,7 +279,7 @@ void initIvadBoard() {
     **/
 
 
-// This initsequence was provided by "anotherrelise"
+// This initsequence was provided by "anotherelise"
 // https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679
 /**
      writeToIvad( 0x46,0x13,0x00);
@@ -482,4 +483,329 @@ void receiveData(int byteCount) {
   while (Wire.available()) {
     data = Wire.read();
   }
+}
+
+
+byte settingParallelogram = 0x0f;
+byte settingKeystone = 0x0b;
+byte settingRotation = 0x12;
+byte settingPincushion = 0x0c;
+byte settingVerticalPosition = 0x09;
+byte settingHorizontalPosition = 0x07;
+byte settingHeight = 0x08;
+byte settingWidth = 0x0d;
+byte settingContrast = 0x00;
+byte settingBrightness = 0x11;
+
+void setParallelogram(byte value) {
+  /*
+   * Left
+   * 0xfe
+   * 0xfd
+   * 0xfb
+   * 0xf8
+   * 0xf4
+   * 0xef
+   * 0xe9
+   * 0xe2
+   * 0xda
+   * 0xd1
+   * 0xc8
+   * 0xbf
+   * 0xb6
+   * 0xad
+   * 0xa4
+   * 0x9b
+   * 0x92
+   * 0x89
+   * 0x80
+   * Right
+   */
+  writeToIvad(monitorAddress, settingParallelogram, value);
+}
+void setKeystone(byte value) {
+  /*
+   * Thin top
+   * 0x81
+   * 0x83
+   * 0x86
+   * 0x8a
+   * 0x8f
+   * 0x95
+   * 0x9c
+   * 0xa4
+   * 0xad
+   * 0xb6
+   * 0xbf
+   * 0xc8
+   * 0xd1
+   * 0xda
+   * 0xe3
+   * 0xec
+   * 0xf5
+   * 0xfe
+   * 0xff
+   * Thin Bottom
+   */
+  writeToIvad(monitorAddress, settingKeystone, value);
+}
+void setRotation(byte value) {
+  /*
+   * Left
+   * 0x7e
+   * 0x7c
+   * 0x79
+   * 0x75
+   * 0x70
+   * 0x8d
+   * 0x63
+   * 0x5b
+   * 0x52
+   * 0x49
+   * 0x40
+   * 0x37
+   * 0x2e
+   * 0x25
+   * 0x1c
+   * 0x13
+   * 0x0a
+   * 0x01
+   * 0x00
+   * Right
+   */
+  writeToIvad(monitorAddress, settingRotation, value);
+}
+void setPincushion(byte value) {
+  /*
+   * Concave
+   * 0x81
+   * 0x83
+   * 0x86
+   * 0x8a
+   * 0x8f
+   * 0x95
+   * 0x9c
+   * 0xa4
+   * 0xad
+   * 0xb6
+   * 0xbf
+   * 0xc8
+   * 0xd1
+   * 0xda
+   * 0xe3
+   * 0xec
+   * 0xf5
+   * 0xfe
+   * 0xff
+   * Convex
+   */
+  writeToIvad(monitorAddress, settingPincushion, value);
+}
+void setVerticalPosition(byte value) {
+  /*
+   * Lowest
+   * 0x7e
+   * 0x7c
+   * 0x79
+   * 0x75
+   * 0x70
+   * 0x6a
+   * 0x63
+   * 0x5b
+   * 0x52
+   * 0x49
+   * 0x40
+   * 0x37
+   * 0x2e
+   * 0x25
+   * 0x1c
+   * 0x13
+   * 0x0a
+   * 0x01
+   * 0x00
+   * Highest
+   */
+  writeToIvad(monitorAddress, settingVerticalPosition, value);
+}
+void setHorizontalPosition(byte value) {
+  /*
+   * Left
+   * 0xfe
+   * 0xfc
+   * 0xf9
+   * 0xf5
+   * 0xf0
+   * 0xea
+   * 0xe3
+   * 0xdb
+   * 0xd2
+   * 0xc9
+   * 0xc0
+   * 0xb7
+   * 0xae
+   * 0xa5
+   * 0x9c
+   * 0x93
+   * 0x8a
+   * 0x81
+   * 0x80
+   * Right
+   */
+  writeToIvad(monitorAddress, settingHorizontalPosition, value);
+}
+
+void setHeight(byte value) {
+  /*
+   * Short
+   * 0x81
+   * 0x83
+   * 0x10
+   * 0x8a
+   * 0x8f
+   * 0x95
+   * 0x9c
+   * 0xa4
+   * 0xad
+   * 0xb6
+   * 0xbf
+   * 0xc8
+   * 0x1a
+   * 0xda
+   * 0xe3
+   * 0xec
+   * 0xf5
+   * 0xfe
+   * 0xff
+   * Tall
+   */
+  writeToIvad(monitorAddress, settingHeight, value);
+}
+
+void setWidth(byte value) {
+  /*
+   * Thin
+   * 0x7e
+   * 0x7c
+   * 0x79
+   * 0x75
+   * 0x70
+   * 0x6a
+   * 0x63
+   * 0x5b
+   * 0x52
+   * 0x49
+   * 0x40
+   * 0x37
+   * 0x2e
+   * 0x25
+   * 0x1c
+   * 0x13
+   * 0x0a
+   * 0x01
+   * 0x00
+   * Thick
+   */
+  writeToIvad(monitorAddress, settingWidth, value);
+}
+
+void setContrast(byte value) {
+  /*
+   * Low
+   * 0xb5
+   * 0xb6
+   * 0xb7
+   * 0xb8
+   * 0xb9
+   * 0xba
+   * 0xbb
+   * 0xbc
+   * 0xbd
+   * 0xbe
+   * 0xbf
+   * 0xc0
+   * 0xc1
+   * 0xc2
+   * 0xc3
+   * 0xc4
+   * 0xc5
+   * 0xc6
+   * 0xc7
+   * 0xc8
+   * 0xc9
+   * 0xca
+   * 0xcb
+   * 0xcc
+   * 0xcd
+   * 0xce
+   * 0xcf
+   * 0xd0
+   * 0xd1
+   * 0xd2
+   * 0xd3
+   * 0xd4
+   * 0xd5
+   * 0xd6
+   * 0xd7
+   * 0xd8
+   * 0xd9
+   * 0xda
+   * 0xdb
+   * 0xdc
+   * 0xdd
+   * 0xde
+   * 0xdf
+   * 0xe0
+   * 0xe1
+   * 0xe2
+   * 0xe3
+   * 0xe4
+   * 0xe5
+   * 0xe6
+   * 0xe7
+   * 0xe8
+   * 0xe9
+   * 0xea
+   * 0xeb
+   * 0xec
+   * 0xed
+   * 0xee
+   * 0xef
+   * 0xf0
+   * 0xf1
+   * 0xf2
+   * 0xf3
+   * 0xf4
+   * 0xf5
+   * 0xf6
+   * 0xf7
+   * 0xf8
+   * 0xf9
+   * 0xfa
+   * 0xfc
+   * 0xfd
+   * 0xff
+   * High
+   */
+  writeToIvad(monitorAddress, settingContrast, value);
+}
+
+void setBrightness(byte value) {
+  /*
+   * Dim
+   * 0x00
+   * 0x01
+   * 0x02
+   * 0x03
+   * 0x04
+   * 0x05
+   * 0x06
+   * 0x07
+   * 0x08
+   * 0x09
+   * 0x0a
+   * Bright
+   */
+   // The motherboard always writes this twice for some reason.
+  writeToIvad(monitorAddress, settingBrightness, value);
+  writeToIvad(monitorAddress, settingBrightness, value);
 }
