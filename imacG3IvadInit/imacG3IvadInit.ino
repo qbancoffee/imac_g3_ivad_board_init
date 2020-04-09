@@ -42,8 +42,19 @@ Uses SoftwareWire from the arduino libraries. install with library manager or fr
 #include <Wire.h>
 
 byte data = -1;
-byte monitorAddress = 0x46;
 
+int monitorAddress = 0x46;
+
+int settingParallelogram = 0x0f;
+int settingKeystone = 0x0b;
+int settingRotation = 0x12;
+int settingPincushion = 0x0c;
+int settingVerticalPosition = 0x09;
+int settingHorizontalPosition = 0x07;
+int settingHeight = 0x08;
+int settingWidth = 0x0d;
+int settingContrast = 0x00;
+int settingBrightness = 0x11;
 
 //this is the EDID information that is sent to the computer that requests it.
 const byte edid[128] =
@@ -486,18 +497,7 @@ void receiveData(int byteCount) {
 }
 
 
-byte settingParallelogram = 0x0f;
-byte settingKeystone = 0x0b;
-byte settingRotation = 0x12;
-byte settingPincushion = 0x0c;
-byte settingVerticalPosition = 0x09;
-byte settingHorizontalPosition = 0x07;
-byte settingHeight = 0x08;
-byte settingWidth = 0x0d;
-byte settingContrast = 0x00;
-byte settingBrightness = 0x11;
-
-void setParallelogram(byte value) {
+void setParallelogram(int value) {
   /*
    * Left
    * 0xfe
@@ -523,7 +523,7 @@ void setParallelogram(byte value) {
    */
   writeToIvad(monitorAddress, settingParallelogram, value);
 }
-void setKeystone(byte value) {
+void setKeystone(int value) {
   /*
    * Thin top
    * 0x81
@@ -549,7 +549,7 @@ void setKeystone(byte value) {
    */
   writeToIvad(monitorAddress, settingKeystone, value);
 }
-void setRotation(byte value) {
+void setRotation(int value) {
   /*
    * Left
    * 0x7e
@@ -575,7 +575,7 @@ void setRotation(byte value) {
    */
   writeToIvad(monitorAddress, settingRotation, value);
 }
-void setPincushion(byte value) {
+void setPincushion(int value) {
   /*
    * Concave
    * 0x81
@@ -601,7 +601,7 @@ void setPincushion(byte value) {
    */
   writeToIvad(monitorAddress, settingPincushion, value);
 }
-void setVerticalPosition(byte value) {
+void setVerticalPosition(int value) {
   /*
    * Lowest
    * 0x7e
@@ -627,7 +627,7 @@ void setVerticalPosition(byte value) {
    */
   writeToIvad(monitorAddress, settingVerticalPosition, value);
 }
-void setHorizontalPosition(byte value) {
+void setHorizontalPosition(int value) {
   /*
    * Left
    * 0xfe
@@ -654,7 +654,7 @@ void setHorizontalPosition(byte value) {
   writeToIvad(monitorAddress, settingHorizontalPosition, value);
 }
 
-void setHeight(byte value) {
+void setHeight(int value) {
   /*
    * Short
    * 0x81
@@ -681,7 +681,7 @@ void setHeight(byte value) {
   writeToIvad(monitorAddress, settingHeight, value);
 }
 
-void setWidth(byte value) {
+void setWidth(int value) {
   /*
    * Thin
    * 0x7e
@@ -708,7 +708,7 @@ void setWidth(byte value) {
   writeToIvad(monitorAddress, settingWidth, value);
 }
 
-void setContrast(byte value) {
+void setContrast(int value) {
   /*
    * Low
    * 0xb5
@@ -789,7 +789,7 @@ void setContrast(byte value) {
   writeToIvad(monitorAddress, settingContrast, value);
 }
 
-void setBrightness(byte value) {
+void setBrightness(int value) {
   /*
    * Dim
    * 0x00
