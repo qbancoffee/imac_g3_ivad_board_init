@@ -142,6 +142,7 @@ void setup() {
 
   Wire.begin(0x50); //join as slave and wait for EDID requests
   softWire.begin();// join as master and send init sequence
+  Serial.begin(9600);//use built in serial
   
   Wire.onRequest(requestEvent); //event handler for requests from master
   Wire.onReceive(receiveData); // event handler when receiving from  master
@@ -149,6 +150,7 @@ void setup() {
   externalCircuitOff();
 
   //initIvadBoard();
+  //Serial.print("Starting J20 board\n");
 
 }
 
@@ -158,6 +160,10 @@ byte x = 0;
 */
 void loop() {
   buttonState = digitalRead(powerButtonPin);
+  
+  if( externalCircuitState == HIGH ){
+    handleSerial();
+    }//end if
 
 
   if (buttonState == LOW )
@@ -220,7 +226,7 @@ void handleSerial() {
    */
 
   
-  while(Serial.available() > 0) {
+  if(Serial.available() > 0) {
     char incoming = Serial.read();
 
     switch(incoming) {
@@ -675,6 +681,7 @@ void setVerticalPosition() {
 }
 
 void setHorizontalPosition(int value) {
+  //Serial.print("moving horizontally\n");
   writeToIvad(monitorAddress, horizontalPositionSetting, value);
 }
 void setHorizontalPosition() {
