@@ -43,6 +43,56 @@ Uses SoftwareWire from the arduino libraries. install with library manager or fr
 
 byte data = -1;
 
+int monitorAddress = 0x46;
+
+int settingParallelogram = 0x0f;
+int settingKeystone = 0x0b;
+int settingRotation = 0x12;
+int settingPincushion = 0x0c;
+
+
+int verticalPositionSetting = 0x09;
+const int verticalPositionValues[19] = {
+  // Low to High
+  0x7e, 0x7c, 0x79, 0x75, 0x70, 0x6a, 0x63, 0x5b, 0x52, 0x49, 0x40, 0x37, 0x2e, 0x25, 0x1c, 0x13, 0x0a, 0x01, 0x00
+};
+int verticalPositionValueIndex = 9;
+
+int contrastSetting = 0x00;
+const int contrastValues[73] = {
+  0xb5, 0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0xbb, 0xbc, 0xbd, 0xbe, 0xbf, 0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 
+  0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7, 0xd8, 0xd9, 0xda, 
+  0xdb, 0xdc, 0xdd, 0xde, 0xdf, 0xe0, 0xe1, 0xe2, 0xe3, 0xe4, 0xe5, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 
+  0xee, 0xef, 0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7, 0xf8, 0xf9, 0xfa, 0xfc, 0xfd, 0xff
+};
+int contrastValueIndex = 72;
+
+int horizontalPositionSetting = 0x07;
+const int horizontalPositionValues[19] = {
+  0xfe, 0xfc, 0xf9, 0xf5, 0xf0, 0xea, 0xe3, 0xdb, 0xd2, 0xc9, 0xc0, 0xb7, 0xae, 0xa5, 0x9c, 0x93, 0x8a, 0x81, 0x80
+};
+int horizontalPositionValueIndex = 11;
+
+int heightSetting = 0x08;
+const int heightValues[19] = {
+  // short to tall
+  0x81, 0x83, 0x10, 0x8a, 0x8f, 0x95, 0x9c, 0xa4, 0xad, 0xb6, 0xbf, 0xc8, 0x1a, 0xda, 0xe3, 0xec, 0xf5, 0xfe, 0xff
+};
+int heightValueIndex = 14;
+
+int widthSetting = 0x0d;
+const int widthValues[19] = {
+  // thinnest to thickest 
+  0x7e, 0x7c, 0x79, 0x75, 0x70, 0x6a, 0x63, 0x5b, 0x52, 0x49, 0x40, 0x37, 0x2e, 0x25, 0x1c, 0x13, 0x0a, 0x01, 0x00
+};
+int widthValueIndex = 18;
+
+int brightnessSetting = 0x11;
+int brightnessValues[10] = {
+  // Dim to Bright
+  0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a
+};
+int brightnessValueIndex = 9;
 
 //this is the EDID information that is sent to the computer that requests it.
 const byte edid[128] =
@@ -147,6 +197,75 @@ void loop() {
 
 }
 
+
+void handleSerial() {
+  /*
+   * a = move left
+   * s = move right
+   * w = move up
+   * z = move down
+   * 
+   * d = skinnier
+   * f = fatter
+   * r = taller
+   * c = shorter
+   * 
+   * g = contrast down
+   * h = contrast up
+   * 
+   * j = brightness down
+   * k = brightness up
+   * 
+   * 
+   */
+
+  
+  while(Serial.available() > 0) {
+    char incoming = Serial.read();
+
+    switch(incoming) {
+      case 'a':
+        moveLeft();
+        break;
+      case 's':
+        moveRight();
+        break;
+      case 'w':
+        moveUp();
+        break;
+      case 'z':
+        moveDown();
+        break;
+
+      case 'd':
+        decreaseWidth();
+        break;
+      case 'f':
+        increaseWidth();
+        break;
+      case 'r':
+        increaseHeight();
+        break;
+      case 'c':
+        decreaseHeight();
+        break;
+
+      case 'g':
+        decreaseContrast();
+        break;
+      case 'h':
+        increaseContrast();
+        break;
+
+      case 'j':
+         decreaseBrightness();
+         break;
+      case 'k':
+         increaseBrightness();
+         break;
+    }
+  }
+}
 
 void writeToIvad(int address, int message) {
   softWire.beginTransmission(address);
@@ -278,7 +397,7 @@ void initIvadBoard() {
     **/
 
 
-// This initsequence was provided by "anotherrelise"
+// This initsequence was provided by "anotherelise"
 // https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679
 /**
      writeToIvad( 0x46,0x13,0x00);
@@ -482,4 +601,239 @@ void receiveData(int byteCount) {
   while (Wire.available()) {
     data = Wire.read();
   }
+}
+
+
+void moveLeft() {
+  horizontalPositionValueIndex--;
+  setHorizontalPosition();
+}
+void moveRight() {
+  horizontalPositionValueIndex++;
+  setHorizontalPosition();
+}
+
+void moveUp() {
+  verticalPositionValueIndex++;
+  setVerticalPosition();
+}
+void moveDown() {
+  verticalPositionValueIndex--;
+  setVerticalPosition();
+}
+
+void increaseWidth() {
+  widthValueIndex++;
+  setWidth();
+}
+void decreaseWidth() {
+  widthValueIndex--;
+  setWidth();
+}
+
+void increaseHeight() {
+  heightValueIndex++;
+  
+  setHeight();
+}
+void decreaseHeight() {
+  heightValueIndex--;
+  
+  setHeight();
+}
+
+void decreaseContrast() {
+  contrastValueIndex--;
+  setContrast();
+}
+void increaseContrast() {
+  contrastValueIndex++;
+
+  setContrast();
+}
+
+void decreaseBrightness() {
+  brightnessValueIndex--;
+  
+  setBrightness();
+}
+void increaseBrightness() {
+  brightnessValueIndex++;
+  
+  setBrightness();
+}
+
+
+void setVerticalPosition(int value) {
+  writeToIvad(monitorAddress, verticalPositionSetting, value);
+}
+void setVerticalPosition() {
+  limitIndex(verticalPositionValueIndex, sizeof(verticalPositionValues));
+  int value = verticalPositionValues[verticalPositionValueIndex];
+
+  setVerticalPosition(value);
+}
+
+void setHorizontalPosition(int value) {
+  writeToIvad(monitorAddress, horizontalPositionSetting, value);
+}
+void setHorizontalPosition() {
+  limitIndex(horizontalPositionValueIndex, sizeof(horizontalPositionValues));
+  int value = horizontalPositionValues[horizontalPositionValueIndex];
+
+  setHorizontalPosition(value);
+}
+
+void setHeight(int value) {
+  writeToIvad(monitorAddress, heightSetting, value);
+}
+void setHeight() {
+  limitIndex(heightValueIndex, sizeof(heightValues));
+  int value = heightValues[heightValueIndex];
+
+  setHeight(value);
+}
+
+void setWidth(int value) {
+  writeToIvad(monitorAddress, widthSetting, value);
+}
+void setWidth() {
+  limitIndex(widthValueIndex, sizeof(widthValues));
+  int value = widthValues[widthValueIndex];
+  
+  setWidth(value);
+}
+
+void setContrast(int value) {
+  writeToIvad(monitorAddress, contrastSetting, value);
+}
+void setContrast() {
+  limitIndex(contrastValueIndex, sizeof(contrastValues));
+  int value = contrastValues[contrastValueIndex];
+  
+  setContrast(value);
+}
+
+void setBrightness(int value) {
+  writeToIvad(monitorAddress, brightnessSetting, value);
+  writeToIvad(monitorAddress, brightnessSetting, value);
+}
+void setBrightness() {
+  limitIndex(brightnessValueIndex, sizeof(brightnessValues));
+  int value = brightnessValues[brightnessValueIndex];
+  
+  setBrightness(value);
+}
+
+void limitIndex(int &index, int array_size) {
+  int maximum = ((array_size / sizeof(int)) - 1);
+  
+  if(index < 0) index = 0;
+  if(index > maximum) index = maximum;
+}
+
+
+void setParallelogram(int value) {
+  /*
+   * Left
+   * 0xfe
+   * 0xfd
+   * 0xfb
+   * 0xf8
+   * 0xf4
+   * 0xef
+   * 0xe9
+   * 0xe2
+   * 0xda
+   * 0xd1
+   * 0xc8
+   * 0xbf
+   * 0xb6
+   * 0xad
+   * 0xa4
+   * 0x9b
+   * 0x92
+   * 0x89
+   * 0x80
+   * Right
+   */
+  writeToIvad(monitorAddress, settingParallelogram, value);
+}
+void setKeystone(int value) {
+  /*
+   * Thin top
+   * 0x81
+   * 0x83
+   * 0x86
+   * 0x8a
+   * 0x8f
+   * 0x95
+   * 0x9c
+   * 0xa4
+   * 0xad
+   * 0xb6
+   * 0xbf
+   * 0xc8
+   * 0xd1
+   * 0xda
+   * 0xe3
+   * 0xec
+   * 0xf5
+   * 0xfe
+   * 0xff
+   * Thin Bottom
+   */
+  writeToIvad(monitorAddress, settingKeystone, value);
+}
+void setRotation(int value) {
+  /*
+   * Left
+   * 0x7e
+   * 0x7c
+   * 0x79
+   * 0x75
+   * 0x70
+   * 0x8d
+   * 0x63
+   * 0x5b
+   * 0x52
+   * 0x49
+   * 0x40
+   * 0x37
+   * 0x2e
+   * 0x25
+   * 0x1c
+   * 0x13
+   * 0x0a
+   * 0x01
+   * 0x00
+   * Right
+   */
+  writeToIvad(monitorAddress, settingRotation, value);
+}
+void setPincushion(int value) {
+  /*
+   * Concave
+   * 0x81
+   * 0x83
+   * 0x86
+   * 0x8a
+   * 0x8f
+   * 0x95
+   * 0x9c
+   * 0xa4
+   * 0xad
+   * 0xb6
+   * 0xbf
+   * 0xc8
+   * 0xd1
+   * 0xda
+   * 0xe3
+   * 0xec
+   * 0xf5
+   * 0xfe
+   * 0xff
+   * Convex
+   */
+  writeToIvad(monitorAddress, settingPincushion, value);
 }
