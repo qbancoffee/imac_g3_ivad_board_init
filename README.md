@@ -86,7 +86,7 @@ One can even include a motherboard on the inside of the G3 basically converting 
 Here are the goals
 
 - [x] Capture IVAD board initialization sequence from the Imac logic board to the IVAD board and implement with mcu & rpi.
-- [ ] Document how to control brightness, contrast, screen goemetry ect via the i2c lines.
+- [x] Document how to control brightness, contrast, screen goemetry ect via the i2c lines.
 - [x] Document as much of the pinouts as possible on the the chassis connectors .
 - [x] [Design circuit boards that will plug into the connectors and allow one to use the on/off button,
 speakers, power LED, mic ect..](#Boards)
@@ -353,6 +353,7 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [DrJekyll_XYZ for providing xrandr output that lead to creating an EDID](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28272422)
 - [DrJekyll_XYZ for suggesting the PAM8403 chip for audio](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28249216)
 - [anotherelise for providing another init sequence](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679)
+-[anotherelise for providing IVAD CRT property adjustment capture](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28349738)
 
 ### Videos
 - [Booting an non-modded iMac G3 to confirm the CRT turns on](https://youtu.be/meIzAyQd0t0)
@@ -381,3 +382,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Mirroring an iMac G3 DV with this iMac G3 monitor hack](https://youtu.be/4jHPZWJs-aY)
 - [All three boards installed and working.](https://youtu.be/dqxeiFkvuYg)
 - [Rapberry Pi + Arduino powered iMac G3 hybrid running RetroPie](https://youtu.be/CLCZFmmEnno)
+- [Adjusting iMac G3 picture settings via a serial terminal](https://youtu.be/9LLsHE3xdBA)
