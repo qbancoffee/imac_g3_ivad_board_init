@@ -3,120 +3,67 @@
 
 
 /*
-   This sketch waits for button presses to turn on/off the
-   iMac G3 CRT circuitry and send the init sequence to the IVAD board.
-   if you are planning to just send the init sequence on startup, you can
-   uncomment "initIvadBoard();"  in setup().
-   It uses software i2c lines.
+   This sketch waits for button presses to turn on/off the iMac G3 CRT
+   circuitry and send the init sequence to the IVAD board.
+   if you are planning to just send the init sequence on startup, you
+   can uncomment "initIvadBoard();"  in setup(). It uses software i2c
+   lines.
 
-  it also sends edid information when requested via i2c on port 0x50.
-  The Edid information is for an iMac G3 DV and it sends the three supported modes.
+   it also sends edid information when requested via i2c on port 0x50.
+   The Edid information is for an iMac G3 DV and it sends the three
+   supported modes.
 
-  1024x768 @ 75 Hz
+   1024x768 @ 75 Hz
    800x600 @ 95 Hz
    640x480 @ 117 Hz
 
-   In order for this program to work, the i2c transmit buffer length constants must be changed in
-   two files. The Wire library has two buffers it uses for i2c transmissions
+   In order for this program to work, the i2c transmit buffer length
+   constants must be changed in two files. The Wire library has two
+   buffers it uses for i2c transmissions
 
    "BUFFER_LENGTH" in
-   "arduino_install_folder/hardware/arduino/avr/libraries/Wire/src/Wire.h" and
+   "arduino_install_folder/hardware/arduino/avr/libraries/Wire/src/Wire.h"
+
+   and
 
    "TWI_BUFFER_LENGTH" in
    "arduino_install_folder/hardware/arduino/avr/libraries/Wire/src/utility/twi.h"
 
-   Both of these must be changed from 32 to 128 to be able to transmit the edid byte array in
-   one shot.
+   Both of these must be changed from 32 to 128 to be able to transmit
+   the edid byte array in one shot.
 
-   To test this program, you can directly wire SDA(pin 12),SCL(pin 15) and GND(pin 6) pins from your computers VGA port
-   directly into the corresponding pins on the arduino.
+   To test this program, you can directly wire SDA(pin 12),SCL(pin 15)
+   and GND(pin 6) pins from your computers VGA portbdirectly into the
+   corresponding pins on the arduino.
 
 
 */
 
 
 /*
-  Uses SoftwareWire from the arduino libraries. install with library manager or from https://github.com/Testato/SoftwareWire
+  Uses SoftwareWire from the arduino libraries. install with library
+  manager or from https://github.com/Testato/SoftwareWire
 */
+
+#include "ivad.h"
 #include <SoftwareWire.h>
 #include <Wire.h>
 
 byte data = -1;
 
-byte monitorAddress = 0x46;
 
-byte settingParallelogram = 0x0f;
-byte settingKeystone = 0x0b;
-byte settingRotation = 0x12;
-byte settingPincushion = 0x0c;
-
-
-byte verticalPositionSetting = 0x09;
-const byte verticalPositionValues[19] = {
-  // Low to High
-  0x7e, 0x7c, 0x79, 0x75, 0x70, 0x6a, 0x63, 0x5b, 0x52, 0x49, 0x40, 0x37,
-  0x2e, 0x25, 0x1c, 0x13, 0x0a, 0x01, 0x00
-};
+//starting indices for byte arrays that hold the monitor property values.
 byte verticalPositionValueIndex = 9;
-
-byte contrastSetting = 0x00;
-const byte contrastValues[73] = {
-  0xb5, 0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0xbb, 0xbc, 0xbd, 0xbe, 0xbf, 0xc0,
-  0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc,
-  0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7, 0xd8,
-  0xd9, 0xda, 0xdb, 0xdc, 0xdd, 0xde, 0xdf, 0xe0, 0xe1, 0xe2, 0xe3, 0xe4,
-  0xe5, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xeb, 0xec, 0xed, 0xee, 0xef, 0xf0,
-  0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7, 0xf8, 0xf9, 0xfa, 0xfc, 0xfd,
-  0xff
-};
 byte contrastValueIndex = 72;
-
-byte horizontalPositionSetting = 0x07;
-const byte horizontalPositionValues[19] = {
-  0xfe, 0xfc, 0xf9, 0xf5, 0xf0, 0xea, 0xe3, 0xdb, 0xd2, 0xc9, 0xc0, 0xb7,
-  0xae, 0xa5, 0x9c, 0x93, 0x8a, 0x81, 0x80
-};
-byte horizontalPositionValueIndex = 11;
-
-byte heightSetting = 0x08;
-const byte heightValues[19] = {
-  // short to tall
-  0x81, 0x83, 0x10, 0x8a, 0x8f, 0x95, 0x9c, 0xa4, 0xad, 0xb6, 0xbf, 0xc8,
-  0x1a, 0xda, 0xe3, 0xec, 0xf5, 0xfe, 0xff
-};
+byte horizontalPositionValueIndex = 12;
 byte heightValueIndex = 14;
-
-byte widthSetting = 0x0d;
-const byte widthValues[19] = {
-  // thinnest to thickest
-  0x7e, 0x7c, 0x79, 0x75, 0x70, 0x6a, 0x63, 0x5b, 0x52, 0x49, 0x40, 0x37,
-  0x2e, 0x25, 0x1c, 0x13, 0x0a, 0x01, 0x00
-};
-byte widthValueIndex = 18;
-
-byte brightnessSetting = 0x11;
-byte brightnessValues[10] = {
-  // Dim to Bright
-  0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a
-};
+byte widthValueIndex = 13;
 byte brightnessValueIndex = 9;
+byte parallelogramValueIndex = 9;
+byte keystoneValueIndex = 5;
+byte rotationValueIndex = 9;
+byte pincushionValueIndex = 11;
 
-//this is the EDID information that is sent to the computer that requests it.
-const byte edid[128] =
-{
-
-  0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x06, 0x10, 0x74, 0x61,
-  0xed, 0x5f, 0x84, 0x00, 0x06, 0x1e, 0x01, 0x03, 0x6d, 0x1a, 0x14, 0x78,
-  0xea, 0x5e, 0xc0, 0xa4, 0x59, 0x4a, 0x98, 0x25, 0x20, 0x50, 0x54, 0x00,
-  0x00, 0x00, 0x61, 0x4f, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
-  0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0xc3, 0x1e, 0x00, 0x30, 0x41, 0x00,
-  0x34, 0x30, 0x14, 0x60, 0xd3, 0x00, 0x0a, 0xc8, 0x10, 0x00, 0x00, 0x1e,
-  0x5f, 0x18, 0x20, 0xf0, 0x30, 0x58, 0x2c, 0x20, 0x15, 0x50, 0x93, 0x00,
-  0xd0, 0x9c, 0x00, 0x00, 0x00, 0x18, 0x7d, 0x13, 0x80, 0xc0, 0x20, 0xe0,
-  0x22, 0x10, 0x11, 0x40, 0x13, 0x00, 0xa6, 0x7d, 0x00, 0x00, 0x00, 0x18,
-  0x00, 0x00, 0x00, 0xfd, 0x00, 0x3b, 0x3d, 0x3a, 0x3d, 0x08, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19
-};
 
 //define solid state relay and power button pins
 byte solid_state_relay_Pin = 7;
@@ -164,44 +111,70 @@ void handleSerial() {
     char incoming = Serial.read();
 
     switch (incoming) {
-      case 'a':
-        moveLeft();
+      case 'a'://move left
+        moveHorizontal(-1);
         break;
-      case 's':
-        moveRight();
+      case 's'://move right
+        moveHorizontal(+1);
         break;
-      case 'w':
-        moveUp();
+      case 'w'://move up
+        moveVertical(+1);
         break;
-      case 'z':
-        moveDown();
+      case 'z'://move down
+        moveVertical(-1);
         break;
-
-      case 'd':
-        decreaseWidth();
+      case 'd'://make skinnier
+        changeWidth(-1);
         break;
-      case 'f':
-        increaseWidth();
+      case 'f'://make fatter
+        changeWidth(+1);
         break;
-      case 'r':
-        increaseHeight();
+      case 'r'://make taller
+        changeHeight(+1);
         break;
-      case 'c':
-        decreaseHeight();
+      case 'c'://make shorter
+        changeHeight(-1);
         break;
-
-      case 'g':
-        decreaseContrast();
+      case 'g'://decrease contrast
+        changeContrast(-1);
         break;
-      case 'h':
-        increaseContrast();
+      case 'h'://increase contrast
+        changeContrast(+1);
         break;
-
-      case 'j':
-        decreaseBrightness();
+      case 'j'://decrease brightness
+        changeBrightness(-1);
         break;
-      case 'k':
-        increaseBrightness();
+      case 'k'://increase brightness
+        changeBrightness(+1);
+        break;
+      case 'x'://tilt paralellogram left
+        changeParallelogram(-1);
+        break;
+      case 'v'://tilt paralellogram right
+        changeParallelogram(+1);
+        break;
+      case 'b'://keystone pinch top
+        changeKeystone(-1);
+        break;
+      case 'n'://keystone pinch bottom
+        changeKeystone(+1);
+        break;
+      case 't'://rotate left
+        changeRotation(-1);
+        break;
+      case 'y'://rotate right
+        changeRotation(+1);
+        break;
+      case 'u'://pincushion pull corners out
+        changePincushion(-1);
+        break;
+      case 'i'://pincushion pull corners in
+        changePincushion(+1);
+        break;
+      case 'o'://power off
+        if ( externalCircuitState == HIGH ) {
+          externalCircuitOff();
+        }//end if
         break;
     }
   }
@@ -436,15 +409,15 @@ void initIvadBoard() {
 
 
   //init sequence 2 <---this is the one that works well with my iMac G3, Rocky Hill
-  writeToIvad( 0x46, 0x13, 0x00);
-  readFromIvad(0x46, 1);
-  writeToIvad( 0x46, 0x09, 0x00);
+  writeToIvad( PROPERTY, 0x13, 0x00);
+  readFromIvad(PROPERTY, 1);
+  writeToIvad( PROPERTY, VERTICAL_POS, 0x00);
   writeToIvad( 0x53, 0x33);
   readFromIvad(0x53, 1);
-  writeToIvad( 0x46, 0x13, 0x0B);
-  writeToIvad( 0x46, 0x00, 0x00);
-  writeToIvad( 0x46, 0x08, 0xE4);
-  writeToIvad( 0x46, 0x12, 0xC9);
+  writeToIvad( PROPERTY, 0x13, 0x0B);
+  writeToIvad( PROPERTY, CONTRAST, 0x00); //setting contrast to 0x00 seems to turn something on.
+  //writeToIvad( PROPERTY, HEIGHT, 0xE4);
+  //writeToIvad( PROPERTY, ROTATION, 0xC9);
   writeToIvad( 0x53, 0x00);
   readFromIvad(0x53, 10);
   writeToIvad( 0x53, 0x0A);
@@ -469,25 +442,22 @@ void initIvadBoard() {
   //writeToIvad( 0x46, 0x02, 0x88);//green
   //writeToIvad( 0x46, 0x03, 0x88);//blue
 
-  writeToIvad( 0x46, 0x04, 0x80);//red x-30
-  writeToIvad( 0x46, 0x05, 0xB0);// green x
-  writeToIvad( 0x46, 0x06, 0x78); //blue x-38
-
-  writeToIvad( 0x46, 0x07, 0xB1); //horizontal position
-  //writeToIvad( 0x46, 0x08, 0xF8); //vertical size
-  writeToIvad( 0x46, 0x08, 0xDC);
-  writeToIvad( 0x46, 0x09, 0x49);
-  writeToIvad( 0x46, 0x0A, 0x9E);
-  writeToIvad( 0x46, 0x0B, 0x93);
-  writeToIvad( 0x46, 0x0C, 0xCA);
-  //writeToIvad( 0x46, 0x0D, 0x18); // horizontal size
-  writeToIvad( 0x46, 0x0D, 0x20);
-  writeToIvad( 0x46, 0x0E, 0xC0);
-  writeToIvad( 0x46, 0x0F, 0xC1);
-  writeToIvad( 0x46, 0x10, 0x40); // brightness
-  writeToIvad( 0x46, 0x11, 0x09);
-  writeToIvad( 0x46, 0x12, 0xE0); // rotation
-  writeToIvad( 0x46, 0x00, 0xF0);
+  writeToIvad( PROPERTY, 0x04, 0x80);//red x-30
+  writeToIvad( PROPERTY, 0x05, 0xB0);// green x
+  writeToIvad( PROPERTY, 0x06, 0x78); //blue x-38
+  writeToIvad( PROPERTY, HORIZONTAL_POS, HORIZONTAL_POS_VAL[horizontalPositionValueIndex]); //horizontal position
+  writeToIvad( PROPERTY, HEIGHT, HEIGHT_VAL[heightValueIndex]);
+  writeToIvad( PROPERTY, VERTICAL_POS, VERTICAL_POS_VAL[verticalPositionValueIndex]);
+  writeToIvad( PROPERTY, 0x0A, 0x9E);
+  writeToIvad( PROPERTY, KEYSTONE, KEYSTONE_VAL[keystoneValueIndex]);
+  writeToIvad( PROPERTY, PINCUSHION, PINCUSHION_VAL[pincushionValueIndex]);
+  writeToIvad( PROPERTY, WIDTH, WIDTH_VAL[widthValueIndex]);
+  writeToIvad( PROPERTY, 0x0E, 0xC0);
+  writeToIvad( PROPERTY, PARALLELOGRAM, PARALLELOGRAM_VAL[parallelogramValueIndex]);
+  writeToIvad( PROPERTY, 0x10, 0x40); // brightness
+  writeToIvad( PROPERTY, BRIGHTNESS, BRIGHTNESS_VAL[brightnessValueIndex]);
+  writeToIvad( PROPERTY, ROTATION, ROTATION_VAL[rotationValueIndex]); // rotation
+  writeToIvad( PROPERTY, CONTRAST, CONTRAST_VAL[contrastValueIndex]);
 
 
 
@@ -544,126 +514,76 @@ void receiveData(byte byteCount) {
 }
 
 
-void moveLeft() {
-  horizontalPositionValueIndex--;
-  setHorizontalPosition();
-}
-void moveRight() {
-  horizontalPositionValueIndex++;
-  setHorizontalPosition();
-}
+//the following methods change picture properties
 
-void moveUp() {
-  verticalPositionValueIndex++;
-  setVerticalPosition();
-}
-void moveDown() {
-  verticalPositionValueIndex--;
-  setVerticalPosition();
-}
+void moveHorizontal(int off) {
+  horizontalPositionValueIndex += off;
+  limitIndex(horizontalPositionValueIndex, sizeof(HORIZONTAL_POS_VAL));
+  byte value = HORIZONTAL_POS_VAL[horizontalPositionValueIndex];
+  writeToIvad(PROPERTY, HORIZONTAL_POS, value);
+}//end moveHorizontal
 
-void increaseWidth() {
-  widthValueIndex++;
-  setWidth();
-}
-void decreaseWidth() {
-  widthValueIndex--;
-  setWidth();
-}
+void moveVertical(int off) {
+  verticalPositionValueIndex += off;
+  limitIndex(verticalPositionValueIndex, sizeof(VERTICAL_POS_VAL));
+  byte value = VERTICAL_POS_VAL[verticalPositionValueIndex];
+  writeToIvad(PROPERTY, VERTICAL_POS, value);
+}//end move vertical
 
-void increaseHeight() {
-  heightValueIndex++;
+void changeWidth(int off) {
+  widthValueIndex += off;
+  limitIndex(widthValueIndex, sizeof(WIDTH_VAL));
+  byte value = WIDTH_VAL[widthValueIndex];
+  writeToIvad(PROPERTY, WIDTH, value);
+}//end changeWidth
 
-  setHeight();
-}
-void decreaseHeight() {
-  heightValueIndex--;
+void changeHeight(int off) {
+  heightValueIndex += off;
+  limitIndex(heightValueIndex, sizeof(HEIGHT_VAL));
+  byte value = HEIGHT_VAL[heightValueIndex];
+  writeToIvad(PROPERTY, HEIGHT, value);
+}//end changeHeight
 
-  setHeight();
-}
+void changeContrast(int off) {
+  contrastValueIndex += off;
+  limitIndex(contrastValueIndex, sizeof(CONTRAST_VAL));
+  byte value = CONTRAST_VAL[contrastValueIndex];
+  writeToIvad(PROPERTY, CONTRAST, value);
+}//end changeContrast
 
-void decreaseContrast() {
-  contrastValueIndex--;
-  setContrast();
-}
-void increaseContrast() {
-  contrastValueIndex++;
+void changeBrightness(int off) {
+  brightnessValueIndex += off;
+  limitIndex(brightnessValueIndex, sizeof(BRIGHTNESS_VAL));
+  byte value = BRIGHTNESS_VAL[brightnessValueIndex];
+  writeToIvad(PROPERTY, BRIGHTNESS, value);
+}//end changeBrightness
 
-  setContrast();
-}
-
-void decreaseBrightness() {
-  brightnessValueIndex--;
-
-  setBrightness();
-}
-void increaseBrightness() {
-  brightnessValueIndex++;
-
-  setBrightness();
+void changeParallelogram(int off) {
+  parallelogramValueIndex += off;
+  limitIndex(parallelogramValueIndex, sizeof(PARALLELOGRAM_VAL));
+  byte value = PARALLELOGRAM_VAL[parallelogramValueIndex];
+  writeToIvad(PROPERTY, PARALLELOGRAM, value);
 }
 
-
-void setVerticalPosition(byte value) {
-  writeToIvad(monitorAddress, verticalPositionSetting, value);
-}
-void setVerticalPosition() {
-  limitIndex(verticalPositionValueIndex, sizeof(verticalPositionValues));
-  byte value = verticalPositionValues[verticalPositionValueIndex];
-
-  setVerticalPosition(value);
+void changeKeystone(int off) {
+  keystoneValueIndex += off;
+  limitIndex(keystoneValueIndex, sizeof(KEYSTONE_VAL));
+  byte value = KEYSTONE_VAL[keystoneValueIndex];
+  writeToIvad(PROPERTY, KEYSTONE, value);
 }
 
-void setHorizontalPosition(byte value) {
-  //Serial.print("moving horizontally\n");
-  writeToIvad(monitorAddress, horizontalPositionSetting, value);
-}
-void setHorizontalPosition() {
-  limitIndex(horizontalPositionValueIndex, sizeof(horizontalPositionValues));
-  byte value = horizontalPositionValues[horizontalPositionValueIndex];
-
-  setHorizontalPosition(value);
+void changeRotation(int off) {
+  rotationValueIndex += off;
+  limitIndex(rotationValueIndex, sizeof(ROTATION_VAL));
+  byte value = ROTATION_VAL[rotationValueIndex];
+  writeToIvad(PROPERTY, ROTATION, value);
 }
 
-void setHeight(byte value) {
-  writeToIvad(monitorAddress, heightSetting, value);
-}
-void setHeight() {
-  limitIndex(heightValueIndex, sizeof(heightValues));
-  byte value = heightValues[heightValueIndex];
-
-  setHeight(value);
-}
-
-void setWidth(byte value) {
-  writeToIvad(monitorAddress, widthSetting, value);
-}
-void setWidth() {
-  limitIndex(widthValueIndex, sizeof(widthValues));
-  byte value = widthValues[widthValueIndex];
-
-  setWidth(value);
-}
-
-void setContrast(byte value) {
-  writeToIvad(monitorAddress, contrastSetting, value);
-}
-void setContrast() {
-  limitIndex(contrastValueIndex, sizeof(contrastValues));
-  byte value = contrastValues[contrastValueIndex];
-
-  setContrast(value);
-}
-
-void setBrightness(byte value) {
-  writeToIvad(monitorAddress, brightnessSetting, value);
-  writeToIvad(monitorAddress, brightnessSetting, value);
-}
-void setBrightness() {
-  limitIndex(brightnessValueIndex, sizeof(brightnessValues));
-  byte value = brightnessValues[brightnessValueIndex];
-
-  setBrightness(value);
+void changePincushion(int off) {
+  pincushionValueIndex += off;
+  limitIndex(pincushionValueIndex, sizeof(PINCUSHION_VAL));
+  byte value = PINCUSHION_VAL[pincushionValueIndex];
+  writeToIvad(PROPERTY, PINCUSHION, value);
 }
 
 void limitIndex(byte &index, byte array_size) {
@@ -672,113 +592,6 @@ void limitIndex(byte &index, byte array_size) {
   if (index < 0) index = 0;
   if (index > maximum) index = maximum;
 }
-
-
-void setParallelogram(byte value) {
-  /*
-     Left
-     0xfe
-     0xfd
-     0xfb
-     0xf8
-     0xf4
-     0xef
-     0xe9
-     0xe2
-     0xda
-     0xd1
-     0xc8
-     0xbf
-     0xb6
-     0xad
-     0xa4
-     0x9b
-     0x92
-     0x89
-     0x80
-     Right
-  */
-  writeToIvad(monitorAddress, settingParallelogram, value);
-}
-void setKeystone(byte value) {
-  /*
-     Thin top
-     0x81
-     0x83
-     0x86
-     0x8a
-     0x8f
-     0x95
-     0x9c
-     0xa4
-     0xad
-     0xb6
-     0xbf
-     0xc8
-     0xd1
-     0xda
-     0xe3
-     0xec
-     0xf5
-     0xfe
-     0xff
-     Thin Bottom
-  */
-  writeToIvad(monitorAddress, settingKeystone, value);
-}
-void setRotation(byte value) {
-  /*
-     Left
-     0x7e
-     0x7c
-     0x79
-     0x75
-     0x70
-     0x8d
-     0x63
-     0x5b
-     0x52
-     0x49
-     0x40
-     0x37
-     0x2e
-     0x25
-     0x1c
-     0x13
-     0x0a
-     0x01
-     0x00
-     Right
-  */
-  writeToIvad(monitorAddress, settingRotation, value);
-}
-void setPincushion(byte value) {
-  /*
-     Concave
-     0x81
-     0x83
-     0x86
-     0x8a
-     0x8f
-     0x95
-     0x9c
-     0xa4
-     0xad
-     0xb6
-     0xbf
-     0xc8
-     0xd1
-     0xda
-     0xe3
-     0xec
-     0xf5
-     0xfe
-     0xff
-     Convex
-  */
-  writeToIvad(monitorAddress, settingPincushion, value);
-}
-
 
 
 void setup() {
@@ -799,7 +612,7 @@ void setup() {
   externalCircuitOff();
 
   //initIvadBoard();
- 
+
 
 }//end setup
 
