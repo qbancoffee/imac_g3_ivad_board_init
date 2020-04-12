@@ -53,16 +53,16 @@ byte data = -1;
 
 
 //starting indices for byte arrays that hold the monitor property values.
-byte verticalPositionValueIndex = 9;
+byte verticalPositionValueIndex = 59;
 byte contrastValueIndex = 72;
-byte horizontalPositionValueIndex = 12;
-byte heightValueIndex = 14;
-byte widthValueIndex = 13;
-byte brightnessValueIndex = 9;
-byte parallelogramValueIndex = 9;
-byte keystoneValueIndex = 5;
+byte horizontalPositionValueIndex = 83;
+byte heightValueIndex = 94;
+byte widthValueIndex = 127;
+byte brightnessValueIndex = 10;
+byte parallelogramValueIndex = 66;
+byte keystoneValueIndex = 25;
 byte rotationValueIndex = 9;
-byte pincushionValueIndex = 11;
+byte pincushionValueIndex = 83;
 
 
 //define solid state relay and power button pins
@@ -171,6 +171,9 @@ void handleSerial() {
       case 'i'://pincushion pull corners in
         changePincushion(+1);
         break;
+      case 'p':
+        printCurrentSettings();
+        break;
       case 'o'://power off
         if ( externalCircuitState == HIGH ) {
           externalCircuitOff();
@@ -178,6 +181,48 @@ void handleSerial() {
         break;
     }
   }
+}
+
+void printCurrentSettings() {
+  Serial.println("----------------------------");
+
+  Serial.print("heightValueIndex: ");
+  Serial.println(heightValueIndex);
+
+  Serial.print("widthValueIndex: ");
+  Serial.println(widthValueIndex);
+
+  Serial.println("");
+
+  Serial.print("verticalPositionValueIndex: ");
+  Serial.println(verticalPositionValueIndex);
+
+  Serial.print("horizontalPositionValueIndex: ");
+  Serial.println(horizontalPositionValueIndex);
+
+  Serial.println("");
+
+  Serial.print("rotationValueIndex: ");
+  Serial.println(rotationValueIndex);
+
+  Serial.print("parallelogramValueIndex: ");
+  Serial.println(parallelogramValueIndex);
+
+  Serial.print("keystoneValueIndex: ");
+  Serial.println(keystoneValueIndex);
+
+  Serial.print("pincushionValueIndex: ");
+  Serial.println(pincushionValueIndex);
+
+  Serial.println("");
+
+  Serial.print("contrastValueIndex: ");
+  Serial.println(contrastValueIndex);
+
+  Serial.print("brightnessValueIndex: ");
+  Serial.println(brightnessValueIndex);
+
+  Serial.println("----------------------------");
 }
 
 void writeToIvad(byte address, byte message) {
