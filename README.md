@@ -354,6 +354,7 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [DrJekyll_XYZ for suggesting the PAM8403 chip for audio](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28249216)
 - [anotherelise for providing another init sequence](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679)
 - [anotherelise for providing IVAD CRT property adjustment capture](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28349738)
+- [oshimai for extracting several EDID's and fiding one that works flawlessly](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28359571)
 
 ### Videos
 - [Booting an non-modded iMac G3 to confirm the CRT turns on](https://youtu.be/meIzAyQd0t0)
