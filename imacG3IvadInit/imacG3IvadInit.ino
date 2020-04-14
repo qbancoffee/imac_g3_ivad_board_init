@@ -257,6 +257,7 @@ void  readFromIvad(byte address, byte bytes) {
 void initIvadBoard() {
 
   //Init sequence 1
+   //Provied by Rocky Hill
   /**
     writeToIvad( 0x46,0x13,0x00);
     readFromIvad(0x46,1);
