@@ -384,3 +384,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [All three boards installed and working.](https://youtu.be/dqxeiFkvuYg)
 - [Rapberry Pi + Arduino powered iMac G3 hybrid running RetroPie](https://youtu.be/CLCZFmmEnno)
 - [Adjusting iMac G3 picture settings via a serial terminal](https://youtu.be/9LLsHE3xdBA)
+- [Adjusting iMac G3 picture settings with a java based GUI](https://youtu.be/zrzcvThxDeY)
