@@ -52,17 +52,17 @@
 byte data = -1;
 
 
-//starting indices for byte arrays that hold the monitor property values.
-byte verticalPositionValueIndex = 59;
-byte contrastValueIndex = 72;
-byte horizontalPositionValueIndex = 83;
-byte heightValueIndex = 94;
-byte widthValueIndex = 127;
-byte brightnessValueIndex = 10;
-byte parallelogramValueIndex = 66;
-byte keystoneValueIndex = 25;
-byte rotationValueIndex = 9;
-byte pincushionValueIndex = 83;
+//starting monitor property values.
+byte verticalPositionValueIndex = 0x4d;//77
+byte contrastValueIndex = 0xfe;
+byte horizontalPositionValueIndex = 0xb0;//176
+byte heightValueIndex = 0xf0;//240
+byte widthValueIndex = 0x19;//25
+byte brightnessValueIndex = 0x0a;
+byte parallelogramValueIndex = 0xc6;//198
+byte keystoneValueIndex = 0x9b;//155
+byte rotationValueIndex = 0x42;//66
+byte pincushionValueIndex = 0xcb;//203
 
 
 //define solid state relay and power button pins
@@ -112,22 +112,22 @@ void handleSerial() {
 
     switch (incoming) {
       case 'a'://move left
-        moveHorizontal(-1);
-        break;
-      case 's'://move right
         moveHorizontal(+1);
         break;
-      case 'w'://move up
-        moveVertical(+1);
+      case 's'://move right
+        moveHorizontal(-1);
         break;
-      case 'z'://move down
+      case 'w'://move up
         moveVertical(-1);
         break;
+      case 'z'://move down
+        moveVertical(+1);
+        break;
       case 'd'://make skinnier
-        changeWidth(-1);
+        changeWidth(+1);
         break;
       case 'f'://make fatter
-        changeWidth(+1);
+        changeWidth(-1);
         break;
       case 'r'://make taller
         changeHeight(+1);
@@ -148,10 +148,10 @@ void handleSerial() {
         changeBrightness(+1);
         break;
       case 'x'://tilt paralellogram left
-        changeParallelogram(-1);
+        changeParallelogram(+1);
         break;
       case 'v'://tilt paralellogram right
-        changeParallelogram(+1);
+        changeParallelogram(-1);
         break;
       case 'b'://keystone pinch top
         changeKeystone(-1);
@@ -160,10 +160,10 @@ void handleSerial() {
         changeKeystone(+1);
         break;
       case 't'://rotate left
-        changeRotation(-1);
+        changeRotation(+1);
         break;
       case 'y'://rotate right
-        changeRotation(+1);
+        changeRotation(-1);
         break;
       case 'u'://pincushion pull corners out
         changePincushion(-1);
@@ -187,40 +187,40 @@ void printCurrentSettings() {
   Serial.println("----------------------------");
 
   Serial.print("heightValueIndex: ");
-  Serial.println(heightValueIndex);
+  Serial.println(heightValueIndex,HEX);
 
   Serial.print("widthValueIndex: ");
-  Serial.println(widthValueIndex);
+  Serial.println(widthValueIndex,HEX);
 
   Serial.println("");
 
   Serial.print("verticalPositionValueIndex: ");
-  Serial.println(verticalPositionValueIndex);
+  Serial.println(verticalPositionValueIndex,HEX);
 
   Serial.print("horizontalPositionValueIndex: ");
-  Serial.println(horizontalPositionValueIndex);
+  Serial.println(horizontalPositionValueIndex,HEX);
 
   Serial.println("");
 
   Serial.print("rotationValueIndex: ");
-  Serial.println(rotationValueIndex);
+  Serial.println(rotationValueIndex,HEX);
 
   Serial.print("parallelogramValueIndex: ");
-  Serial.println(parallelogramValueIndex);
+  Serial.println(parallelogramValueIndex,HEX);
 
   Serial.print("keystoneValueIndex: ");
-  Serial.println(keystoneValueIndex);
+  Serial.println(keystoneValueIndex,HEX);
 
   Serial.print("pincushionValueIndex: ");
-  Serial.println(pincushionValueIndex);
+  Serial.println(pincushionValueIndex,HEX);
 
   Serial.println("");
 
   Serial.print("contrastValueIndex: ");
-  Serial.println(contrastValueIndex);
+  Serial.println(contrastValueIndex,HEX);
 
   Serial.print("brightnessValueIndex: ");
-  Serial.println(brightnessValueIndex);
+  Serial.println(brightnessValueIndex,HEX);
 
   Serial.println("----------------------------");
 }
@@ -257,7 +257,7 @@ void  readFromIvad(byte address, byte bytes) {
 void initIvadBoard() {
 
   //Init sequence 1
-   //Provied by Rocky Hill
+  //Provied by Rocky Hill
   /**
     writeToIvad( 0x46,0x13,0x00);
     readFromIvad(0x46,1);
@@ -354,60 +354,60 @@ void initIvadBoard() {
     writeToIvad( 0x46, 0x10, 0x40); // brightness
 
     **/
-   
-   
-// init sequence 2 provided by sparpet.
-//https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-25819428   
-/**
-  writeToIvad( 0x46, 0x13,0x00);
-  readFromIvad(0x46, 1);
-  writeToIvad( 0x46, 0x09, 0x00);
-  writeToIvad( 0x53, 0x33);
-  readFromIvad(0x53, 1);
-  writeToIvad( 0x46, 0x13,0x0B);
-  writeToIvad( 0x46, 0x00,0x00);
-  writeToIvad( 0x46, 0x08, 0xE4);
-  writeToIvad( 0x46, 0x12, 0xC9);
-  writeToIvad( 0x53, 0x00);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x0A);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x14);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x1E);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x28);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x32);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x3C);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x46);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x50);
-  readFromIvad(0x53, 10);
-  writeToIvad( 0x53, 0x5A);
-  readFromIvad(0x53, 2);
-  writeToIvad( 0x46, 0x01, 0x98);
-  writeToIvad( 0x46, 0x02, 0x88);
-  writeToIvad( 0x46, 0x03, 0x88);
-  writeToIvad( 0x46, 0x04, 0x97);
-  writeToIvad( 0x46, 0x05, 0x78);
-  writeToIvad( 0x46, 0x06, 0x80);
-  writeToIvad( 0x46, 0x07, 0xB0);
-  writeToIvad( 0x46, 0x08, 0xEF);
-  writeToIvad( 0x46, 0x09, 0x49);
-  writeToIvad( 0x46, 0x0A, 0x9E);
-  writeToIvad( 0x46, 0x0B, 0x93);
-  writeToIvad( 0x46, 0x0C, 0xCA);
-  writeToIvad( 0x46, 0x0D, 0x09);
-  writeToIvad( 0x46, 0x0E, 0xC0);
-  writeToIvad( 0x46, 0x0F, 0xC1);
-  writeToIvad( 0x46, 0x10, 0x40);
-  writeToIvad( 0x46, 0x11, 0x09);
-  writeToIvad( 0x46, 0x12, 0x7D);
-  writeToIvad( 0x46, 0x00, 0xFF);
-**/
+
+
+  // init sequence 2 provided by sparpet.
+  //https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-25819428
+  /**
+    writeToIvad( 0x46, 0x13,0x00);
+    readFromIvad(0x46, 1);
+    writeToIvad( 0x46, 0x09, 0x00);
+    writeToIvad( 0x53, 0x33);
+    readFromIvad(0x53, 1);
+    writeToIvad( 0x46, 0x13,0x0B);
+    writeToIvad( 0x46, 0x00,0x00);
+    writeToIvad( 0x46, 0x08, 0xE4);
+    writeToIvad( 0x46, 0x12, 0xC9);
+    writeToIvad( 0x53, 0x00);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x0A);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x14);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x1E);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x28);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x32);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x3C);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x46);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x50);
+    readFromIvad(0x53, 10);
+    writeToIvad( 0x53, 0x5A);
+    readFromIvad(0x53, 2);
+    writeToIvad( 0x46, 0x01, 0x98);
+    writeToIvad( 0x46, 0x02, 0x88);
+    writeToIvad( 0x46, 0x03, 0x88);
+    writeToIvad( 0x46, 0x04, 0x97);
+    writeToIvad( 0x46, 0x05, 0x78);
+    writeToIvad( 0x46, 0x06, 0x80);
+    writeToIvad( 0x46, 0x07, 0xB0);
+    writeToIvad( 0x46, 0x08, 0xEF);
+    writeToIvad( 0x46, 0x09, 0x49);
+    writeToIvad( 0x46, 0x0A, 0x9E);
+    writeToIvad( 0x46, 0x0B, 0x93);
+    writeToIvad( 0x46, 0x0C, 0xCA);
+    writeToIvad( 0x46, 0x0D, 0x09);
+    writeToIvad( 0x46, 0x0E, 0xC0);
+    writeToIvad( 0x46, 0x0F, 0xC1);
+    writeToIvad( 0x46, 0x10, 0x40);
+    writeToIvad( 0x46, 0x11, 0x09);
+    writeToIvad( 0x46, 0x12, 0x7D);
+    writeToIvad( 0x46, 0x00, 0xFF);
+  **/
 
   // This initsequence was provided by "anotherelise"
   // https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679
@@ -544,19 +544,19 @@ void initIvadBoard() {
   writeToIvad( PROPERTY, 0x04, 0x80);//red x-30
   writeToIvad( PROPERTY, 0x05, 0xB0);// green x
   writeToIvad( PROPERTY, 0x06, 0x78); //blue x-38
-  writeToIvad( PROPERTY, HORIZONTAL_POS, HORIZONTAL_POS_VAL[horizontalPositionValueIndex]); //horizontal position
-  writeToIvad( PROPERTY, HEIGHT, HEIGHT_VAL[heightValueIndex]);
-  writeToIvad( PROPERTY, VERTICAL_POS, VERTICAL_POS_VAL[verticalPositionValueIndex]);
+  writeToIvad( PROPERTY, HORIZONTAL_POS, horizontalPositionValueIndex); //horizontal position
+  writeToIvad( PROPERTY, HEIGHT, heightValueIndex);
+  writeToIvad( PROPERTY, VERTICAL_POS, verticalPositionValueIndex);
   writeToIvad( PROPERTY, 0x0A, 0x9E);
-  writeToIvad( PROPERTY, KEYSTONE, KEYSTONE_VAL[keystoneValueIndex]);
-  writeToIvad( PROPERTY, PINCUSHION, PINCUSHION_VAL[pincushionValueIndex]);
-  writeToIvad( PROPERTY, WIDTH, WIDTH_VAL[widthValueIndex]);
+  writeToIvad( PROPERTY, KEYSTONE, keystoneValueIndex);
+  writeToIvad( PROPERTY, PINCUSHION, pincushionValueIndex);
+  writeToIvad( PROPERTY, WIDTH, widthValueIndex);
   writeToIvad( PROPERTY, 0x0E, 0xC0);
-  writeToIvad( PROPERTY, PARALLELOGRAM, PARALLELOGRAM_VAL[parallelogramValueIndex]);
+  writeToIvad( PROPERTY, PARALLELOGRAM, parallelogramValueIndex);
   writeToIvad( PROPERTY, 0x10, 0x40); // brightness
-  writeToIvad( PROPERTY, BRIGHTNESS, BRIGHTNESS_VAL[brightnessValueIndex]);
-  writeToIvad( PROPERTY, ROTATION, ROTATION_VAL[rotationValueIndex]); // rotation
-  writeToIvad( PROPERTY, CONTRAST, CONTRAST_VAL[contrastValueIndex]);
+  writeToIvad( PROPERTY, BRIGHTNESS, brightnessValueIndex);
+  writeToIvad( PROPERTY, ROTATION, rotationValueIndex); // rotation
+  writeToIvad( PROPERTY, CONTRAST, contrastValueIndex);
 
 
 
@@ -617,79 +617,107 @@ void receiveData(byte byteCount) {
 
 void moveHorizontal(int off) {
   horizontalPositionValueIndex += off;
-  limitIndex(horizontalPositionValueIndex, sizeof(HORIZONTAL_POS_VAL));
-  byte value = HORIZONTAL_POS_VAL[horizontalPositionValueIndex];
-  writeToIvad(PROPERTY, HORIZONTAL_POS, value);
+  limitIndex(horizontalPositionValueIndex,HORIZONTAL_POS_VAL);
+  writeToIvad(PROPERTY, HORIZONTAL_POS,horizontalPositionValueIndex );
+//  limitIndex(horizontalPositionValueIndex, sizeof(HORIZONTAL_POS_VAL));
+//  byte value = HORIZONTAL_POS_VAL[horizontalPositionValueIndex];
+//  writeToIvad(PROPERTY, HORIZONTAL_POS, value);
 }//end moveHorizontal
 
 void moveVertical(int off) {
   verticalPositionValueIndex += off;
-  limitIndex(verticalPositionValueIndex, sizeof(VERTICAL_POS_VAL));
-  byte value = VERTICAL_POS_VAL[verticalPositionValueIndex];
-  writeToIvad(PROPERTY, VERTICAL_POS, value);
+  limitIndex(verticalPositionValueIndex,VERTICAL_POS_VAL);
+  writeToIvad(PROPERTY, VERTICAL_POS,verticalPositionValueIndex );
+//  limitIndex(verticalPositionValueIndex, sizeof(VERTICAL_POS_VAL));
+//  byte value = VERTICAL_POS_VAL[verticalPositionValueIndex];
+//  writeToIvad(PROPERTY, VERTICAL_POS, value);
 }//end move vertical
 
 void changeWidth(int off) {
   widthValueIndex += off;
-  limitIndex(widthValueIndex, sizeof(WIDTH_VAL));
-  byte value = WIDTH_VAL[widthValueIndex];
-  writeToIvad(PROPERTY, WIDTH, value);
+  limitIndex(widthValueIndex,WIDTH_VAL);
+  writeToIvad(PROPERTY, WIDTH,widthValueIndex ); 
+//  limitIndex(widthValueIndex, sizeof(WIDTH_VAL));
+//  byte value = WIDTH_VAL[widthValueIndex];
+//  writeToIvad(PROPERTY, WIDTH, value);
 }//end changeWidth
 
 void changeHeight(int off) {
   heightValueIndex += off;
-  limitIndex(heightValueIndex, sizeof(HEIGHT_VAL));
-  byte value = HEIGHT_VAL[heightValueIndex];
-  writeToIvad(PROPERTY, HEIGHT, value);
+  limitIndex(heightValueIndex,HEIGHT_VAL);
+  writeToIvad(PROPERTY, HEIGHT,heightValueIndex );   
+//  limitIndex(heightValueIndex, sizeof(HEIGHT_VAL));
+//  byte value = HEIGHT_VAL[heightValueIndex];
+//  writeToIvad(PROPERTY, HEIGHT, value);
 }//end changeHeight
 
 void changeContrast(int off) {
   contrastValueIndex += off;
-  limitIndex(contrastValueIndex, sizeof(CONTRAST_VAL));
-  byte value = CONTRAST_VAL[contrastValueIndex];
-  writeToIvad(PROPERTY, CONTRAST, value);
+  limitIndex(contrastValueIndex,CONTRAST_VAL);
+  writeToIvad(PROPERTY, CONTRAST,contrastValueIndex );   
+//  limitIndex(contrastValueIndex, sizeof(CONTRAST_VAL));
+//  byte value = CONTRAST_VAL[contrastValueIndex];
+//  writeToIvad(PROPERTY, CONTRAST, value);
 }//end changeContrast
 
 void changeBrightness(int off) {
   brightnessValueIndex += off;
-  limitIndex(brightnessValueIndex, sizeof(BRIGHTNESS_VAL));
-  byte value = BRIGHTNESS_VAL[brightnessValueIndex];
-  writeToIvad(PROPERTY, BRIGHTNESS, value);
+  limitIndex(brightnessValueIndex,BRIGHTNESS_VAL);
+  writeToIvad(PROPERTY, BRIGHTNESS,brightnessValueIndex );   
+//  limitIndex(brightnessValueIndex, sizeof(BRIGHTNESS_VAL));
+//  byte value = BRIGHTNESS_VAL[brightnessValueIndex];
+//  writeToIvad(PROPERTY, BRIGHTNESS, value);
 }//end changeBrightness
 
 void changeParallelogram(int off) {
   parallelogramValueIndex += off;
-  limitIndex(parallelogramValueIndex, sizeof(PARALLELOGRAM_VAL));
-  byte value = PARALLELOGRAM_VAL[parallelogramValueIndex];
-  writeToIvad(PROPERTY, PARALLELOGRAM, value);
+  limitIndex(parallelogramValueIndex,PARALLELOGRAM_VAL);
+  writeToIvad(PROPERTY, PARALLELOGRAM,parallelogramValueIndex ); 
+//  limitIndex(parallelogramValueIndex, sizeof(PARALLELOGRAM_VAL));
+//  byte value = PARALLELOGRAM_VAL[parallelogramValueIndex];
+//  writeToIvad(PROPERTY, PARALLELOGRAM, value);
 }
 
 void changeKeystone(int off) {
   keystoneValueIndex += off;
-  limitIndex(keystoneValueIndex, sizeof(KEYSTONE_VAL));
-  byte value = KEYSTONE_VAL[keystoneValueIndex];
-  writeToIvad(PROPERTY, KEYSTONE, value);
+  limitIndex(keystoneValueIndex,KEYSTONE_VAL);
+  writeToIvad(PROPERTY, KEYSTONE,keystoneValueIndex );  
+//  limitIndex(keystoneValueIndex, sizeof(KEYSTONE_VAL));
+//  byte value = KEYSTONE_VAL[keystoneValueIndex];
+//  writeToIvad(PROPERTY, KEYSTONE, value);
 }
 
 void changeRotation(int off) {
   rotationValueIndex += off;
-  limitIndex(rotationValueIndex, sizeof(ROTATION_VAL));
-  byte value = ROTATION_VAL[rotationValueIndex];
-  writeToIvad(PROPERTY, ROTATION, value);
+  limitIndex(rotationValueIndex,ROTATION_VAL);
+  writeToIvad(PROPERTY, ROTATION,rotationValueIndex );  
+//  limitIndex(rotationValueIndex, sizeof(ROTATION_VAL));
+//  byte value = ROTATION_VAL[rotationValueIndex];
+//  writeToIvad(PROPERTY, ROTATION, value);
 }
 
 void changePincushion(int off) {
   pincushionValueIndex += off;
-  limitIndex(pincushionValueIndex, sizeof(PINCUSHION_VAL));
-  byte value = PINCUSHION_VAL[pincushionValueIndex];
-  writeToIvad(PROPERTY, PINCUSHION, value);
+  limitIndex(pincushionValueIndex,PINCUSHION_VAL);
+  writeToIvad(PROPERTY, PINCUSHION,pincushionValueIndex ); 
+//  limitIndex(pincushionValueIndex, sizeof(PINCUSHION_VAL));
+//  byte value = PINCUSHION_VAL[pincushionValueIndex];
+//  writeToIvad(PROPERTY, PINCUSHION, value);
 }
 
-void limitIndex(byte &index, byte array_size) {
-  byte maximum = ((array_size / sizeof(byte)) - 1);
+void limitIndex(byte &index, byte value_limit[]) {
 
-  if (index < 0) index = 0;
-  if (index > maximum) index = maximum;
+  if (index < value_limit[0]) {
+    index = value_limit[0];
+  }
+  if (index > value_limit[1]) {
+    index = value_limit[1];
+  }
+
+  //  byte maximum = ((array_size / sizeof(byte)) - 1);
+  //
+  //  if (index < 0) index = 0;
+  //  if (index > maximum) index = maximum;
 }
 
 
