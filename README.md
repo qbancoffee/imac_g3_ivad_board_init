@@ -355,7 +355,7 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [anotherelise for providing another init sequence](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679)
 - [anotherelise for providing IVAD CRT property adjustment capture](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28349738)
 - [oshimai for extracting several EDID's and fiding one that works flawlessly](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28359571)
-- [oshimai for coming up with the idea of monitoring VSYNC to use as a signal to shut off the CRT](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28345691)
+- [oshimai for coming up with the idea of monitoring VSYNC to use as a signal to shut off the CRT](https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28345426)
 
 ### Videos
 - [Booting an non-modded iMac G3 to confirm the CRT turns on](https://youtu.be/meIzAyQd0t0)
