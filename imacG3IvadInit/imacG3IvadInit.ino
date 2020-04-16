@@ -75,9 +75,19 @@ byte powerButtonPin = 3;
 byte externalCircuitState = LOW;
 byte buttonState = LOW;
 
+//vsync pin
+byte vsyncPin = 8;
+
+
+//vsync power off countdown in seconds
+byte vsync_off_time=5;
 
 //counters
 byte buttonPressedTime = 0;
+byte vsyncDetect = 0;
+unsigned long currentTime = 0;
+unsigned long startTime = 0;
+unsigned long elapsedTime = 0;
 
 //The init sequence is sent on a software i2c bus.
 // sda is on 4 and scl is on 5
@@ -187,40 +197,40 @@ void printCurrentSettings() {
   Serial.println("----------------------------");
 
   Serial.print("heightValueIndex: ");
-  Serial.println(heightValueIndex,HEX);
+  Serial.println(heightValueIndex, HEX);
 
   Serial.print("widthValueIndex: ");
-  Serial.println(widthValueIndex,HEX);
+  Serial.println(widthValueIndex, HEX);
 
   Serial.println("");
 
   Serial.print("verticalPositionValueIndex: ");
-  Serial.println(verticalPositionValueIndex,HEX);
+  Serial.println(verticalPositionValueIndex, HEX);
 
   Serial.print("horizontalPositionValueIndex: ");
-  Serial.println(horizontalPositionValueIndex,HEX);
+  Serial.println(horizontalPositionValueIndex, HEX);
 
   Serial.println("");
 
   Serial.print("rotationValueIndex: ");
-  Serial.println(rotationValueIndex,HEX);
+  Serial.println(rotationValueIndex, HEX);
 
   Serial.print("parallelogramValueIndex: ");
-  Serial.println(parallelogramValueIndex,HEX);
+  Serial.println(parallelogramValueIndex, HEX);
 
   Serial.print("keystoneValueIndex: ");
-  Serial.println(keystoneValueIndex,HEX);
+  Serial.println(keystoneValueIndex, HEX);
 
   Serial.print("pincushionValueIndex: ");
-  Serial.println(pincushionValueIndex,HEX);
+  Serial.println(pincushionValueIndex, HEX);
 
   Serial.println("");
 
   Serial.print("contrastValueIndex: ");
-  Serial.println(contrastValueIndex,HEX);
+  Serial.println(contrastValueIndex, HEX);
 
   Serial.print("brightnessValueIndex: ");
-  Serial.println(brightnessValueIndex,HEX);
+  Serial.println(brightnessValueIndex, HEX);
 
   Serial.println("----------------------------");
 }
@@ -617,92 +627,92 @@ void receiveData(byte byteCount) {
 
 void moveHorizontal(int off) {
   horizontalPositionValueIndex += off;
-  limitIndex(horizontalPositionValueIndex,HORIZONTAL_POS_VAL);
-  writeToIvad(PROPERTY, HORIZONTAL_POS,horizontalPositionValueIndex );
-//  limitIndex(horizontalPositionValueIndex, sizeof(HORIZONTAL_POS_VAL));
-//  byte value = HORIZONTAL_POS_VAL[horizontalPositionValueIndex];
-//  writeToIvad(PROPERTY, HORIZONTAL_POS, value);
+  limitIndex(horizontalPositionValueIndex, HORIZONTAL_POS_VAL);
+  writeToIvad(PROPERTY, HORIZONTAL_POS, horizontalPositionValueIndex );
+  //  limitIndex(horizontalPositionValueIndex, sizeof(HORIZONTAL_POS_VAL));
+  //  byte value = HORIZONTAL_POS_VAL[horizontalPositionValueIndex];
+  //  writeToIvad(PROPERTY, HORIZONTAL_POS, value);
 }//end moveHorizontal
 
 void moveVertical(int off) {
   verticalPositionValueIndex += off;
-  limitIndex(verticalPositionValueIndex,VERTICAL_POS_VAL);
-  writeToIvad(PROPERTY, VERTICAL_POS,verticalPositionValueIndex );
-//  limitIndex(verticalPositionValueIndex, sizeof(VERTICAL_POS_VAL));
-//  byte value = VERTICAL_POS_VAL[verticalPositionValueIndex];
-//  writeToIvad(PROPERTY, VERTICAL_POS, value);
+  limitIndex(verticalPositionValueIndex, VERTICAL_POS_VAL);
+  writeToIvad(PROPERTY, VERTICAL_POS, verticalPositionValueIndex );
+  //  limitIndex(verticalPositionValueIndex, sizeof(VERTICAL_POS_VAL));
+  //  byte value = VERTICAL_POS_VAL[verticalPositionValueIndex];
+  //  writeToIvad(PROPERTY, VERTICAL_POS, value);
 }//end move vertical
 
 void changeWidth(int off) {
   widthValueIndex += off;
-  limitIndex(widthValueIndex,WIDTH_VAL);
-  writeToIvad(PROPERTY, WIDTH,widthValueIndex ); 
-//  limitIndex(widthValueIndex, sizeof(WIDTH_VAL));
-//  byte value = WIDTH_VAL[widthValueIndex];
-//  writeToIvad(PROPERTY, WIDTH, value);
+  limitIndex(widthValueIndex, WIDTH_VAL);
+  writeToIvad(PROPERTY, WIDTH, widthValueIndex );
+  //  limitIndex(widthValueIndex, sizeof(WIDTH_VAL));
+  //  byte value = WIDTH_VAL[widthValueIndex];
+  //  writeToIvad(PROPERTY, WIDTH, value);
 }//end changeWidth
 
 void changeHeight(int off) {
   heightValueIndex += off;
-  limitIndex(heightValueIndex,HEIGHT_VAL);
-  writeToIvad(PROPERTY, HEIGHT,heightValueIndex );   
-//  limitIndex(heightValueIndex, sizeof(HEIGHT_VAL));
-//  byte value = HEIGHT_VAL[heightValueIndex];
-//  writeToIvad(PROPERTY, HEIGHT, value);
+  limitIndex(heightValueIndex, HEIGHT_VAL);
+  writeToIvad(PROPERTY, HEIGHT, heightValueIndex );
+  //  limitIndex(heightValueIndex, sizeof(HEIGHT_VAL));
+  //  byte value = HEIGHT_VAL[heightValueIndex];
+  //  writeToIvad(PROPERTY, HEIGHT, value);
 }//end changeHeight
 
 void changeContrast(int off) {
   contrastValueIndex += off;
-  limitIndex(contrastValueIndex,CONTRAST_VAL);
-  writeToIvad(PROPERTY, CONTRAST,contrastValueIndex );   
-//  limitIndex(contrastValueIndex, sizeof(CONTRAST_VAL));
-//  byte value = CONTRAST_VAL[contrastValueIndex];
-//  writeToIvad(PROPERTY, CONTRAST, value);
+  limitIndex(contrastValueIndex, CONTRAST_VAL);
+  writeToIvad(PROPERTY, CONTRAST, contrastValueIndex );
+  //  limitIndex(contrastValueIndex, sizeof(CONTRAST_VAL));
+  //  byte value = CONTRAST_VAL[contrastValueIndex];
+  //  writeToIvad(PROPERTY, CONTRAST, value);
 }//end changeContrast
 
 void changeBrightness(int off) {
   brightnessValueIndex += off;
-  limitIndex(brightnessValueIndex,BRIGHTNESS_VAL);
-  writeToIvad(PROPERTY, BRIGHTNESS,brightnessValueIndex );   
-//  limitIndex(brightnessValueIndex, sizeof(BRIGHTNESS_VAL));
-//  byte value = BRIGHTNESS_VAL[brightnessValueIndex];
-//  writeToIvad(PROPERTY, BRIGHTNESS, value);
+  limitIndex(brightnessValueIndex, BRIGHTNESS_VAL);
+  writeToIvad(PROPERTY, BRIGHTNESS, brightnessValueIndex );
+  //  limitIndex(brightnessValueIndex, sizeof(BRIGHTNESS_VAL));
+  //  byte value = BRIGHTNESS_VAL[brightnessValueIndex];
+  //  writeToIvad(PROPERTY, BRIGHTNESS, value);
 }//end changeBrightness
 
 void changeParallelogram(int off) {
   parallelogramValueIndex += off;
-  limitIndex(parallelogramValueIndex,PARALLELOGRAM_VAL);
-  writeToIvad(PROPERTY, PARALLELOGRAM,parallelogramValueIndex ); 
-//  limitIndex(parallelogramValueIndex, sizeof(PARALLELOGRAM_VAL));
-//  byte value = PARALLELOGRAM_VAL[parallelogramValueIndex];
-//  writeToIvad(PROPERTY, PARALLELOGRAM, value);
+  limitIndex(parallelogramValueIndex, PARALLELOGRAM_VAL);
+  writeToIvad(PROPERTY, PARALLELOGRAM, parallelogramValueIndex );
+  //  limitIndex(parallelogramValueIndex, sizeof(PARALLELOGRAM_VAL));
+  //  byte value = PARALLELOGRAM_VAL[parallelogramValueIndex];
+  //  writeToIvad(PROPERTY, PARALLELOGRAM, value);
 }
 
 void changeKeystone(int off) {
   keystoneValueIndex += off;
-  limitIndex(keystoneValueIndex,KEYSTONE_VAL);
-  writeToIvad(PROPERTY, KEYSTONE,keystoneValueIndex );  
-//  limitIndex(keystoneValueIndex, sizeof(KEYSTONE_VAL));
-//  byte value = KEYSTONE_VAL[keystoneValueIndex];
-//  writeToIvad(PROPERTY, KEYSTONE, value);
+  limitIndex(keystoneValueIndex, KEYSTONE_VAL);
+  writeToIvad(PROPERTY, KEYSTONE, keystoneValueIndex );
+  //  limitIndex(keystoneValueIndex, sizeof(KEYSTONE_VAL));
+  //  byte value = KEYSTONE_VAL[keystoneValueIndex];
+  //  writeToIvad(PROPERTY, KEYSTONE, value);
 }
 
 void changeRotation(int off) {
   rotationValueIndex += off;
-  limitIndex(rotationValueIndex,ROTATION_VAL);
-  writeToIvad(PROPERTY, ROTATION,rotationValueIndex );  
-//  limitIndex(rotationValueIndex, sizeof(ROTATION_VAL));
-//  byte value = ROTATION_VAL[rotationValueIndex];
-//  writeToIvad(PROPERTY, ROTATION, value);
+  limitIndex(rotationValueIndex, ROTATION_VAL);
+  writeToIvad(PROPERTY, ROTATION, rotationValueIndex );
+  //  limitIndex(rotationValueIndex, sizeof(ROTATION_VAL));
+  //  byte value = ROTATION_VAL[rotationValueIndex];
+  //  writeToIvad(PROPERTY, ROTATION, value);
 }
 
 void changePincushion(int off) {
   pincushionValueIndex += off;
-  limitIndex(pincushionValueIndex,PINCUSHION_VAL);
-  writeToIvad(PROPERTY, PINCUSHION,pincushionValueIndex ); 
-//  limitIndex(pincushionValueIndex, sizeof(PINCUSHION_VAL));
-//  byte value = PINCUSHION_VAL[pincushionValueIndex];
-//  writeToIvad(PROPERTY, PINCUSHION, value);
+  limitIndex(pincushionValueIndex, PINCUSHION_VAL);
+  writeToIvad(PROPERTY, PINCUSHION, pincushionValueIndex );
+  //  limitIndex(pincushionValueIndex, sizeof(PINCUSHION_VAL));
+  //  byte value = PINCUSHION_VAL[pincushionValueIndex];
+  //  writeToIvad(PROPERTY, PINCUSHION, value);
 }
 
 void limitIndex(byte &index, byte value_limit[]) {
@@ -726,8 +736,8 @@ void setup() {
   //define pin direction
   pinMode(solid_state_relay_Pin, OUTPUT);
   pinMode(powerButtonPin, INPUT);
-  pinMode(14, INPUT);//this pin is on the J5 connector for general use.
-  pinMode(15, INPUT);//this pin is on the J5 connector for general use.
+  pinMode(vsyncPin, INPUT);//this pin is on the J5 connector for general use PB0.
+  pinMode(9, INPUT);//this pin is on the J5 connector for general use PB1.
 
   Wire.begin(0x50); //join as slave and wait for EDID requests
   softWire.begin();// join as master and send init sequence
@@ -751,8 +761,39 @@ byte x = 0;
 void loop() {
   buttonState = digitalRead(powerButtonPin);
 
+// do stuff only when the CRT is on
   if ( externalCircuitState == HIGH ) {
+
+    currentTime = millis();
+    elapsedTime = currentTime - startTime;
+
     handleSerial();
+
+    //increment vsyncDetect everytime vsync is detected
+    if (pulseIn(vsyncPin,HIGH,10000) > 0) {
+
+      if (vsyncDetect < vsync_off_time) {
+        vsyncDetect++;
+      }//end if
+      startTime = currentTime=millis();
+    }//end if
+
+
+    //decrement vsyncDetect whenever one second elapses
+    if (elapsedTime >= 1000 && vsyncDetect > 0) {
+      vsyncDetect--;
+      startTime = currentTime=millis();
+    }
+
+    //do stuff whn vsyncDetect is 0
+    if (vsyncDetect <= 0) {
+      startTime = 0;
+      currentTime = 0;
+      externalCircuitOff();
+
+
+    }
+
   }//end if
 
 
@@ -770,7 +811,7 @@ void loop() {
     //buttonPressedTime = 0;
 
   }
-  delay(10);
+  //delay(10);
 
   //turn everything off if button is pressed for 10 ms
   if (buttonPressedTime >= 1 && externalCircuitState == HIGH && buttonState == HIGH) {
@@ -785,6 +826,9 @@ void loop() {
     delay(500);
     initIvadBoard();
     buttonPressedTime = 0;
+    startTime = millis();
+    currentTime = millis();
+    vsyncDetect = vsync_off_time;
 
   }
 
