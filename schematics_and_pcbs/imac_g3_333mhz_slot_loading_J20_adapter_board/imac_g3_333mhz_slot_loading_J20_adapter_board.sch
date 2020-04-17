@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "iMac G3 333 Mhz Slot Loading Power and Video Board"
 Date "2020-03-27"
-Rev "2"
+Rev "3"
 Comp ""
 Comment1 "and control other functions."
 Comment2 "used to send the i2c IVAD inititialization sequence and the EDID info to the computer"
@@ -307,7 +307,7 @@ COMPUTER_SCL
 Text Label 9900 3200 0    50   ~ 0
 COMPUTER_SDA
 Text Notes 3850 6250 0    50   ~ 0
-Sends EDID data to computer via DE15\nconnector
+Sends EDID data to computer via DE15\nconnector and monitors VSYNC to detect\nif computer is on or off.
 NoConn ~ 6550 5700
 Wire Wire Line
 	4300 2000 4350 2000
@@ -425,7 +425,6 @@ Text Label 4650 1100 0    50   ~ 0
 5V_TRICKLE
 Wire Wire Line
 	4650 1100 4650 1400
-NoConn ~ 4850 2800
 NoConn ~ 4850 3500
 NoConn ~ 4850 3600
 NoConn ~ 4850 3700
@@ -827,4 +826,19 @@ F 5 "CF14JT10K0CT-ND" H 1250 3700 50  0001 C CNN "Part#"
 	1    1250 3700
 	-1   0    0    1   
 $EndComp
+$Comp
+L Jumper:SolderJumper_2_Open JP3
+U 1 1 5E9A08C1
+P 5500 2800
+F 0 "JP3" H 5500 3050 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 5500 2950 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5500 2800 50  0001 C CNN
+F 3 "~" H 5500 2800 50  0001 C CNN
+	1    5500 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 2800 4850 2800
+Text Label 5650 2800 0    50   ~ 0
+V_SYNC
 $EndSCHEMATC
