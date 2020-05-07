@@ -387,3 +387,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Adjusting iMac G3 picture settings via a serial terminal](https://youtu.be/9LLsHE3xdBA)
 - [Adjusting iMac G3 picture settings with a java based GUI](https://youtu.be/zrzcvThxDeY)
 - [Monitoring VSYNC to shut CRT off](https://youtu.be/fBMyjlEAZAw)
+- [Cloning compiling and running oshimai's gui](https://youtu.be/DqM9bZfvwgM)
