@@ -46,10 +46,10 @@
 */
 
 #include "ivad.h"
+#include "imacG3IvadInit.h"
+#include <EEPROMWearLevel.h>
 #include <SoftwareWire.h>
 #include <Wire.h>
-
-byte data = -1;
 
 
 //starting monitor property values.
@@ -64,6 +64,11 @@ byte keystoneValueIndex = 0x9b;//155
 byte rotationValueIndex = 0x42;//66
 byte pincushionValueIndex = 0xcb;//203
 
+byte SERIAL_BUFFER[SERIAL_BUFFER_MAX_SIZE];
+byte SERIAL_BUFFER_DATA_SIZE;
+byte CURRENT_CONFIG[CONFIG_EEPROM_SLOTS];
+
+byte data = -1;
 
 //define solid state relay and power button pins
 byte solid_state_relay_Pin = 7;
@@ -80,7 +85,7 @@ byte vsyncPin = 8;
 
 
 //vsync power off countdown in seconds
-byte vsync_off_time=5;
+byte vsync_off_time = 5;
 
 //counters
 byte buttonPressedTime = 0;
@@ -95,7 +100,117 @@ SoftwareWire softWire( 4, 5);
 
 
 
-void handleSerial() {
+
+void setup() {
+
+  //define pin direction
+  pinMode(solid_state_relay_Pin, OUTPUT);
+  pinMode(powerButtonPin, INPUT);
+  pinMode(vsyncPin, INPUT);//this pin is on the J5 connector for general use PB0.
+  pinMode(9, INPUT);//this pin is on the J5 connector for general use PB1.
+
+  EEPROMwl.begin(CONFIG_EEPROM_VERSION, CONFIG_EEPROM_SLOTS);
+  Wire.begin(0x50); //join as slave and wait for EDID requests
+  softWire.begin();// join as master and send init sequence
+  Serial.begin(115200);//use built in serial
+  //Serial.setTimeout(200);
+
+  Wire.onRequest(requestEvent); //event handler for requests from master
+  Wire.onReceive(receiveData); // event handler when receiving from  master
+  // turn it all off
+  externalCircuitOff();
+
+  //externalCircuitOn();
+
+
+}//end setup
+
+byte x = 0;
+/*
+   This loops looks for button presses, turns the circuit on or off, and
+   listens for characters on the serial port to make screen adjustments.
+*/
+void loop() {
+  buttonState = digitalRead(powerButtonPin);
+
+  // do stuff only when the CRT is on
+  if ( externalCircuitState == HIGH ) {
+
+    currentTime = millis();
+    elapsedTime = currentTime - startTime;
+
+    //handleSerial();
+    serial_processing();
+
+
+    //increment vsyncDetect everytime vsync is detected
+    if (pulseIn(vsyncPin, HIGH, 10000) > 0) {
+
+      if (vsyncDetect < vsync_off_time) {
+        vsyncDetect++;
+      }//end if
+      startTime = currentTime = millis();
+    }//end if
+
+
+    //decrement vsyncDetect whenever one second elapses
+    if (elapsedTime >= 1000 && vsyncDetect > 0) {
+      vsyncDetect--;
+      startTime = currentTime = millis();
+    }
+
+    //do stuff whn vsyncDetect is 0
+    if (vsyncDetect <= 0) {
+      startTime = 0;
+      currentTime = 0;
+      // externalCircuitOff();
+
+
+    }
+
+  }//end if
+
+
+  if (buttonState == LOW )
+  {
+    if (buttonPressedTime <= 10) {
+      buttonPressedTime++;
+    }//end if
+
+
+
+  }
+  else
+  {
+    //buttonPressedTime = 0;
+
+  }
+
+  //turn everything off if button is pressed for 10 ms
+  if (buttonPressedTime > 0 && externalCircuitState == HIGH && buttonState == HIGH) {
+    externalCircuitOff();
+    buttonPressedTime = 0;
+
+  }
+
+  //turn everything on if button is pressed for 10 ms
+  if (buttonPressedTime > 0 && externalCircuitState == LOW  && buttonState == HIGH) {
+    externalCircuitOn();
+    buttonPressedTime = 0;
+    startTime = millis();
+    currentTime = millis();
+    vsyncDetect = vsync_off_time;
+
+  }
+
+
+
+
+}//end loop
+
+
+
+void handleSerial(char incoming) {
   /*
      a = move left
      s = move right
@@ -117,122 +232,189 @@ void handleSerial() {
   */
 
 
-  if (Serial.available() > 0) {
-    char incoming = Serial.read();
+  //if (Serial.available() > 0) {
+  // char incoming = Serial.read();
 
-    switch (incoming) {
-      case 'a'://move left
-        moveHorizontal(+1);
-        break;
-      case 's'://move right
-        moveHorizontal(-1);
-        break;
-      case 'w'://move up
-        moveVertical(-1);
-        break;
-      case 'z'://move down
-        moveVertical(+1);
-        break;
-      case 'd'://make skinnier
-        changeWidth(+1);
-        break;
-      case 'f'://make fatter
-        changeWidth(-1);
-        break;
-      case 'r'://make taller
-        changeHeight(+1);
-        break;
-      case 'c'://make shorter
-        changeHeight(-1);
-        break;
-      case 'g'://decrease contrast
-        changeContrast(-1);
-        break;
-      case 'h'://increase contrast
-        changeContrast(+1);
-        break;
-      case 'j'://decrease brightness
-        changeBrightness(-1);
-        break;
-      case 'k'://increase brightness
-        changeBrightness(+1);
-        break;
-      case 'x'://tilt paralellogram left
-        changeParallelogram(+1);
-        break;
-      case 'v'://tilt paralellogram right
-        changeParallelogram(-1);
-        break;
-      case 'b'://keystone pinch top
-        changeKeystone(-1);
-        break;
-      case 'n'://keystone pinch bottom
-        changeKeystone(+1);
-        break;
-      case 't'://rotate left
-        changeRotation(+1);
-        break;
-      case 'y'://rotate right
-        changeRotation(-1);
-        break;
-      case 'u'://pincushion pull corners out
-        changePincushion(-1);
-        break;
-      case 'i'://pincushion pull corners in
-        changePincushion(+1);
-        break;
-      case 'p':
-        printCurrentSettings();
-        break;
-      case 'o'://power off
-        if ( externalCircuitState == HIGH ) {
-          externalCircuitOff();
-        }//end if
-        break;
-    }
+  int index = -1;
+  bool increment = true;
+  switch (incoming) {
+    case 'a'://move left
+      //moveHorizontal(+1);
+      index = IVAD_SETTING_HORIZONTAL_POS;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 's'://move right
+      //moveHorizontal(-1);
+      index = IVAD_SETTING_HORIZONTAL_POS;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'w'://move up
+      //moveVertical(-1);
+      index = IVAD_SETTING_VERTICAL_POS;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'z'://move down
+      //moveVertical(+1);
+      index = IVAD_SETTING_VERTICAL_POS;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'd'://make skinnier
+      //changeWidth(+1);
+      index = IVAD_SETTING_WIDTH;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'f'://make fatter
+      //changeWidth(-1);
+      index = IVAD_SETTING_WIDTH;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'r'://make taller
+      //changeHeight(+1);
+      index = IVAD_SETTING_HEIGHT;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'c'://make shorter
+      //changeHeight(-1);
+      index = IVAD_SETTING_HEIGHT;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'g'://decrease contrast
+      //changeContrast(-1);
+      index = IVAD_SETTING_CONTRAST;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'h'://increase contrast
+      //changeContrast(+1);
+      index = IVAD_SETTING_CONTRAST;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'j'://decrease brightness
+      //changeBrightness(-1);
+      index = IVAD_SETTING_BRIGHTNESS;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'k'://increase brightness
+      // changeBrightness(+1);
+      index = IVAD_SETTING_BRIGHTNESS;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'x'://tilt paralellogram left
+      //changeParallelogram(+1);
+      index = IVAD_SETTING_PARALLELOGRAM;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'v'://tilt paralellogram right
+      //changeParallelogram(-1);
+      index = IVAD_SETTING_PARALLELOGRAM;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'b'://keystone pinch top
+      //changeKeystone(-1);
+      index = IVAD_SETTING_KEYSTONE;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'n'://keystone pinch bottom
+      //changeKeystone(+1);
+      index = IVAD_SETTING_KEYSTONE;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 't'://rotate left
+      //changeRotation(+1);
+      index = IVAD_SETTING_ROTATION;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'y'://rotate right
+      //changeRotation(-1);
+      index = IVAD_SETTING_ROTATION;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'u'://pincushion pull corners out
+      //changePincushion(-1);
+      index = IVAD_SETTING_PINCUSHION;
+      increment = false;
+      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
+      break;
+    case 'i'://pincushion pull corners in
+      //changePincushion(+1);
+      index = IVAD_SETTING_PINCUSHION;
+      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
+      break;
+    case 'p':
+      printCurrentSettings();
+      break;
+    case 'o'://power off
+      if ( externalCircuitState == HIGH ) {
+        externalCircuitOff();
+      }//end if
+      break;
   }
-}
+  //}
+
+  if (index > -1) {
+    int val = CURRENT_CONFIG[index];
+    if (increment) {
+      val++;
+    }
+    else
+    {
+      val--;
+    }
+    ivad_change_setting(index, val);
+  }//end if
+
+
+}//end handleSerial
 
 void printCurrentSettings() {
-  Serial.println("----------------------------");
+  Serial.println(F("----------------------------"));
 
-  Serial.print("heightValueIndex: ");
+  Serial.print(F("heightValueIndex: "));
   Serial.println(heightValueIndex, HEX);
 
-  Serial.print("widthValueIndex: ");
+  Serial.print(F("widthValueIndex: "));
   Serial.println(widthValueIndex, HEX);
 
   Serial.println("");
 
-  Serial.print("verticalPositionValueIndex: ");
+  Serial.print(F("verticalPositionValueIndex: "));
   Serial.println(verticalPositionValueIndex, HEX);
 
-  Serial.print("horizontalPositionValueIndex: ");
+  Serial.print(F("horizontalPositionValueIndex: "));
   Serial.println(horizontalPositionValueIndex, HEX);
 
-  Serial.println("");
+  Serial.println(F(""));
 
-  Serial.print("rotationValueIndex: ");
+  Serial.print(F("rotationValueIndex: "));
   Serial.println(rotationValueIndex, HEX);
 
-  Serial.print("parallelogramValueIndex: ");
+  Serial.print(F("parallelogramValueIndex: "));
   Serial.println(parallelogramValueIndex, HEX);
 
-  Serial.print("keystoneValueIndex: ");
+  Serial.print(F("keystoneValueIndex: "));
   Serial.println(keystoneValueIndex, HEX);
 
-  Serial.print("pincushionValueIndex: ");
+  Serial.print(F("pincushionValueIndex: "));
   Serial.println(pincushionValueIndex, HEX);
 
   Serial.println("");
 
-  Serial.print("contrastValueIndex: ");
+  Serial.print(F("contrastValueIndex: "));
   Serial.println(contrastValueIndex, HEX);
 
-  Serial.print("brightnessValueIndex: ");
+  Serial.print(F("brightnessValueIndex: "));
   Serial.println(brightnessValueIndex, HEX);
 
-  Serial.println("----------------------------");
+  Serial.println(F("----------------------------"));
+
 }
 
 void writeToIvad(byte address, byte message) {
@@ -266,267 +448,16 @@ void  readFromIvad(byte address, byte bytes) {
 
 void initIvadBoard() {
 
-  //Init sequence 1
-  //Provied by Rocky Hill
-  /**
-    writeToIvad( 0x46,0x13,0x00);
-    readFromIvad(0x46,1);
-    writeToIvad( 0x46,0x09,0x00);
-    writeToIvad( 0x53,0x33);
-    readFromIvad(0x53,1);
-    //delay(900);
-    writeToIvad( 0x46,0x13,0x0A);
-    writeToIvad( 0x46,0x00,0x00);
-    writeToIvad( 0x46,0x08,0xE4);
-    writeToIvad( 0x46,0x12,0xC9);
-    //delay(8000);
-    writeToIvad( 0x53,0x00);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x0A);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x14);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x1E);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x28);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x32);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x3C);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x46);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x50);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x5A);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x46,0x01,0x93);
-    writeToIvad( 0x46,0x02,0x93);
-    writeToIvad( 0x46,0x03,0x8F);
-    writeToIvad( 0x46,0x04,0x9A);
-    writeToIvad( 0x46,0x05,0x7B);
-    writeToIvad( 0x46,0x06,0x7B);
-    writeToIvad( 0x46,0x07,0xB0);
-    writeToIvad( 0x46,0x08,0xDC);
-    writeToIvad( 0x46,0x09,0x49);
-    writeToIvad( 0x46,0x0A,0x92);
-    writeToIvad( 0x46,0x0B,0xA2);
-    writeToIvad( 0x46,0x0C,0xDF);
-    writeToIvad( 0x46,0x0D,0x20);
-    writeToIvad( 0x46,0x0E,0xC2);
-    writeToIvad( 0x46,0x0F,0xD2);
-    writeToIvad( 0x46,0x10,0x40);
-    writeToIvad( 0x46,0x11,0x09);
-    writeToIvad( 0x46,0x12,0x27);
-    writeToIvad( 0x46,0x00,0xFA);
-    writeToIvad( 0x53,0x00);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x0A);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x14);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x1E);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x28);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x32);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x3C);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x46);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x50);
-    readFromIvad(0x53,10);
-    writeToIvad( 0x53,0x5A);
-    readFromIvad(0x53,2);
-    writeToIvad( 0x46,0x01,0x93);
-    writeToIvad( 0x46,0x02,0x93);
-    writeToIvad( 0x46,0x03,0x8F);
-    writeToIvad( 0x46,0x04,0x9A);
-    writeToIvad( 0x46,0x05,0x7B);
-    writeToIvad( 0x46,0x06,0x7B);
-    writeToIvad( 0x46,0x07,0xB0);
-    writeToIvad( 0x46,0x08,0xDC);
-    writeToIvad( 0x46,0x09,0x49);
-    writeToIvad( 0x46,0x0A,0x92);
-    writeToIvad( 0x46,0x0B,0xA2);
-    writeToIvad( 0x46,0x0C,0xDF);
-    writeToIvad( 0x46,0x0D,0x20);
-    writeToIvad( 0x46,0x0E,0xC2);
-    writeToIvad( 0x46,0x0F,0xD2);
-    writeToIvad( 0x46,0x10,0x40);
-    writeToIvad( 0x46,0x11,0x09);
-    writeToIvad( 0x46,0x12,0x27);
-    writeToIvad( 0x46,0x00,0xFA);
-    writeToIvad( 0x46, 0x04, 0x80);//red x-30
-    writeToIvad( 0x46, 0x05, 0xB0);// green x
-    writeToIvad( 0x46, 0x06, 0x78); //blue x-38
-    writeToIvad( 0x46, 0x10, 0x40); // brightness
-
-    **/
-
-
-  // init sequence 2 provided by sparpet.
-  //https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-25819428
-  /**
-    writeToIvad( 0x46, 0x13,0x00);
-    readFromIvad(0x46, 1);
-    writeToIvad( 0x46, 0x09, 0x00);
-    writeToIvad( 0x53, 0x33);
-    readFromIvad(0x53, 1);
-    writeToIvad( 0x46, 0x13,0x0B);
-    writeToIvad( 0x46, 0x00,0x00);
-    writeToIvad( 0x46, 0x08, 0xE4);
-    writeToIvad( 0x46, 0x12, 0xC9);
-    writeToIvad( 0x53, 0x00);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x0A);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x14);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x1E);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x28);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x32);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x3C);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x46);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x50);
-    readFromIvad(0x53, 10);
-    writeToIvad( 0x53, 0x5A);
-    readFromIvad(0x53, 2);
-    writeToIvad( 0x46, 0x01, 0x98);
-    writeToIvad( 0x46, 0x02, 0x88);
-    writeToIvad( 0x46, 0x03, 0x88);
-    writeToIvad( 0x46, 0x04, 0x97);
-    writeToIvad( 0x46, 0x05, 0x78);
-    writeToIvad( 0x46, 0x06, 0x80);
-    writeToIvad( 0x46, 0x07, 0xB0);
-    writeToIvad( 0x46, 0x08, 0xEF);
-    writeToIvad( 0x46, 0x09, 0x49);
-    writeToIvad( 0x46, 0x0A, 0x9E);
-    writeToIvad( 0x46, 0x0B, 0x93);
-    writeToIvad( 0x46, 0x0C, 0xCA);
-    writeToIvad( 0x46, 0x0D, 0x09);
-    writeToIvad( 0x46, 0x0E, 0xC0);
-    writeToIvad( 0x46, 0x0F, 0xC1);
-    writeToIvad( 0x46, 0x10, 0x40);
-    writeToIvad( 0x46, 0x11, 0x09);
-    writeToIvad( 0x46, 0x12, 0x7D);
-    writeToIvad( 0x46, 0x00, 0xFF);
-  **/
-
-  // This initsequence was provided by "anotherelise"
-  // https://forums.macrumors.com/threads/imac-g3-mod-video-connector.1712095/post-28346679
-  /**
-       writeToIvad( 0x46,0x13,0x00);
-      writeToIvad(0x46,0x13,0x00);
-      readFromIvad(0x46,1);
-      writeToIvad(0x46,0x09,0x00);
-      writeToIvad(0x53,0x33);
-      readFromIvad(0x53,1);
-      writeToIvad(0x46,0x13,0x0b);
-      writeToIvad(0x46,0x00,0x00);
-      writeToIvad(0x46,0x08,0xe4);
-      writeToIvad(0x46,0x12,0xc9);
-      writeToIvad(0x53,0x00);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x0a);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x14);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x1e);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x28);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x32);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x3c);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x46);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x50);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x5a);
-      readFromIvad(0x53,10);
-      writeToIvad(0x46,0x01,0x82);
-      writeToIvad(0x46,0x02,0x82);
-      writeToIvad(0x46,0x03,0x82);
-      writeToIvad(0x46,0x04,0xa0);
-      writeToIvad(0x46,0x05,0xa0);
-      writeToIvad(0x46,0x06,0xa0);
-      writeToIvad(0x46,0x07,0xad);
-      writeToIvad(0x46,0x08,0xe4);
-      writeToIvad(0x46,0x09,0x3d);
-      writeToIvad(0x46,0x0a,0x9e);
-      writeToIvad(0x46,0x0b,0xb4);
-      writeToIvad(0x46,0x0c,0xc4);
-      writeToIvad(0x46,0x0d,0x27);
-      writeToIvad(0x46,0x0e,0xbf);
-      writeToIvad(0x46,0x0f,0xc0);
-      writeToIvad(0x46,0x10,0x40);
-      writeToIvad(0x46,0x11,0x0a);
-      writeToIvad(0x46,0x12,0x5b);
-      writeToIvad(0x46,0x00,0xff);
-      writeToIvad(0x53,0x00);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x10);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x20);
-      readFromIvad(0x53,10);
-      writeToIvad(0x53,0x30);
-      readFromIvad(0x53,10);
-      writeToIvad(0x46,0x11,0x05);
-      writeToIvad(0x46,0x00,0xff);
-      writeToIvad(0x46,0x00,0x00);
-      writeToIvad(0x46,0x07,0xb1);
-      writeToIvad(0x46,0x0d,0x10);
-      writeToIvad(0x46,0x0c,0xc7);
-      writeToIvad(0x46,0x09,0x4a);
-      writeToIvad(0x46,0x08,0xea);
-      writeToIvad(0x46,0x0f,0xc0);
-      writeToIvad(0x46,0x0b,0xae);
-      writeToIvad(0x46,0x12,0x5b);
-      writeToIvad(0x46,0x00,0xff);
-      writeToIvad(0x46,0x11,0x05);
-      writeToIvad(0x46,0x00,0xff);
-      writeToIvad(0x46,0x10,0x40);
-      writeToIvad(0x46,0x06,0xa0);
-      writeToIvad(0x46,0x05,0xa0);
-      writeToIvad(0x46,0x04,0xa0);
-      writeToIvad(0x46,0x03,0x82);
-      writeToIvad(0x46,0x02,0x82);
-      writeToIvad(0x46,0x01,0x82);
-      writeToIvad(0x46,0x11,0x05);
-      writeToIvad(0x46,0x00,0xff);
-      writeToIvad(0x46,0x11,0x05);
-      writeToIvad(0x46,0x00,0xff);
-      writeToIvad(0x46,0x10,0x40);
-      writeToIvad(0x46,0x06,0xa0);
-      writeToIvad(0x46,0x05,0xa0);
-      writeToIvad(0x46,0x04,0xa0);
-      writeToIvad(0x46,0x03,0x82);
-      writeToIvad(0x46,0x02,0x82);
-      writeToIvad(0x46,0x01,0x82);
-      writeToIvad(0x46,0x11,0x05);
-      writeToIvad(0x46,0x00,0xff);
-  */
-
-
-
   //init sequence 2 <---this is the one that works well with my iMac G3, Rocky Hill
-  writeToIvad( PROPERTY, 0x13, 0x00);
-  readFromIvad(PROPERTY, 1);
-  writeToIvad( PROPERTY, VERTICAL_POS, 0x00);
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x13, 0x00);
+  readFromIvad(IVAD_REGISTER_PROPERTY, 1);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_VERTICAL_POS, 0x00);
   writeToIvad( 0x53, 0x33);
   readFromIvad(0x53, 1);
-  writeToIvad( PROPERTY, 0x13, 0x0B);
-  writeToIvad( PROPERTY, CONTRAST, 0x00); //setting contrast to 0x00 seems to turn something on.
-  //writeToIvad( PROPERTY, HEIGHT, 0xE4);
-  //writeToIvad( PROPERTY, ROTATION, 0xC9);
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x13, 0x0B);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_CONTRAST, 0x00); //setting contrast to 0x00 seems to turn something on.
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_HEIGHT, 0xE4);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_ROTATION, 0xC9);
   writeToIvad( 0x53, 0x00);
   readFromIvad(0x53, 10);
   writeToIvad( 0x53, 0x0A);
@@ -547,26 +478,22 @@ void initIvadBoard() {
   readFromIvad(0x53, 10);
   writeToIvad( 0x53, 0x5A);
   readFromIvad(0x53, 2);
-  //writeToIvad( 0x46, 0x01, 0x98);//red
-  //writeToIvad( 0x46, 0x02, 0x88);//green
-  //writeToIvad( 0x46, 0x03, 0x88);//blue
-
-  writeToIvad( PROPERTY, 0x04, 0x80);//red x-30
-  writeToIvad( PROPERTY, 0x05, 0xB0);// green x
-  writeToIvad( PROPERTY, 0x06, 0x78); //blue x-38
-  writeToIvad( PROPERTY, HORIZONTAL_POS, horizontalPositionValueIndex); //horizontal position
-  writeToIvad( PROPERTY, HEIGHT, heightValueIndex);
-  writeToIvad( PROPERTY, VERTICAL_POS, verticalPositionValueIndex);
-  writeToIvad( PROPERTY, 0x0A, 0x9E);
-  writeToIvad( PROPERTY, KEYSTONE, keystoneValueIndex);
-  writeToIvad( PROPERTY, PINCUSHION, pincushionValueIndex);
-  writeToIvad( PROPERTY, WIDTH, widthValueIndex);
-  writeToIvad( PROPERTY, 0x0E, 0xC0);
-  writeToIvad( PROPERTY, PARALLELOGRAM, parallelogramValueIndex);
-  writeToIvad( PROPERTY, 0x10, 0x40); // brightness
-  writeToIvad( PROPERTY, BRIGHTNESS, brightnessValueIndex);
-  writeToIvad( PROPERTY, ROTATION, rotationValueIndex); // rotation
-  writeToIvad( PROPERTY, CONTRAST, contrastValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x04, 0x80);//red x-30
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x05, 0xB0);// green x
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x06, 0x78); //blue x-38
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_HORIZONTAL_POS, horizontalPositionValueIndex); //horizontal position
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_HEIGHT, heightValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_VERTICAL_POS, verticalPositionValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x0A, 0x9E);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_KEYSTONE, keystoneValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_PINCUSHION, pincushionValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_WIDTH, widthValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x0E, 0xC0);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_PARALLELOGRAM, parallelogramValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, 0x10, 0x40); // brightness
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_BRIGHTNESS, brightnessValueIndex);
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_ROTATION, rotationValueIndex); // rotation
+  writeToIvad( IVAD_REGISTER_PROPERTY, IVAD_SETTING_CONTRAST, contrastValueIndex);
 
 
 
@@ -591,9 +518,15 @@ void solid_state_relayOff() {
 //these are probably too much but they are here in case I would lke to add more stuff to turn on and off
 void externalCircuitOn() {
   solid_state_relayOn();
+  delay(500);
+  initIvadBoard();
+  settings_load();
+  ivad_write_settings();
   externalCircuitState = HIGH;
 
+
 }
+
 void externalCircuitOff() {
   solid_state_relayOff();
   externalCircuitState = LOW;
@@ -623,216 +556,220 @@ void receiveData(byte byteCount) {
 }
 
 
-//the following methods change picture properties
-
-void moveHorizontal(int off) {
-  horizontalPositionValueIndex += off;
-  limitIndex(horizontalPositionValueIndex, HORIZONTAL_POS_VAL);
-  writeToIvad(PROPERTY, HORIZONTAL_POS, horizontalPositionValueIndex );
-  //  limitIndex(horizontalPositionValueIndex, sizeof(HORIZONTAL_POS_VAL));
-  //  byte value = HORIZONTAL_POS_VAL[horizontalPositionValueIndex];
-  //  writeToIvad(PROPERTY, HORIZONTAL_POS, value);
-}//end moveHorizontal
-
-void moveVertical(int off) {
-  verticalPositionValueIndex += off;
-  limitIndex(verticalPositionValueIndex, VERTICAL_POS_VAL);
-  writeToIvad(PROPERTY, VERTICAL_POS, verticalPositionValueIndex );
-  //  limitIndex(verticalPositionValueIndex, sizeof(VERTICAL_POS_VAL));
-  //  byte value = VERTICAL_POS_VAL[verticalPositionValueIndex];
-  //  writeToIvad(PROPERTY, VERTICAL_POS, value);
-}//end move vertical
-
-void changeWidth(int off) {
-  widthValueIndex += off;
-  limitIndex(widthValueIndex, WIDTH_VAL);
-  writeToIvad(PROPERTY, WIDTH, widthValueIndex );
-  //  limitIndex(widthValueIndex, sizeof(WIDTH_VAL));
-  //  byte value = WIDTH_VAL[widthValueIndex];
-  //  writeToIvad(PROPERTY, WIDTH, value);
-}//end changeWidth
-
-void changeHeight(int off) {
-  heightValueIndex += off;
-  limitIndex(heightValueIndex, HEIGHT_VAL);
-  writeToIvad(PROPERTY, HEIGHT, heightValueIndex );
-  //  limitIndex(heightValueIndex, sizeof(HEIGHT_VAL));
-  //  byte value = HEIGHT_VAL[heightValueIndex];
-  //  writeToIvad(PROPERTY, HEIGHT, value);
-}//end changeHeight
-
-void changeContrast(int off) {
-  contrastValueIndex += off;
-  limitIndex(contrastValueIndex, CONTRAST_VAL);
-  writeToIvad(PROPERTY, CONTRAST, contrastValueIndex );
-  //  limitIndex(contrastValueIndex, sizeof(CONTRAST_VAL));
-  //  byte value = CONTRAST_VAL[contrastValueIndex];
-  //  writeToIvad(PROPERTY, CONTRAST, value);
-}//end changeContrast
-
-void changeBrightness(int off) {
-  brightnessValueIndex += off;
-  limitIndex(brightnessValueIndex, BRIGHTNESS_VAL);
-  writeToIvad(PROPERTY, BRIGHTNESS, brightnessValueIndex );
-  //  limitIndex(brightnessValueIndex, sizeof(BRIGHTNESS_VAL));
-  //  byte value = BRIGHTNESS_VAL[brightnessValueIndex];
-  //  writeToIvad(PROPERTY, BRIGHTNESS, value);
-}//end changeBrightness
-
-void changeParallelogram(int off) {
-  parallelogramValueIndex += off;
-  limitIndex(parallelogramValueIndex, PARALLELOGRAM_VAL);
-  writeToIvad(PROPERTY, PARALLELOGRAM, parallelogramValueIndex );
-  //  limitIndex(parallelogramValueIndex, sizeof(PARALLELOGRAM_VAL));
-  //  byte value = PARALLELOGRAM_VAL[parallelogramValueIndex];
-  //  writeToIvad(PROPERTY, PARALLELOGRAM, value);
-}
-
-void changeKeystone(int off) {
-  keystoneValueIndex += off;
-  limitIndex(keystoneValueIndex, KEYSTONE_VAL);
-  writeToIvad(PROPERTY, KEYSTONE, keystoneValueIndex );
-  //  limitIndex(keystoneValueIndex, sizeof(KEYSTONE_VAL));
-  //  byte value = KEYSTONE_VAL[keystoneValueIndex];
-  //  writeToIvad(PROPERTY, KEYSTONE, value);
-}
-
-void changeRotation(int off) {
-  rotationValueIndex += off;
-  limitIndex(rotationValueIndex, ROTATION_VAL);
-  writeToIvad(PROPERTY, ROTATION, rotationValueIndex );
-  //  limitIndex(rotationValueIndex, sizeof(ROTATION_VAL));
-  //  byte value = ROTATION_VAL[rotationValueIndex];
-  //  writeToIvad(PROPERTY, ROTATION, value);
-}
-
-void changePincushion(int off) {
-  pincushionValueIndex += off;
-  limitIndex(pincushionValueIndex, PINCUSHION_VAL);
-  writeToIvad(PROPERTY, PINCUSHION, pincushionValueIndex );
-  //  limitIndex(pincushionValueIndex, sizeof(PINCUSHION_VAL));
-  //  byte value = PINCUSHION_VAL[pincushionValueIndex];
-  //  writeToIvad(PROPERTY, PINCUSHION, value);
-}
-
-void limitIndex(byte &index, byte value_limit[]) {
-
-  if (index < value_limit[0]) {
-    index = value_limit[0];
-  }
-  if (index > value_limit[1]) {
-    index = value_limit[1];
-  }
-
-  //  byte maximum = ((array_size / sizeof(byte)) - 1);
-  //
-  //  if (index < 0) index = 0;
-  //  if (index > maximum) index = maximum;
-}
 
 
-void setup() {
-
-  //define pin direction
-  pinMode(solid_state_relay_Pin, OUTPUT);
-  pinMode(powerButtonPin, INPUT);
-  pinMode(vsyncPin, INPUT);//this pin is on the J5 connector for general use PB0.
-  pinMode(9, INPUT);//this pin is on the J5 connector for general use PB1.
-
-  Wire.begin(0x50); //join as slave and wait for EDID requests
-  softWire.begin();// join as master and send init sequence
-  Serial.begin(9600);//use built in serial
-
-  Wire.onRequest(requestEvent); //event handler for requests from master
-  Wire.onReceive(receiveData); // event handler when receiving from  master
-  // turn it all off
-  externalCircuitOff();
-
-  //initIvadBoard();
+void serial_processing()
+{
+  byte __errcode = 0;
+  byte b;
+  if (Serial.available())
+  {
 
 
-}//end setup
-
-byte x = 0;
-/*
-   This loops looks for button presses, turns the circuit on or off, and
-   listens for characters on the serial port to make screen adjustments.
-*/
-void loop() {
-  buttonState = digitalRead(powerButtonPin);
-
-// do stuff only when the CRT is on
-  if ( externalCircuitState == HIGH ) {
-
-    currentTime = millis();
-    elapsedTime = currentTime - startTime;
-
-    handleSerial();
-
-    //increment vsyncDetect everytime vsync is detected
-    if (pulseIn(vsyncPin,HIGH,10000) > 0) {
-
-      if (vsyncDetect < vsync_off_time) {
-        vsyncDetect++;
-      }//end if
-      startTime = currentTime=millis();
-    }//end if
+    b = Serial.read();
+    SERIAL_BUFFER[SERIAL_BUFFER_DATA_SIZE++] = b;
 
 
-    //decrement vsyncDetect whenever one second elapses
-    if (elapsedTime >= 1000 && vsyncDetect > 0) {
-      vsyncDetect--;
-      startTime = currentTime=millis();
+    while (Serial.available() && b != SERIAL_EOL_MARKER && SERIAL_BUFFER_DATA_SIZE < SERIAL_BUFFER_MAX_SIZE ) {
+      byte b = Serial.read();
+      SERIAL_BUFFER[SERIAL_BUFFER_DATA_SIZE++] = b;
+
+    }//end while
+
+
+    bool pass = SERIAL_BUFFER[0] == 0x07 && SERIAL_BUFFER[5] == 0x03 && SERIAL_BUFFER[7] == 0x04 && SERIAL_BUFFER_DATA_SIZE == 9;
+
+    if (pass)
+    {
+      SERIAL_BUFFER_DATA_SIZE = 0;
+
+
+      byte id = SERIAL_BUFFER[1];
+      byte cmd = SERIAL_BUFFER[2];
+      byte valA = SERIAL_BUFFER[3];
+      byte valB = SERIAL_BUFFER[4];
+      byte chk = SERIAL_BUFFER[6];
+
+      switch (cmd)
+      {
+
+        case 0x01: // Get EEPROM Version
+          {
+            byte ret[8] { 0x06, id, 0x01, CONFIG_EEPROM_VERSION, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+            ret[5] = checksum(ret, 5);
+            Serial.write(ret, 8);
+          }
+          break;
+        case 0x02: // Dump SRAM Config
+          {
+            byte ret[7 + CONFIG_EEPROM_SLOTS];
+
+            ret[0] = 0x06;
+            ret[1] = SERIAL_BUFFER[1];
+            ret[2] = CONFIG_EEPROM_SLOTS;
+            for (int i = 0; i < CONFIG_EEPROM_SLOTS; i++)
+              ret[3 + i] = CURRENT_CONFIG[i];
+            ret[2 + CONFIG_EEPROM_SLOTS + 1] = 0x03;
+            ret[2 + CONFIG_EEPROM_SLOTS + 2] = checksum(ret, 2 + CONFIG_EEPROM_SLOTS + 1 + 1);
+            ret[2 + CONFIG_EEPROM_SLOTS + 3] = 0x04;
+            ret[2 + CONFIG_EEPROM_SLOTS + 4] = SERIAL_EOL_MARKER;
+            Serial.write(ret, 7 + CONFIG_EEPROM_SLOTS);
+          }
+          break;
+        case 0x03: // IVAD Change Setting
+          {
+            int result = ivad_change_setting(valA, valB);
+
+            if (result < 0) result = 0;
+            else if (result > 100) result = 100;
+
+            if (result != 0)
+            {
+              // sorry
+              __errcode = 100 + result;
+              //goto err;
+            }
+
+            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+            ret[4] = checksum(ret, 4);
+            Serial.write(ret, 7);
+          }
+          break;
+        case 0x04: // IVAD Reset from EEPROM
+          {
+            settings_load();
+            ivad_write_settings();
+
+            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+            ret[4] = checksum(ret, 4);
+            Serial.write(ret, 7);
+          }
+          break;
+        case 0x05: // EEPROM Reset to Default
+          {
+            settings_reset_default();
+            ivad_write_settings();
+            settings_store();
+
+            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+            ret[4] = checksum(ret, 4);
+            Serial.write(ret, 7);
+          }
+          break;
+        case 0x06: // Write SRAM to EEPROM
+          {
+            settings_store();
+            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+            ret[4] = checksum(ret, 4);
+            Serial.write(ret, 7);
+          }
+      }
+
+
+      byte ret[8] { 0x15, SERIAL_BUFFER[1], 0x01, __errcode, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+      ret[5] = checksum(ret, 5);
+      Serial.write(ret, 8);
+    }//end buffer filled check
+    else {
+      handleSerial(b);
     }
-
-    //do stuff whn vsyncDetect is 0
-    if (vsyncDetect <= 0) {
-      startTime = 0;
-      currentTime = 0;
-      externalCircuitOff();
-
-
-    }
-
   }//end if
+}
+
+byte checksum(const byte arr[], const int len)
+{
+  int sum = 1; // Checksum may never be 0.
+
+  for (int i = 0; i < len; i++)
+    sum += arr[i];
+
+  byte ret = 256 - (sum % 256);
+
+  return ret;
+}
+
+int ivad_change_setting(const int ivad_setting,  const byte value)
+{
+
+  CURRENT_CONFIG[ivad_setting] = value;
+
+  if (CURRENT_CONFIG[ivad_setting] < VIDEO_CONFIG_MIN[ivad_setting]) CURRENT_CONFIG[ivad_setting] = VIDEO_CONFIG_MIN[ivad_setting];
+  if (CURRENT_CONFIG[ivad_setting] > VIDEO_CONFIG_MAX[ivad_setting]) CURRENT_CONFIG[ivad_setting] = VIDEO_CONFIG_MAX[ivad_setting];
+
+  writeToIvad(IVAD_REGISTER_PROPERTY, ivad_setting, CURRENT_CONFIG[ivad_setting]);
+  CURRENT_CONFIG[CONFIG_OFFSET_CHECKSUM] = checksum(CURRENT_CONFIG, CONFIG_EEPROM_SLOTS - 1);
+
+  return 0;
+}
 
 
-  if (buttonState == LOW )
+
+/*
+  This function loads the monitor property values from the EEPROM
+  into variables.
+*/
+void settings_load()
+{
+  // Set something so a checksum mismatch can trigger if there's nothing in the EEPROM.
+
+  for (byte eeprom_memory_offset = 0 ; eeprom_memory_offset < CONFIG_EEPROM_SLOTS ; eeprom_memory_offset++) {
+    CURRENT_CONFIG[eeprom_memory_offset] = EEPROMwl.read(eeprom_memory_offset);
+  }//end for
+
+  byte loaded_checksum = CURRENT_CONFIG[CONFIG_OFFSET_CHECKSUM];
+  byte expected_checksum = checksum(CURRENT_CONFIG, CONFIG_EEPROM_SLOTS - 1);
+
+  if (loaded_checksum != expected_checksum)
   {
-    if (buttonPressedTime <= 10) {
-      buttonPressedTime++;
-    }//end if
-
+    //settings_reset_default();
+    settings_store();
 
 
   }
-  else
+
+
+}
+
+void ivad_write_settings()
+{
+
+  for (int IVAD_SETTING = 0 ; IVAD_SETTING < IVAD_SETTING_END ;  IVAD_SETTING ++ )
   {
-    //buttonPressedTime = 0;
-
-  }
-  //delay(10);
-
-  //turn everything off if button is pressed for 10 ms
-  if (buttonPressedTime >= 1 && externalCircuitState == HIGH && buttonState == HIGH) {
-    externalCircuitOff();
-    buttonPressedTime = 0;
-
+    writeToIvad(IVAD_REGISTER_PROPERTY, IVAD_SETTING, CURRENT_CONFIG[IVAD_SETTING]);
   }
 
-  //turn everything on if button is pressed for 10 ms
-  if (buttonPressedTime >= 1 && externalCircuitState == LOW  && buttonState == HIGH) {
-    externalCircuitOn();
-    delay(500);
-    initIvadBoard();
-    buttonPressedTime = 0;
-    startTime = millis();
-    currentTime = millis();
-    vsyncDetect = vsync_off_time;
-
-  }
+}
 
 
 
+void settings_store()
+{
 
-}//end loop
+  //compute current config checksum and store it.
+  byte current_config_checksum = checksum(CURRENT_CONFIG, CONFIG_EEPROM_SLOTS - 1);
+
+  CURRENT_CONFIG[CONFIG_OFFSET_CHECKSUM] = current_config_checksum;
+
+  for (byte eeprom_memory_offset = 0 ; eeprom_memory_offset < CONFIG_EEPROM_SLOTS ; eeprom_memory_offset++) {
+    EEPROMwl.update(eeprom_memory_offset, CURRENT_CONFIG[eeprom_memory_offset]);
+  }//end for
+
+
+}
+
+
+void settings_reset_default()
+{
+
+  //compute current config checksum and store it.
+  byte current_config_checksum = checksum(CURRENT_CONFIG, CONFIG_EEPROM_SLOTS - 1);
+
+  CURRENT_CONFIG[CONFIG_OFFSET_CHECKSUM] = current_config_checksum;
+
+  for (byte eeprom_memory_offset = 0 ; eeprom_memory_offset < CONFIG_EEPROM_SLOTS ; eeprom_memory_offset++) {
+    CURRENT_CONFIG[eeprom_memory_offset] = VIDEO_CONFIG_DEFAULT[eeprom_memory_offset];
+  }//end for
+
+
+
+}
