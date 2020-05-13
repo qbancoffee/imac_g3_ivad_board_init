@@ -1,5 +1,5 @@
 // EEPROM stuff
-const byte CONFIG_EEPROM_VERSION        =  1;
+const byte CONFIG_EEPROM_VERSION        =  2;
 
 enum EEPROM_CONFIG_OFFSET : const byte
 {
