@@ -67,6 +67,7 @@ byte pincushionValueIndex = 0xcb;//203
 byte SERIAL_BUFFER[SERIAL_BUFFER_MAX_SIZE];
 byte SERIAL_BUFFER_DATA_SIZE;
 byte CURRENT_CONFIG[CONFIG_EEPROM_SLOTS];
+byte FIRST_RUN = 0x80;
 
 byte data = -1;
 
@@ -113,24 +114,36 @@ void setup() {
   Wire.begin(0x50); //join as slave and wait for EDID requests
   softWire.begin();// join as master and send init sequence
   Serial.begin(115200);//use built in serial
-  //Serial.setTimeout(200);
+  Serial.setTimeout(1000);
 
   Wire.onRequest(requestEvent); //event handler for requests from master
   Wire.onReceive(receiveData); // event handler when receiving from  master
   // turn it all off
   externalCircuitOff();
 
+  //check to see if it's the 1st time running after burning firmware
+  FIRST_RUN = EEPROMwl.read(CONFIG_EEPROM_SLOTS);
+  if (FIRST_RUN != 0x79 ) {
+    EEPROMwl.update(CONFIG_EEPROM_SLOTS, 0x79);
+    settings_reset_default();
+    settings_store();
+    settings_load();
+    ivad_write_settings();
+  }//end if
+
+
   //externalCircuitOn();
 
 
 }//end setup
 
-byte x = 0;
+//byte x = 0;
 /*
    This loops looks for button presses, turns the circuit on or off, and
    listens for characters on the serial port to make screen adjustments.
 */
 void loop() {
+
   buttonState = digitalRead(powerButtonPin);
 
   // do stuff only when the CRT is on
@@ -139,7 +152,7 @@ void loop() {
     currentTime = millis();
     elapsedTime = currentTime - startTime;
 
-    //handleSerial();
+
     serial_processing();
 
 
@@ -241,112 +254,92 @@ void handleSerial(char incoming) {
     case 'a'://move left
       //moveHorizontal(+1);
       index = IVAD_SETTING_HORIZONTAL_POS;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 's'://move right
       //moveHorizontal(-1);
       index = IVAD_SETTING_HORIZONTAL_POS;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'w'://move up
       //moveVertical(-1);
       index = IVAD_SETTING_VERTICAL_POS;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'z'://move down
       //moveVertical(+1);
       index = IVAD_SETTING_VERTICAL_POS;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'd'://make skinnier
       //changeWidth(+1);
       index = IVAD_SETTING_WIDTH;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'f'://make fatter
       //changeWidth(-1);
       index = IVAD_SETTING_WIDTH;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'r'://make taller
       //changeHeight(+1);
       index = IVAD_SETTING_HEIGHT;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'c'://make shorter
       //changeHeight(-1);
       index = IVAD_SETTING_HEIGHT;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'g'://decrease contrast
       //changeContrast(-1);
       index = IVAD_SETTING_CONTRAST;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'h'://increase contrast
       //changeContrast(+1);
       index = IVAD_SETTING_CONTRAST;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'j'://decrease brightness
       //changeBrightness(-1);
       index = IVAD_SETTING_BRIGHTNESS;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'k'://increase brightness
       // changeBrightness(+1);
       index = IVAD_SETTING_BRIGHTNESS;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'x'://tilt paralellogram left
       //changeParallelogram(+1);
       index = IVAD_SETTING_PARALLELOGRAM;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'v'://tilt paralellogram right
       //changeParallelogram(-1);
       index = IVAD_SETTING_PARALLELOGRAM;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'b'://keystone pinch top
       //changeKeystone(-1);
       index = IVAD_SETTING_KEYSTONE;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'n'://keystone pinch bottom
       //changeKeystone(+1);
       index = IVAD_SETTING_KEYSTONE;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 't'://rotate left
       //changeRotation(+1);
       index = IVAD_SETTING_ROTATION;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'y'://rotate right
       //changeRotation(-1);
       index = IVAD_SETTING_ROTATION;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'u'://pincushion pull corners out
       //changePincushion(-1);
       index = IVAD_SETTING_PINCUSHION;
       increment = false;
-      //ivad_change_setting(index, --CURRENT_CONFIG[index]);
       break;
     case 'i'://pincushion pull corners in
       //changePincushion(+1);
       index = IVAD_SETTING_PINCUSHION;
-      //ivad_change_setting(index, ++CURRENT_CONFIG[index]);
       break;
     case 'p':
       printCurrentSettings();
@@ -368,6 +361,7 @@ void handleSerial(char incoming) {
     {
       val--;
     }
+
     ivad_change_setting(index, val);
   }//end if
 
@@ -556,125 +550,134 @@ void receiveData(byte byteCount) {
 }
 
 
+/*
+  This is my implementation of oshimai's communications protocol.
+  Clearly I borrowed heavily from his sketch and I purposely
+  kept the same variable names to make it easier to port any
+  changes he might make to his sletch. There are parts I didn't
+  bother to port, verifying the checksum for example because of
+  time constraints. I might implement the rest in the future.
 
-
+*/
 void serial_processing()
 {
-  byte __errcode = 0;
-  byte b;
-  if (Serial.available())
-  {
 
+  byte b ;
 
-    b = Serial.read();
-    SERIAL_BUFFER[SERIAL_BUFFER_DATA_SIZE++] = b;
+  if (Serial.available()) {
 
-
-    while (Serial.available() && b != SERIAL_EOL_MARKER && SERIAL_BUFFER_DATA_SIZE < SERIAL_BUFFER_MAX_SIZE ) {
-      byte b = Serial.read();
-      SERIAL_BUFFER[SERIAL_BUFFER_DATA_SIZE++] = b;
-
-    }//end while
-
-
-    bool pass = SERIAL_BUFFER[0] == 0x07 && SERIAL_BUFFER[5] == 0x03 && SERIAL_BUFFER[7] == 0x04 && SERIAL_BUFFER_DATA_SIZE == 9;
-
-    if (pass)
+    do
     {
-      SERIAL_BUFFER_DATA_SIZE = 0;
-
-
-      byte id = SERIAL_BUFFER[1];
-      byte cmd = SERIAL_BUFFER[2];
-      byte valA = SERIAL_BUFFER[3];
-      byte valB = SERIAL_BUFFER[4];
-      byte chk = SERIAL_BUFFER[6];
-
-      switch (cmd)
-      {
-
-        case 0x01: // Get EEPROM Version
-          {
-            byte ret[8] { 0x06, id, 0x01, CONFIG_EEPROM_VERSION, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
-            ret[5] = checksum(ret, 5);
-            Serial.write(ret, 8);
-          }
-          break;
-        case 0x02: // Dump SRAM Config
-          {
-            byte ret[7 + CONFIG_EEPROM_SLOTS];
-
-            ret[0] = 0x06;
-            ret[1] = SERIAL_BUFFER[1];
-            ret[2] = CONFIG_EEPROM_SLOTS;
-            for (int i = 0; i < CONFIG_EEPROM_SLOTS; i++)
-              ret[3 + i] = CURRENT_CONFIG[i];
-            ret[2 + CONFIG_EEPROM_SLOTS + 1] = 0x03;
-            ret[2 + CONFIG_EEPROM_SLOTS + 2] = checksum(ret, 2 + CONFIG_EEPROM_SLOTS + 1 + 1);
-            ret[2 + CONFIG_EEPROM_SLOTS + 3] = 0x04;
-            ret[2 + CONFIG_EEPROM_SLOTS + 4] = SERIAL_EOL_MARKER;
-            Serial.write(ret, 7 + CONFIG_EEPROM_SLOTS);
-          }
-          break;
-        case 0x03: // IVAD Change Setting
-          {
-            int result = ivad_change_setting(valA, valB);
-
-            if (result < 0) result = 0;
-            else if (result > 100) result = 100;
-
-            if (result != 0)
-            {
-              // sorry
-              __errcode = 100 + result;
-              //goto err;
-            }
-
-            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
-            ret[4] = checksum(ret, 4);
-            Serial.write(ret, 7);
-          }
-          break;
-        case 0x04: // IVAD Reset from EEPROM
-          {
-            settings_load();
-            ivad_write_settings();
-
-            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
-            ret[4] = checksum(ret, 4);
-            Serial.write(ret, 7);
-          }
-          break;
-        case 0x05: // EEPROM Reset to Default
-          {
-            settings_reset_default();
-            ivad_write_settings();
-            settings_store();
-
-            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
-            ret[4] = checksum(ret, 4);
-            Serial.write(ret, 7);
-          }
-          break;
-        case 0x06: // Write SRAM to EEPROM
-          {
-            settings_store();
-            byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
-            ret[4] = checksum(ret, 4);
-            Serial.write(ret, 7);
-          }
-      }
-
-
-      byte ret[8] { 0x15, SERIAL_BUFFER[1], 0x01, __errcode, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
-      ret[5] = checksum(ret, 5);
-      Serial.write(ret, 8);
-    }//end buffer filled check
-    else {
-      handleSerial(b);
+      b = Serial.read();
+      SERIAL_BUFFER[SERIAL_BUFFER_DATA_SIZE++] = b;
     }
-  }//end if
-}
+    while (Serial.available() &&  b != SERIAL_EOL_MARKER);
+
+
+    //call other serial handler
+    if (SERIAL_BUFFER_DATA_SIZE != 9)
+    {
+      if (SERIAL_BUFFER[0] != 0x07) {
+        SERIAL_BUFFER_DATA_SIZE = 0;
+        handleSerial((char)b);
+      }
+      return;
+
+    }
+
+
+    SERIAL_BUFFER_DATA_SIZE = 0;
+
+    byte id = SERIAL_BUFFER[1];
+    byte cmd = SERIAL_BUFFER[2];
+    byte valA = SERIAL_BUFFER[3];
+    byte valB = SERIAL_BUFFER[4];
+
+    switch (cmd)
+    {
+
+      case 0x01: // Get EEPROM Version
+        {
+          byte ret[8] { 0x06, id, 0x01, CONFIG_EEPROM_VERSION, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+          ret[5] = checksum(ret, 5);
+          Serial.write(ret, 8);
+        }
+        break;
+
+      case 0x02: // Dump SRAM Config
+        {
+          byte ret[7 + CONFIG_EEPROM_SLOTS];
+          ret[0] = 0x06;
+          ret[1] = SERIAL_BUFFER[1];
+          ret[2] = CONFIG_EEPROM_SLOTS;
+
+          for (int i = 0; i < CONFIG_EEPROM_SLOTS; i++)
+            ret[3 + i] = CURRENT_CONFIG[i];
+
+          ret[2 + CONFIG_EEPROM_SLOTS + 1] = 0x03;
+          ret[2 + CONFIG_EEPROM_SLOTS + 2] = checksum(ret, 2 + CONFIG_EEPROM_SLOTS + 1 + 1);
+          ret[2 + CONFIG_EEPROM_SLOTS + 3] = 0x04;
+          ret[2 + CONFIG_EEPROM_SLOTS + 4] = SERIAL_EOL_MARKER;
+          Serial.write(ret, 7 + CONFIG_EEPROM_SLOTS);
+        }
+        break;
+
+      case 0x03: // IVAD Change Setting
+        {
+          ivad_change_setting(valA, valB);
+          byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+          ret[4] = checksum(ret, 4);
+          Serial.write(ret, 7);
+        }
+        break;
+
+      case 0x04: // IVAD Reset from EEPROM
+        {
+          settings_load();
+          byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+          ret[4] = checksum(ret, 4);
+          Serial.write(ret, 7);
+        }
+        break;
+
+      case 0x05: // EEPROM Reset to Default
+        {
+          settings_reset_default();
+          settings_store();
+          settings_load();
+          ivad_write_settings();
+          byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+          ret[4] = checksum(ret, 4);
+          Serial.write(ret, 7);
+        }
+        break;
+
+      case 0x06: // Write SRAM to EEPROM
+        {
+          settings_store();
+          byte ret[7] { 0x06, id, 0x00, 0x03, 0xFF, 0x04, SERIAL_EOL_MARKER };
+          ret[4] = checksum(ret, 4);
+          Serial.write(ret, 7);
+        }
+    }//end switch
+
+    SERIAL_BUFFER[1] = 0xFF;
+
+  }
+
+}//end if
+
+
+
+
+
+
+
+
+
+//===================================
+
+
 
 byte checksum(const byte arr[], const int len)
 {
@@ -687,6 +690,9 @@ byte checksum(const byte arr[], const int len)
 
   return ret;
 }
+
+
+
 
 int ivad_change_setting(const int ivad_setting,  const byte value)
 {
