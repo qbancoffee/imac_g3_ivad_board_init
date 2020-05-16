@@ -388,3 +388,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Adjusting iMac G3 picture settings with a java based GUI](https://youtu.be/zrzcvThxDeY)
 - [Monitoring VSYNC to shut CRT off](https://youtu.be/fBMyjlEAZAw)
 - [Cloning compiling and running oshimai's gui](https://youtu.be/DqM9bZfvwgM)
+- [Stable arduino sketch that can communicate with oshimais GUI](https://youtu.be/inmUAiIA7sg)
