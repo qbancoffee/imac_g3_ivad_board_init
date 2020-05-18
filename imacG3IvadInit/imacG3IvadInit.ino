@@ -67,7 +67,7 @@ byte pincushionValueIndex = 0xcb;//203
 byte SERIAL_BUFFER[SERIAL_BUFFER_MAX_SIZE];
 byte SERIAL_BUFFER_DATA_SIZE;
 byte CURRENT_CONFIG[CONFIG_EEPROM_SLOTS];
-byte FIRST_RUN = 0x80;
+byte FIRST_RUN = 0x79;
 
 byte data = -1;
 
@@ -110,7 +110,7 @@ void setup() {
   pinMode(vsyncPin, INPUT);//this pin is on the J5 connector for general use PB0.
   pinMode(9, INPUT);//this pin is on the J5 connector for general use PB1.
 
-  EEPROMwl.begin(CONFIG_EEPROM_VERSION, CONFIG_EEPROM_SLOTS);
+  EEPROMwl.begin(CONFIG_EEPROM_VERSION, CONFIG_EEPROM_SLOTS + 1);
   Wire.begin(0x50); //join as slave and wait for EDID requests
   softWire.begin();// join as master and send init sequence
   Serial.begin(115200);//use built in serial
