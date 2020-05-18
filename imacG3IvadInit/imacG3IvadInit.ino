@@ -176,7 +176,7 @@ void loop() {
     if (vsyncDetect <= 0) {
       startTime = 0;
       currentTime = 0;
-      // externalCircuitOff();
+       externalCircuitOff();
 
 
     }
