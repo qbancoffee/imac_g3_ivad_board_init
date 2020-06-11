@@ -72,6 +72,8 @@ just right for your setup. below is an example from the init sketch.
 ## Success Stories
 - [Apple IIe using the iMac G3 as a monitor](https://www.reddit.com/r/VintageApple/comments/fox7b8/my_half_retro_battle_station/)
 - [Apple IIe using the iMac G3 as a monitor 2 ](https://old.reddit.com/r/VintageApple/comments/fmoi5d/slot_loading_imac_g3_vga_input_hack/)
+-[oshimai running windows on a pc104 computer](https://vimeo.com/415301897)
+-[oshimais' repo with links to videos](https://github.com/shuuryou/imacg3)
 
 ## Goals
 
