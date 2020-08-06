@@ -2,7 +2,7 @@
 
 
 See the wiki for an explantion of how this was done.<BR>
- [Wiki explaining how this was done.](https://github.com/qbancoffee/imac_g3_ivad_board_init/wiki/Convert-and-iMac-G3-DV-slot-loader-into-a-standard-VGA-monitor)
+ [Wiki explaining how this was done.](https://github.com/qbancoffee/imac_g3_ivad_board_init/wiki)
 
 
 If you have a dead logic board but a functioning CRT then these boards can let you use your
