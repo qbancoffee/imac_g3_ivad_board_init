@@ -399,3 +399,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Oshimais GUI running on a raspberry pi3 under mono](https://youtu.be/g9aLTrW5eaU)
 - [Making a desktop recording the iMac G3 monitor with a raspberry pi, running oshimais gui](https://youtu.be/JA01o5xfwxg)
 - [Assembling the J20 adapter board](https://youtu.be/qILuajxscnE)
+- [Assembling the J22 adapter board](https://youtu.be/JCPRYKbwKyk)
