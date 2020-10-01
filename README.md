@@ -400,3 +400,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Making a desktop recording the iMac G3 monitor with a raspberry pi, running oshimais gui](https://youtu.be/JA01o5xfwxg)
 - [Assembling the J20 adapter board](https://youtu.be/qILuajxscnE)
 - [Assembling the J22 adapter board](https://youtu.be/JCPRYKbwKyk)
+- [Using a Gert VGA 666 adapter + Raspberry pi 3 with an Imac G3 monitor](https://youtu.be/5H0nzaTycOg)
