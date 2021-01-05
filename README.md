@@ -401,3 +401,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Assembling the J20 adapter board](https://youtu.be/qILuajxscnE)
 - [Assembling the J22 adapter board](https://youtu.be/JCPRYKbwKyk)
 - [Using a Gert VGA 666 adapter + Raspberry pi 3 with an Imac G3 monitor](https://youtu.be/5H0nzaTycOg)
+- [Playing a round of among us using he iMac G3 as a monitor](https://youtu.be/MomKAUGT8i8)
