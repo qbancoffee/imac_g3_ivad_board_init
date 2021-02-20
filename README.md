@@ -79,6 +79,7 @@ just right for your setup. below is an example from the init sketch.
 - [Apple IIe using the iMac G3 as a monitor 2 ](https://old.reddit.com/r/VintageApple/comments/fmoi5d/slot_loading_imac_g3_vga_input_hack/)
 - [oshimai running windows on a pc104 computer](https://vimeo.com/415301897)
 - [oshimais' repo with links to videos](https://github.com/shuuryou/imacg3)
+- [A Nintendo Switch connected to an iMac G3](https://www.reddit.com/r/crtgaming/comments/k3hf02/imac_g3_crt_connected_to_switch/)
 
 ## Goals
 
