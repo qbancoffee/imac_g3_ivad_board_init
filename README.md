@@ -79,6 +79,7 @@ just right for your setup. below is an example from the init sketch.
 - [Apple IIe using the iMac G3 as a monitor 2 ](https://old.reddit.com/r/VintageApple/comments/fmoi5d/slot_loading_imac_g3_vga_input_hack/)
 - [oshimai running windows on a pc104 computer](https://vimeo.com/415301897)
 - [oshimais' repo with links to videos](https://github.com/shuuryou/imacg3)
+- [A Nintendo Switch connected to an iMac G3](https://www.reddit.com/r/crtgaming/comments/k3hf02/imac_g3_crt_connected_to_switch/)
 
 ## Goals
 
@@ -381,12 +382,12 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Testing replacement speakers with smooth criminal](https://youtu.be/Vm1vN6xlomQ)
 - [Testing an SBC inside the iMac G3 ](https://youtu.be/ZOYHHg9NhZA)
 - [Powering a computer using the iMac's down converter board](https://youtu.be/1DuaIlEZ5WU)
-- [Using a PAM8403 board to drive the speakers on the iMac G3](https://youtu.be/jEA85s0Cqyg)
+- [Using a PAM8403 board to drive the speakers on the iMac G3](https://youtu.be/jEA85s0Cqyg)https://www.youtube.com/channel/UChrYe70o7NmDioL02PRVWVg
 - [Testing Retropie with iMac G3 monitor](https://youtu.be/S1fnj0tsFQA)
 - [Testing J20 board for the first time](https://youtu.be/_IMhMkrIE4M)
 - [Testing the J22 board with a raspberry pi](https://youtu.be/HR-qM3-7SYA)
 - [Testing audio via the J22 breakout board 1](https://youtu.be/MyON9M_RYCk)
-- [Testing audio via the J22 breakout board 2](https://youtu.be/EDeFRHsqa5c)
+- [Testing audio via the J22 breakout board 2](https://youtu.be/EDeFRHsqa5c)https://www.youtube.com/channel/UChrYe70o7NmDioL02PRVWVg
 - [Testing the down converter breakout board for the first time.](https://youtu.be/BQKrsIXOSxU)
 - [Mirroring an iMac G3 DV with this iMac G3 monitor hack](https://youtu.be/4jHPZWJs-aY)
 - [All three boards installed and working.](https://youtu.be/dqxeiFkvuYg)
@@ -401,3 +402,8 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Assembling the J20 adapter board](https://youtu.be/qILuajxscnE)
 - [Assembling the J22 adapter board](https://youtu.be/JCPRYKbwKyk)
 - [Using a Gert VGA 666 adapter + Raspberry pi 3 with an Imac G3 monitor](https://youtu.be/5H0nzaTycOg)
+- [Playing a round of among us using the iMac G3 as a monitor](https://youtu.be/MomKAUGT8i8)
+- [Playing minecraft using the iMac G3 as a monitor](https://youtu.be/VxJVShNo72g)
+- [Converting an iMac G3 DV into a monitor start to finish](https://youtu.be/guVSI1aqcJg)
+- [Playing Duck Hunt and Super Mario Bros with my NES on the iMac G3](https://youtu.be/wCEGIwrCOMQ)
+- [Playing "The Legend of Zelda" with my NES on the iMac G3](https://youtu.be/OpjjOnSjGQU)
