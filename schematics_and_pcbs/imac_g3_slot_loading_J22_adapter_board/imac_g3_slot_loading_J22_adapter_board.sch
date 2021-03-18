@@ -22,7 +22,7 @@ F 1 "Conn_02x13_Odd_Even" H 5500 2926 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x13_P2.54mm_Vertical" H 5450 2200 50  0001 C CNN
 F 3 "https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/67996.pdf" H 5450 2200 50  0001 C CNN
 F 4 "digikey" H 5450 2200 50  0001 C CNN "Vendor"
-F 5 "609-3367-ND" H 5450 2200 50  0001 C CNN "Part#"
+F 5 "3M156308-26-ND" H 5450 2200 50  0001 C CNN "Part#"
 	1    5450 2200
 	1    0    0    -1  
 $EndComp
