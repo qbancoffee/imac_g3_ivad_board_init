@@ -82,7 +82,7 @@ byte externalCircuitState = LOW;
 byte buttonState = LOW;
 
 //vsync pin
-byte vsyncPin = 8;
+byte vsyncPin = 10;
 
 
 //vsync power off countdown in seconds
