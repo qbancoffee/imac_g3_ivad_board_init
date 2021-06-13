@@ -407,3 +407,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Converting an iMac G3 DV into a monitor start to finish](https://youtu.be/guVSI1aqcJg)
 - [Playing Duck Hunt and Super Mario Bros with my NES on the iMac G3](https://youtu.be/wCEGIwrCOMQ)
 - [Playing "The Legend of Zelda" with my NES on the iMac G3](https://youtu.be/OpjjOnSjGQU)
+- [Using my CoCo 2 on the iMac G3](https://youtu.be/9cu0CFqIWnc)
