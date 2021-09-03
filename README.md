@@ -80,6 +80,9 @@ just right for your setup. below is an example from the init sketch.
 - [oshimai running windows on a pc104 computer](https://vimeo.com/415301897)
 - [oshimais' repo with links to videos](https://github.com/shuuryou/imacg3)
 - [A Nintendo Switch connected to an iMac G3](https://www.reddit.com/r/crtgaming/comments/k3hf02/imac_g3_crt_connected_to_switch/)
+- [Check out the iMacSTer repo by wikerwaka it's impressive!](https://github.com/wickerwaka/iMacSTer)
+- [Wikerwaka testing the iMacSTer](https://youtu.be/8O5fEVcCo0Q)
+- [Wikerwaka assembling the iMacSTer](https://youtu.be/OmDPnWWWzPM)
 
 ## Goals
 
