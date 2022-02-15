@@ -385,7 +385,7 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Testing replacement speakers with smooth criminal](https://youtu.be/Vm1vN6xlomQ)
 - [Testing an SBC inside the iMac G3 ](https://youtu.be/ZOYHHg9NhZA)
 - [Powering a computer using the iMac's down converter board](https://youtu.be/1DuaIlEZ5WU)
-- [Using a PAM8403 board to drive the speakers on the iMac G3](https://youtu.be/jEA85s0Cqyg)https://www.youtube.com/channel/UChrYe70o7NmDioL02PRVWVg
+- [Using a PAM8403 board to drive the speakers on the iMac G3](https://youtu.be/jEA85s0Cqyg)
 - [Testing Retropie with iMac G3 monitor](https://youtu.be/S1fnj0tsFQA)
 - [Testing J20 board for the first time](https://youtu.be/_IMhMkrIE4M)
 - [Testing the J22 board with a raspberry pi](https://youtu.be/HR-qM3-7SYA)
