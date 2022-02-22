@@ -86,7 +86,7 @@ byte vsyncPin = 10;
 
 
 //vsync power off countdown in seconds
-byte vsync_off_time = 5;
+byte vsync_off_time = 30;
 
 //counters
 byte buttonPressedTime = 0;
