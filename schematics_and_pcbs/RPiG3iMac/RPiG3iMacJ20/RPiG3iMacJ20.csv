@@ -1,0 +1,8 @@
+Reference, Quantity, Value, Footprint, Datasheet,Manufacturer,Part Number,DigiKey
+D1 D2 D3 ,3,LED,LED_SMD:LED_0603_1608Metric,https://www.lumex.com/spec/SML-LXIL0603SIC-TR.pdf,"	
+Lumex Opto/Components Inc.",SML-LXIL0603SIC-TR ,67-2333-1-ND
+J1 J2 ,2,Conn_02x03_Odd_Even,Rudy:Harwin_M20-7810345_2x03_P2.54mm_Vertical,https://cdn.harwin.com/pdfs/C001XX_M20_Series_Connectors.pdf,"	
+Harwin Inc.",M20-7810345,952-3208-ND
+J3 ,1,Screw_Terminal_01x05,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-5-2.54_1x05_P2.54mm_Horizontal",https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1725685.pdf,Phoenix Contact,1725685,277-1276-ND
+R1 ,1,470,Resistor_SMD:R_0603_1608Metric,https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf,Panasonic Electronic Components,ERJ-PB3D4700V ,P20245CT-ND
+R2 R3 ,2,220,Resistor_SMD:R_0603_1608Metric,https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf,Panasonic Electronic Components,ERJ-PB3B2200V ,P19894CT-ND

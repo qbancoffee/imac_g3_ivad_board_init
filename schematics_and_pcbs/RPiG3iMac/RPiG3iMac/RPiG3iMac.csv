@@ -1,0 +1,27 @@
+Reference, Quantity, Value, Footprint, Datasheet,Manufacturer,Part Number,DigiKey
+C1 ,1,10uF 25V,Capacitor_SMD:C_0603_1608Metric,https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL10A106MA8NRNC_Spec.pdf,"	
+Samsung Electro-Mechanics",CL10A106MA8NRNC ,1276-1869-1-ND
+C2 C3,2,22uF 10V,Capacitor_SMD:C_0603_1608Metric,https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL10A226MP8NUNC_Spec.pdf,"	
+Samsung Electro-Mechanics",CL10A226MP8NUNE ,1276-1274-1-ND
+D1 ,1,40V 3A,Diode_SMD:D_SMB,http://www.smc-diodes.com/propdf/SK310B%20N0283%20REV.A.pdf,"	
+SMC Diode Solutions",SK310B ,1655-2295-1-ND
+D2 D3 D4 D8 D9 D10 ,6,---,LED_SMD:LED_0603_1608Metric,https://www.lumex.com/spec/SML-LXIL0603SIC-TR.pdf,"	
+Lumex Opto/Components Inc.",SML-LXIL0603SIC-TR ,67-2333-1-ND
+D5 D6 D7 ,3,100V 150mA,Diode_SMD:D_SOD-123,https://www.comchiptech.com/admin/files/product/QW-BA018%20CDBW46-G%20RevD.pdf,"	
+Comchip Technology",CDBW46-G ,641-1964-1-ND
+J1 ,1,12VDC IN,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1729128.pdf,Phoenix Contact,1729128 ,277-1247-ND
+J2 ,1,RPi,Rudy:Harwin_M20-7812045_2x20_P2.54mm_Vertical_rpi,https://cdn.harwin.com/pdfs/C001XX_M20_Series_Connectors.pdf,"	
+Harwin Inc.",M20-7812045 ,952-3218-ND
+J3 ,1,SERIAL TO iMAC G3 J20 BOARD,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-5-2.54_1x05_P2.54mm_Horizontal",https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1725685.pdf,Phoenix Contact,1725685,277-1276-ND
+J4 J5 J6,3,---,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal",https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1725656_Ds.pdf,Phoenix Contact,1725656,277-1273-ND
+Q1 ,1,BC817,Package_TO_SOT_SMD:SOT-23,https://www.mccsemi.com/pdf/Products/BC817-16~BC817-40(SOT-23).pdf,Micro Commercial Co,BC817-16-TP ,BC817-16-TPMSCT-ND
+R1 ,1,1K0,Resistor_SMD:R_0603_1608Metric,https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf,Panasonic Electronic Components,ERJ-PB3B1001V ,P19972CT-ND
+R2 R3 ,2,2K0,Resistor_SMD:R_0603_1608Metric,https://industrial.panasonic.com/cdbs/www-data/pdf/RDO0000/AOA0000C331.pdf,Panasonic Electronic Components,ERJ-PA3J202V,P2KBZCT-ND
+R4 R6 ,2,470,Resistor_SMD:R_0603_1608Metric,https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf,Panasonic Electronic Components,ERJ-PB3D4700V ,P20245CT-ND
+R5 R7 R8 R9 ,4,220,Resistor_SMD:R_0603_1608Metric,https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf,Panasonic Electronic Components,ERJ-PB3B2200V ,P19894CT-ND
+RV1 ,1,5M0,Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical,https://www.bourns.com/docs/product-datasheets/3296.pdf,"	
+Bourns Inc.",3296Y-1-505LF ,3296Y-1-505LF-ND
+U1 ,1,RPM5.0-3.0,Converter_DCDC:Converter_DCDC_RECOM_RPMx.x-x.0,https://recom-power.com/pdf/Innoline/RPM-3.0.pdf,Recom Power,RPM5.0-3.0 ,945-3254-1-ND
+FAN,1,---,---,https://media.digikey.com/pdf/Data%20Sheets/Sunon%20PDFs/MF25101V2-1000U-A99.pdf,Sunon Fans,MF25101V2-1000U-A99 ,259-1833-ND
+J2 HEADER,1,---,---,http://suddendocs.samtec.com/prints/esq-sdt.pdf,"	
+Samtec Inc.",ESQ-120-14-G-D ,SAM8767-ND

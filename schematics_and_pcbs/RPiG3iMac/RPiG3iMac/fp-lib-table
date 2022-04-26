@@ -1,0 +1,6 @@
+(fp_lib_table
+  (lib (name Samtec_HLE_SMD)(type KiCad)(uri /Users/genevieve/Documents/_Personal/Rudy/KiCAD/RPiG3iMac/modules/Connector_Samtec_HLE_SMD.pretty)(options "")(descr ""))
+  (lib (name Samtec)(type KiCad)(uri /Users/genevieve/Documents/_Personal/Rudy/KiCAD/RPiG3iMac/modules/Connector_Samtec.pretty)(options "")(descr ""))
+  (lib (name Rudy)(type KiCad)(uri /Users/genevieve/Documents/_Personal/Rudy/KiCAD/RPiG3iMac/modules/rudy.pretty)(options "")(descr ""))
+  (lib (name Harwin)(type KiCad)(uri /Users/genevieve/Documents/_Personal/Rudy/KiCAD/RPiG3iMac/modules/Connector_Harwin.pretty)(options "")(descr ""))
+)
