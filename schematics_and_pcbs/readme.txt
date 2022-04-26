@@ -16,11 +16,11 @@ These are the KiCAD project files for this project.
 	
 -imac_g3_slot_loading_J22_adapter_board
 	This board is essentially a breakout board that allows one to use the 
-	built in speakers, power switch leds and 24VAC.
+	built in speakers, power switch, leds and 24VAC.
 
 -surfacemount_version	
 	This will be a surface mount version of the original main boards.
-	It is currently under development. The idea is to have a boards
+	It is currently under development. The idea is to have boards
 	that can be assembled by an assembly outfit to bring down the cost.
 	
 ===User contributed boards==
