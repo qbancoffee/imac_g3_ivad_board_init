@@ -86,7 +86,7 @@ byte vsyncPin = 10;
 
 
 //vsync power off countdown in seconds
-byte vsync_off_time = 5;
+byte vsync_off_time = 30;
 
 //counters
 byte buttonPressedTime = 0;
@@ -107,7 +107,8 @@ void setup() {
   //define pin direction
   pinMode(solid_state_relay_Pin, OUTPUT);
   pinMode(powerButtonPin, INPUT);
-  pinMode(vsyncPin, INPUT);//this pin is on the J5 connector for general use PB0.
+  pinMode(vsyncPin, INPUT);//this pin is used to monitor VSYNC.
+  pinMode(8, INPUT);//this pin is on the J5 connector for general use PB0.
   pinMode(9, INPUT);//this pin is on the J5 connector for general use PB1.
 
   EEPROMwl.begin(CONFIG_EEPROM_VERSION, CONFIG_EEPROM_SLOTS + 1);
