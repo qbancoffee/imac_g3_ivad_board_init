@@ -27,5 +27,5 @@ These are the KiCAD project files for this project.
 
 -RPiG3iMac	
 	Additional KiCAD projects for a Raspberry Pi Hat and a breakout board
-	for the J20 board. These boards were contributed by Rudy, look inside
-	the directory for more details. 
+	for the J20 board. These boards were contributed by Rudy https://reng.ca
+	, look inside the directory for more details. 

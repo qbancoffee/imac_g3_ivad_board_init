@@ -1,6 +1,6 @@
 
-These boards were created and graciously contributed by Rudy for this
-project for others to use.
+These boards were created and graciously contributed by Rudy https://reng.ca for
+this project for others to use.
 
 RPiG3iMac       Contains the KiCAD project files for a Raspberry Pi HAT
                 with power and activity LEDs. The HAT also converts the
