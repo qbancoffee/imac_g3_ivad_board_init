@@ -2,7 +2,8 @@
 
 
 See the wiki for an explantion of how this was done.<BR>
- [<H2>Wiki explaining how this was done.</H2>](https://github.com/qbancoffee/imac_g3_ivad_board_init/wiki)
+
+- [<H2>Wiki explaining how this was done.</H2>](https://github.com/qbancoffee/imac_g3_ivad_board_init/wiki)
 
 
 If you have a dead logic board but a functioning CRT then these boards can let you use your
