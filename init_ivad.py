@@ -23,7 +23,7 @@ def writeToIvad(address, message1, message2):
 def readFromIvad(address, bytes):
     #bus.read_i2c_block_data(address,0,bytes)
     for x in range(bytes):
-		bus.read_byte(address)
+        bus.read_byte(address)
     return;    
 
 
