@@ -156,6 +156,15 @@ the username is "pi" but replace this with the the username you've created for t
 ```bash
 sudo apt-get update && sudo apt-get -y install i2c-tools git
 ```
+- Install smbus and RPI.GPIO for python using pip for the python version you have.
+```bash
+sudo pip install smbus RPI.GPIO
+```
+- Edit config.txt and force a resolution of 1024x768 @ 75 Hz
+```bash
+sudo nano /boot/config.txt
+```
+
 - Clone the iMac IVAD init repo
 ```bash
 git clone https://github.com/qbancoffee/imac_g3_ivad_board_init.git
