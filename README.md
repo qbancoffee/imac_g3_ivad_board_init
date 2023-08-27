@@ -160,11 +160,6 @@ sudo apt-get update && sudo apt-get -y install i2c-tools git
 ```bash
 sudo pip install smbus RPI.GPIO
 ```
-- Edit config.txt and force a resolution of 1024x768 @ 75 Hz
-```bash
-sudo nano /boot/config.txt
-```
-
 - Clone the iMac IVAD init repo
 ```bash
 git clone https://github.com/qbancoffee/imac_g3_ivad_board_init.git
