@@ -211,13 +211,22 @@ sudo chmod +x /etc/rc.local
 ```
 
 ### Configure Resolution and Refresh Rate
--Edit config.txt
+- Edit config.txt
 ```bash
 sudo nano /boot/config.txt
 ```
--Add the following to the bottom of the file and save
+- The newer Raspberry Pi OS uses the VC4 V3D driver that causes the video to go blank. Comment the line that enables it and add the Fake VC4 V3D driver.
+```
+# Enable DRM VC4 V3D driver
+#dtoverlay=vc4-kms-v3d
+dtoverlay=vc4-fkms-v3d
+
+```
+Newer versions of the Raspberry Pi OS will ignore video modes specified in /boot/config.txt if the EDID sent from the monitor is corrupt or missing. Since we are not sending EDID information to the raspberry pi from the iMac we need to tell the OS to ignore the EDID and set the correct video mode.
+- Add the following to the bottom of the file and save.
 ```
 #iMac G3 settings
+hdmi_ignore_edid=0xa5000080
 hdmi_group=2
 hdmi_mode=18
 ```
