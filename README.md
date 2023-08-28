@@ -230,7 +230,8 @@ hdmi_ignore_edid=0xa5000080
 hdmi_group=2
 hdmi_mode=18
 ```
-
+Here is a video where I perform the above steps.
+- [Modding an iMac G3 DV using only a Raspberry Pi](https://youtu.be/xSiqchucFE4)
 ### Wiring The Raspberry Pi and testing the connection
 
 In all cases, the IVAD board needs to be initialized when the power analog board is
@@ -426,3 +427,4 @@ I like to buy from digikey but obviously you can find a vendor that fits your ne
 - [Playing Duck Hunt and Super Mario Bros with my NES on the iMac G3](https://youtu.be/wCEGIwrCOMQ)
 - [Playing "The Legend of Zelda" with my NES on the iMac G3](https://youtu.be/OpjjOnSjGQU)
 - [Using my CoCo 2 on the iMac G3](https://youtu.be/9cu0CFqIWnc)
+- [Modding an iMac G3 DV using only a Raspberry Pi](https://youtu.be/xSiqchucFE4)
