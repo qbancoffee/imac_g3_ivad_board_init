@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "imac_g3_333mhz_slot_loading_J20_adapter_board-rescue")(type "KiCad")(uri "${KIPRJMOD}/imac_g3_333mhz_slot_loading_J20_adapter_board-rescue.kicad_sym")(options "")(descr ""))
+)
