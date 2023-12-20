@@ -41,19 +41,19 @@ enum IVAD_REGISTER_OFFSET : const byte
 const byte VIDEO_CONFIG_DEFAULT[] =
 {
   0xFE, //CONTRAST
-  0x93, //RED_DRIVE
-  0x93, //GREEN_DRIVE
-  0x8F, //BLUE_DRIVE
-  0x80, //RED_CUTOFF
-  0xB0, //GREEN_CUTOFF
-  0x78, //BLUE_CUTOFF
-  0xB0, //HORIZONTAL_POS
-  0xF0, //HEIGHT
-  0x4D, //VERTICAL_POS
+  0x78, //RED_DRIVE
+  0x58, //GREEN_DRIVE
+  0xA0, //BLUE_DRIVE
+  0x76, //RED_CUTOFF
+  0xA5, //GREEN_CUTOFF
+  0x74, //BLUE_CUTOFF
+  0xAB, //HORIZONTAL_POS (higher value moves screen left)
+  0xE3, //HEIGHT (higher value increases screen height)
+  0x4E, //VERTICAL_POS (higher value moves vertical position upwards)
   0x9A, //S_CORRECTION
   0x9B, //KEYSTONE
   0xCB, //PINCUSHION
-  0x19, //WIDTH
+  0x28, //WIDTH (higher value reduces screen width)
   0x7B, //PINCUSHION_BALANCE
   0xC6, //PARALLELOGRAM
   0x7B, //RESERVED6
