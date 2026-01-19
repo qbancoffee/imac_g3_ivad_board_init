@@ -17,7 +17,7 @@ These boards are designed to plug right in without having to modify the case and
 
 However....
 
-# --->DO THIS AT YOUR OWN RISK<--- as thing may break as you dissasemble your iMac and you can get shocked.
+# --->DO THIS AT YOUR OWN RISK<--- as things may break as you dissasemble your iMac and you can get shocked.
 
 Although low risk, things can always go wrong, so be careful.
 
@@ -85,6 +85,7 @@ just right for your setup. below is an example from the init sketch.
 - [Check out the iMacSTer repo by wikerwaka it's impressive!](https://github.com/wickerwaka/iMacSTer)
 - [Wikerwaka testing the iMacSTer](https://youtu.be/8O5fEVcCo0Q)
 - [Wikerwaka assembling the iMacSTer](https://youtu.be/OmDPnWWWzPM)
+- [Matt Gray upgrades an iMac G3 it now runs on Apple silicon](https://youtu.be/WoYBuP4Bxiw)
 
 ## Goals
 
