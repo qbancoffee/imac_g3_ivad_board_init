@@ -85,7 +85,7 @@ just right for your setup. below is an example from the init sketch.
 - [Check out the iMacSTer repo by wikerwaka it's impressive!](https://github.com/wickerwaka/iMacSTer)
 - [Wikerwaka testing the iMacSTer](https://youtu.be/8O5fEVcCo0Q)
 - [Wikerwaka assembling the iMacSTer](https://youtu.be/OmDPnWWWzPM)
-- [Matt Gray upgrades an iMac G3 it now runs on Apple silicon](https://youtu.be/WoYBuP4Bxiw?si=AiPPqQjk6-E3-r2k)
+- [Matt Gray upgrades an iMac G3 it and now runs on Apple silicon!](https://youtu.be/WoYBuP4Bxiw?si=AiPPqQjk6-E3-r2k)
 
 ## Goals
 
